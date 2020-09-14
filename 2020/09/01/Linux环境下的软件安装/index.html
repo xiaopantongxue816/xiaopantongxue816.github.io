@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Linux环境下的软件安装 | 小潘同学的教室</title>
+  <meta name="keywords" content=" linux ">
+  <meta name="description" content="Linux环境下的软件安装 | 小潘同学的教室">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="小潘同学的教室">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://xiaopantongxue816.github.io/tags/index.html">
+<meta property="og:site_name" content="小潘同学的教室">
+<meta property="og:description" content="小潘同学的教室">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-08T04:25:47.000Z">
+<meta property="article:modified_time" content="2020-09-14T00:34:15.986Z">
+<meta property="article:author" content="小潘同学">
+<meta property="article:tag" content="JAVA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/cat.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.0.2"><link rel="alternate" href="/atom.xml" title="小潘同学的教室" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/cat.png" />
+</a>
+<div class="author">
+    <span>小潘同学</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/xiaopantongxue816" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/5080293468" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1214798755@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1214798755&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="全部文章">全部文章<small>(19)</small></div></li>
+    
+        
+            
+            <li><div data-rel="工作方案">工作方案<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据库">数据库<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="运维">运维<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具">工具<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="其它">其它<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="19">
+<input type="hidden" id="yelog_site_word_count" value="21.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://zhang.ge/">张戈博客</a></li>
+            
+            <li><a target="_blank" href="http://www.ruanyifeng.com/home.html">阮一峰的个人网站</a></li>
+            
+            <li><a target="_blank" href="http://mindhacks.cn/">刘未鹏 | Mind Hacks</a></li>
+            
+            <li><a target="_blank" href="https://www.hanselman.com/">Scott</a></li>
+            
+            <li><a target="_blank" href="https://coolshell.cn/">酷 壳</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>eclipse</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>idea</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nuoyi</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>redis</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tomcat</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>异常</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>日记</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/09/%E7%BB%9F%E8%AE%A1%E5%A4%9A%E5%8F%B0linux%E4%B8%BB%E6%9C%BA%E7%9A%84CPU%E5%86%85%E5%AD%98/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="统计linux主机的CPU内存">统计linux主机的CPU内存</span>
+            <span class="post-date" title="2020-09-09 10:30:41">2020/09/09</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/09/python/"
+           data-tag="xxx"
+           data-author="" >
+            <span class="post-title" title="python">python</span>
+            <span class="post-date" title="2020-09-09 10:27:53">2020/09/09</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/04/%E9%83%A8%E7%BD%B2/"
+           data-tag="tomcat"
+           data-author="" >
+            <span class="post-title" title="部署">部署</span>
+            <span class="post-date" title="2020-09-04 16:59:53">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/04/%E9%83%A8%E7%BD%B2%E5%BC%82%E5%B8%B8/"
+           data-tag="异常"
+           data-author="" >
+            <span class="post-title" title="部署异常">部署异常</span>
+            <span class="post-date" title="2020-09-04 16:29:28">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/04/nuoyi/"
+           data-tag="nuoyi"
+           data-author="" >
+            <span class="post-title" title="nuoyi">nuoyi</span>
+            <span class="post-date" title="2020-09-04 16:01:40">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/03/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/"
+           data-tag="字符串"
+           data-author="" >
+            <span class="post-title" title="字符串数组">字符串数组</span>
+            <span class="post-date" title="2020-09-03 18:42:27">2020/09/03</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/03/kafka/"
+           data-tag="kafka"
+           data-author="" >
+            <span class="post-title" title="kafka">kafka</span>
+            <span class="post-date" title="2020-09-03 17:57:44">2020/09/03</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/02/Eclipse/"
+           data-tag="eclipse"
+           data-author="" >
+            <span class="post-title" title="eclipse">eclipse</span>
+            <span class="post-date" title="2020-09-02 16:14:39">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/02/Protobuf/"
+           data-tag="序列化"
+           data-author="" >
+            <span class="post-title" title="Protobuf">Protobuf</span>
+            <span class="post-date" title="2020-09-02 10:14:03">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/01/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux环境下的软件安装">Linux环境下的软件安装</span>
+            <span class="post-date" title="2020-09-01 10:46:17">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/01/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="远程连接工具">远程连接工具</span>
+            <span class="post-date" title="2020-09-01 09:49:52">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 其它 "
+           href="/2020/08/28/%E5%8D%9A%E5%AE%A2%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%88%90%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/"
+           data-tag="日记"
+           data-author="" >
+            <span class="post-title" title="博客初步搭建完成的一些感想">博客初步搭建完成的一些感想</span>
+            <span class="post-date" title="2020-08-28 19:18:31">2020/08/28</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/27/%E5%9F%BA%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%96%B9%E5%BC%8F%E7%9A%84linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="linux环境搭建">linux环境搭建</span>
+            <span class="post-date" title="2020-08-27 18:37:16">2020/08/27</span>
+        </a>
+        
+        <a  class="全部文章 数据库 "
+           href="/2020/08/24/Redis/"
+           data-tag="redis"
+           data-author="" >
+            <span class="post-title" title="Redis">Redis</span>
+            <span class="post-date" title="2020-08-24 09:25:49">2020/08/24</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/21/%E5%BC%80%E6%BA%90%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="开源网站相关">开源网站相关</span>
+            <span class="post-date" title="2020-08-21 14:34:04">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/21/Linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux命令记录">Linux命令记录</span>
+            <span class="post-date" title="2020-08-21 09:34:19">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/19/IDEA/"
+           data-tag="idea"
+           data-author="" >
+            <span class="post-title" title="IDEA">IDEA</span>
+            <span class="post-date" title="2020-08-19 10:26:28">2020/08/19</span>
+        </a>
+        
+        <a  class="全部文章 其它 "
+           href="/2020/08/16/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%94%9F%E6%88%90%E8%AE%B0%E5%BD%95/"
+           data-tag="博客"
+           data-author="" >
+            <span class="post-title" title="博客记录">博客记录</span>
+            <span class="post-date" title="2020-08-16 10:12:34">2020/08/16</span>
+        </a>
+        
+        <a  class="全部文章 其它 "
+           href="/2020/08/16/hello-world/"
+           data-tag="xxx"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-16 09:50:43">2020/08/16</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Linux环境下的软件安装" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Linux环境下的软件安装</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工具">工具</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2020-09-14 12:55:49'>2020-09-01 10:46</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:6.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7"><span class="toc-text">·</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDK%EF%BC%88JAVA%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="toc-text">JDK（JAVA环境）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-1"><span class="toc-text">·</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql"><span class="toc-text">Mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-2"><span class="toc-text">·</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Maven%E9%A1%B9%E2%BD%AC%E6%9E%84%E5%BB%BA%E5%92%8C%E7%AE%A1%E7%90%86%E2%BC%AF%E5%85%B7%E5%AE%89%E8%A3%85"><span class="toc-text">Maven项⽬构建和管理⼯具安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E2%BD%A4%E6%9C%8D%E5%8A%A1%E5%99%A8Tomcat"><span class="toc-text">应⽤服务器Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-3"><span class="toc-text">·</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Zookeeper"><span class="toc-text">Zookeeper</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-4"><span class="toc-text">·</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97Kafka"><span class="toc-text">消息队列Kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-5"><span class="toc-text">·</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%8E%AF%E5%A2%83"><span class="toc-text">python环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#anaconda3"><span class="toc-text">anaconda3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD"><span class="toc-text">卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5redis%E6%A8%A1%E5%9D%97"><span class="toc-text">导入redis模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pip-install-offline"><span class="toc-text">pip install offline</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Centos%E7%9A%84iso%E9%95%9C%E5%83%8F%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0yum%E4%BB%93%E5%BA%93"><span class="toc-text">Centos的iso镜像搭建本地yum仓库</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h1><p>实验过程中如果出现⼀些诸如客户端不能连通或访问等问题，可尝试考虑关闭防⽕墙：</p>
+<pre><code class="bash"> systemctl stop firewalld.service 
+ systemctl disable firewalld.service </code></pre>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p><strong>1、准备Git安装包</strong></p>
+<p>github下载地址：<a target="_blank" rel="noopener" href="https://github.com/git/git/releases">https://github.com/git/git/releases</a> </p>
+<p>下载好的安装包 git-2.28.0.tar.gz 直接放在了 root ⽬录下 然后将其本地解压，得到 git-2.28.0 ⽬录： </p>
+<pre><code class="bash">[root@localhost ~]# tar -zxvf git-2.28.0.tar.gz</code></pre>
+<p><strong>2、提前安装可能需要的依赖</strong></p>
+<pre><code class="bash">yum install curl-devel expat-devel gettext-devel openssl-devel zlibdevel gcc-c++ perl-ExtUtils-MakeMaker</code></pre>
+<p><strong>3、编译安装Git</strong></p>
+<p>进⼊到对应⽬录，执⾏配置、编译、安装命令即可 </p>
+<pre><code class="bash">[root@localhost ~]# cd git-2.28.0/
+[root@localhost git-2.26.2]# make configure
+[root@localhost git-2.26.2]# ./configure --prefix=/usr/local/git
+[root@localhost git-2.26.2]# make profix=/usr/local/git
+[root@localhost git-2.26.2]# make install</code></pre>
+<p><strong>4、将Git加入环境变量</strong></p>
+<p>将 Git 的可执⾏程序加⼊环境变量，便于后续使⽤ </p>
+<p>编辑配置⽂件</p>
+<pre><code class="bash">vim /etc/profile</code></pre>
+<p>尾部加⼊ Git 的 bin 路径配置</p>
+<pre><code class="bash">export GIT_HOME=/usr/local/git
+export PATH=$PATH:$GIT_HOME/bin</code></pre>
+<p>使环境变量⽣效</p>
+<pre><code class="bash">source /etc/profile </code></pre>
+<p><strong>5、查看安装结果</strong></p>
+<pre><code class="bash">git --version</code></pre>
+<h3 id="·"><a href="#·" class="headerlink" title="·"></a>·</h3><ol>
+<li><p>configure是一个shell脚本，生成合适的Makefile文件</p>
+<p>Linux中的Configure选项配置参数详解：<a target="_blank" rel="noopener" href="https://www.jb51.net/LINUXjishu/363271.html">https://www.jb51.net/LINUXjishu/363271.html</a> </p>
+</li>
+<li><p>可能出现错误：</p>
+<pre><code class="bash">GIT_VERSION = 2.19.0
+GEN configure
+/bin/sh: autoconf: 未找到命令
+ make: *** [configure] 错误 127</code></pre>
+<pre><code class="bash"># 如果出现可以通过执行：（安装autoconf安装包及对应的依赖）
+yum -y install autoconf（autoconf命令的主要作用是创建configure）</code></pre>
+</li>
+<li><p>./configure –prefix=/usr/local/git 安装在/usr/local/git 下面，执行文件就会安装在/usr/local/git/bin （而不是默认的 /usr/local/bin)，资源文件就会安装在 /usr/local/git/share（而不是默认的/usr/local/share） </p>
+<p>“./configure是用来检测你的安装平台的目标特征的。比如它会检测你是不是有CC或GCC，并不是需要CC或GCC，它是个shell脚本。 ”——-所以应该就是用来检测是windows、Linux、还是Mac的吧</p>
+</li>
+<li><p>make profix=/usr/local/git </p>
+<p>“make是用来编译的，它从Makefile中读取指令，然后编译。 ”</p>
+</li>
+<li><p>make install</p>
+<p>“make install是用来安装的，它也从Makefile中读取指令，安装到指定的位置。 ”</p>
+</li>
+</ol>
+<h1 id="JDK（JAVA环境）"><a href="#JDK（JAVA环境）" class="headerlink" title="JDK（JAVA环境）"></a>JDK（JAVA环境）</h1><p><strong>1.准备JDK安装包</strong></p>
+<p>下载地址：</p>
+<p>官网 ：<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-downloads.html">https://www.oracle.com/java/technologies/javase-downloads.html</a>  </p>
+<p>华为镜像 ：<a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a>  </p>
+<p>下载了jdk-8u181-linux-x64.tar.gz 安装包，直接放在了 root ⽬录下 </p>
+<p><strong><em>2.卸载已有的OPENJDK（如果有）</em></strong></p>
+<p>如果系统⾃带有 OpenJDK ，可以按照如下步骤提前卸载。</p>
+<p> ⾸先查找已经安装的 OpenJDK 包：</p>
+<pre><code class="bash"> rpm -qa | grep java </code></pre>
+<p> 接下来可以将 java 开头的安装包均卸载即可：</p>
+<pre><code class="bash">yum -y remove java-1.7.0-openjdk-1.7.0.141-2.6.10.5.el7.x86_64
+yum -y remove java-1.8.0-openjdk-1.8.0.131-11.b12.el7.x86_64
+... 省略 ...</code></pre>
+<p><strong>3.创建⽬录并解压</strong></p>
+<p>1、在 /usr/local/ 下创建 java ⽂件夹并进⼊ </p>
+<pre><code class="bash">cd /usr/local/
+mkdir java
+cd java</code></pre>
+<p>2、将上⾯准备好的 JDK 安装包解压到 /usr/local/java 中即可 </p>
+<pre><code class="bash">tar -zxvf /root/jdk-8u181-linux-x64.tar.gz -C ./</code></pre>
+<p>解压完之后， /usr/local/java ⽬录中会出现⼀个 jdk1.8.0_181 的⽬录 </p>
+<p><strong>4.配置JDK环境变量</strong></p>
+<p>编辑 /etc/profile ⽂件，在⽂件尾部加⼊如下 JDK 环境配置</p>
+<pre><code class="bash">JAVA_HOME=/usr/local/java/jdk1.8.0_181
+CLASSPATH=$JAVA_HOME/lib/
+PATH=$PATH:$JAVA_HOME/bin
+export PATH JAVA_HOME CLASSPATH</code></pre>
+<p>然后执⾏如下命令让环境变量⽣效 </p>
+<pre><code class="bash">source /etc/profile</code></pre>
+<p><strong>5.验证JDK安装结果</strong></p>
+<p>输⼊如下命令即可检查安装结果： </p>
+<pre><code class="bash">java -version
+javac</code></pre>
+<h3 id="·-1"><a href="#·-1" class="headerlink" title="·"></a>·</h3><ol>
+<li><p>tar -zxvf /root/jdk-8u181-linux-x64.tar.gz -C ./ </p>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-z</td>
+<td>通过gzip指令压缩/解压缩文件，文件名最好为*.tar.gz</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td>从归档文件中提取文件</td>
+</tr>
+<tr>
+<td align="center">-v</td>
+<td>显示指令执行过程</td>
+</tr>
+<tr>
+<td align="center">-f&lt;备份文件&gt;</td>
+<td>指定备份文件</td>
+</tr>
+<tr>
+<td align="center">-C &lt;目录&gt;</td>
+<td>切换工作目录，先进入指定目录再执行压缩/解压缩操作，可用于仅压缩特定目录里的内容或解压缩到特定目录</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><p><strong>1.⾸先准备安装包</strong></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/mysql/Downloads/MySQL-5.7/">https://mirrors.huaweicloud.com/mysql/Downloads/MySQL-5.7/</a> </p>
+<p> 这⾥下载的是 mysql-5.7.31-linux-glibc2.12-x86_64.tar.gz 安装包，直接放在了 root ⽬录下 </p>
+<p><strong><em>2.卸载系统⾃带的MARIADB（如果有）</em></strong></p>
+<p>如果系统之前⾃带 Mariadb ，可以先卸载</p>
+<p>查询已安装的 Mariadb 安装包： </p>
+<pre><code class="bash">rpm -qa|grep mariadb</code></pre>
+<p>将其均卸载： </p>
+<pre><code class="bash">yum -y remove mariadb-server-5.5.56-2.el7.x86_64
+yum -y remove mariadb-5.5.56-2.el7.x86_64
+yum -y remove mariadb-devel-5.5.56-2.el7.x86_64
+yum -y remove mariadb-libs-5.5.56-2.el7.x86_64</code></pre>
+<p><strong>3.解压MYSQL安装包</strong></p>
+<p>将上⾯准备好的 MySQL 安装包解压到 /usr/local/ ⽬录，并重命名为 mysql </p>
+<pre><code class="bash">tar -zxvf /root/mysql-5.7.31-linux-glibc2.12-x86_64.tar.gz -C /usr/local/
+mv mysql-5.7.31-linux-glibc2.12-x86_64 mysql</code></pre>
+<p><strong>4.创建MYSQL⽤户和⽤户组</strong></p>
+<pre><code class="bash">groupadd mysql
+useradd -g mysql mysql</code></pre>
+<p>同时新建 /usr/local/mysql/data ⽬录，后续备⽤ </p>
+<p><strong>5.修改MYSQL⽬录的归属⽤户</strong></p>
+<pre><code class="bash">[root@localhost mysql]# chown -R mysql:mysql ./</code></pre>
+<p><strong>6.准备MYSQL的配置⽂件</strong></p>
+<p>在 /etc ⽬录下新建 my.cnf ⽂件 </p>
+<p>写⼊如下简化配置： </p>
+<pre><code class="bash">
+[mysql]
+# 设置mysql客户端默认字符集
+default-character-set=utf8
+socket=/var/lib/mysql/mysql.sock
+[mysqld]
+skip-name-resolve
+#设置3306端⼝
+port = 3306
+socket=/var/lib/mysql/mysql.sock
+# 设置mysql的安装⽬录
+basedir=/usr/local/mysql
+# 设置mysql数据库的数据的存放⽬录
+datadir=/usr/local/mysql/data
+# 允许最⼤连接数
+max_connections=200
+# 服务端使⽤的字符集默认为8⽐特编码的latin1字符集
+character-set-server=utf8
+# 创建新表时将使⽤的默认存储引擎
+default-storage-engine=INNODB
+lower_case_table_names=1
+max_allowed_packet=16M</code></pre>
+<p>同时使⽤如下命令创建 /var/lib/mysql ⽬录，并修改权限： </p>
+<pre><code class="bash">mkdir /var/lib/mysql
+chmod 777 /var/lib/mysql</code></pre>
+<p><strong>7.正式开始安装MYSQL</strong></p>
+<p>执⾏如下命令正式开始安装： </p>
+<pre><code class="bash">cd /usr/local/mysql
+./bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --
+datadir=/usr/local/mysql/data</code></pre>
+<p><strong>注意：记住上⾯打印出来的 root 的密码，后⾯⾸次登陆需要使⽤</strong> b=iqYXuZh5YX</p>
+<p><strong>8.复制启动脚本到资源⽬录</strong></p>
+<p>执⾏如下命令复制 ：</p>
+<pre><code class="bash">[root@localhost mysql]# cp ./support-files/mysql.server /etc/init.d/mysqld</code></pre>
+<p>并修改 /etc/init.d/mysqld ，修改其 basedir 和 datadir 为实际对应⽬录： </p>
+<pre><code class="bash">basedir=/usr/local/mysql
+datadir=/usr/local/mysql/data</code></pre>
+<p><strong>9.设置MYSQL系统服务并开启⾃启</strong></p>
+<p>⾸先增加 mysqld 服务控制脚本执⾏权限： </p>
+<pre><code class="bash">chmod +x /etc/init.d/mysqld</code></pre>
+<p>同时将 mysqld 服务加⼊到系统服务： </p>
+<pre><code class="bash">chkconfig --add mysqld</code></pre>
+<p>最后检查 mysqld 服务是否已经⽣效即可：</p>
+<pre><code class="bash">chkconfig --list mysqld</code></pre>
+<p>这样就表明 mysqld 服务已经⽣效了，在2、3、4、5运⾏级别随系统启动⽽⾃动启动，以后可以直接使 </p>
+<p>⽤ service 命令控制 mysql 的启停。</p>
+<p><strong>10.启动MYSQLD</strong></p>
+<p>直接执⾏ ：</p>
+<pre><code class="bash">service mysqld start</code></pre>
+<p><strong>11.将 MYSQL 的 BIN ⽬录加⼊ PATH 环境变量</strong></p>
+<p>这样⽅便以后在任意⽬录上都可以使⽤ mysql 提供的命令。 </p>
+<p>编辑 ~/.bash_profile ⽂件，在⽂件末尾处追加如下信息:</p>
+<pre><code class="bash">export PATH=$PATH:/usr/local/mysql/bin</code></pre>
+<p>最后执⾏如下命令使环境变量⽣效 ：</p>
+<pre><code class="bash">source ~/.bash_profile</code></pre>
+<p><strong>12.⾸次登陆MYSQL</strong></p>
+<p>以 root 账户登录 mysql ，使⽤上⽂安装完成提示的密码进⾏登⼊</p>
+<pre><code class="bash">mysql -u root -p</code></pre>
+<p><strong>13.接下来修改ROOT账户密码</strong></p>
+<p>在mysql的命令⾏执⾏如下命令即可，密码可以换成你想⽤的密码</p>
+<pre><code class="bash">mysql&gt;alter user user() identified by &quot;root&quot;;
+mysql&gt;flush privileges;</code></pre>
+<p>⽐如这⾥将密码设置成简单的“root”了</p>
+<p><strong>14.设置远程主机登录</strong></p>
+<pre><code class="bash">mysql&gt; use mysql;
+mysql&gt; update user set user.Host=&#39;%&#39; where user.User=&#39;root&#39;;
+mysql&gt; flush privileges;</code></pre>
+<h3 id="·-2"><a href="#·-2" class="headerlink" title="·"></a>·</h3><p>1.在执行 service mysqld start  的时候报错</p>
+<pre><code class="bash">mysqld_safe Directory &#39;/var/lib/mysql&#39; for UNIX socket file don&#39;t exists.
+The server quit without updating PID file (/usr/local/mysql/data/localhost.localdomain.pid).</code></pre>
+<p>解决方案一：selinux惹的祸，如果是centos系统，默认会开启selinux 解决方法：关闭它，打开/etc/selinux/config，把SELINUX=enforcing改为SELINUX=disabled后存盘退出重启机器试试。 （没用）</p>
+<p>解决方案二：可能进程里已经存在mysql进程 解决方法：用命令“ps -ef|grep mysqld”查看是否有mysqld进程，如果有使用“kill -9  进程号”杀死，然后重新启动mysqld！ （重新连接机器 mysqld还是会自动启）</p>
+<p>解决方案三：3.可能是第二次在机器上安装mysql，有残余数据影响了服务的启动。 解决方法：去mysql的数据目录/data看看，如果存在mysql-bin.index，就赶快把它删除掉吧，它就是罪魁祸首了。 （查看了没有）</p>
+<p>解决方案四：skip-federated字段问题 解决方法：检查一下/etc/my.cnf文件中有没有没被注释掉的skip-federated字段，如果有就立即注释掉。（没有该字段） </p>
+<p>…..后来我发现是安装漏掉了两步错误就在打出的日志上不知道我为什么选择视而不见</p>
+<pre><code class="bash">mkdir /var/lib/mysql
+chmod 777 /var/lib/mysql</code></pre>
+<p>参考文章：</p>
+<p>Linux下改动mysql的存储目录后，mysql无法启动：<a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/340205817">https://bbs.csdn.net/topics/340205817</a> </p>
+<p>The server quit without updating PID file (/usr/local/<a target="_blank" rel="noopener" href="https://edu.aliyun.com/jiaocheng/1107">my</a><a target="_blank" rel="noopener" href="https://edu.aliyun.com/jiaocheng/1043">sql</a>/var/xxx.pid). … failed错误解决 ：</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/zhou75771217/article/details/82893997">https://blog.csdn.net/zhou75771217/article/details/82893997</a> </p>
+<p>2.在远程连接数据库时出现问题</p>
+<pre><code class="bash">错误码：2003
+Can’t connect to MySQL server on </code></pre>
+<p>导致这个问题可能有两个原因：</p>
+<ol>
+<li><p>远程访问没有启动（错误号码：2003）实际已启动（在第14步）</p>
+</li>
+<li><p>虚拟机防火墙没有关闭</p>
+<pre><code class="bash">CentOS7 的防火墙配置
+# 查看防火墙状态
+systemctl status firewalld
+# 关闭防火墙：
+systemctl stop firewalld.service
+# 开启防火墙：
+systemctl start firewalld.service
+# 关闭开机启动：
+systemctl disable firewalld.service
+# 开启开机启动：
+systemctl enable firewalld.service</code></pre>
+<p>参考原文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xc_zhou/article/details/80879810">https://blog.csdn.net/xc_zhou/article/details/80879810</a> </p>
+</li>
+</ol>
+<h1 id="Maven项⽬构建和管理⼯具安装"><a href="#Maven项⽬构建和管理⼯具安装" class="headerlink" title="Maven项⽬构建和管理⼯具安装"></a>Maven项⽬构建和管理⼯具安装</h1><p><strong>1.准备MAVEN安装包并解压</strong></p>
+<p>下载地址（华为云镜像）：<a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/apache/maven/maven-3/3.6.3/binaries/">https://mirrors.huaweicloud.com/apache/maven/maven-3/3.6.3/binaries/</a></p>
+<p>将下载的 apache-maven-3.6.3-bin.tar.gz 安装包，放置于提前创建好的 /opt/maven ⽬录下。</p>
+<p> 执⾏命令解压：</p>
+<pre><code class="bash">tar zxvf apache-maven-3.6.3-bin.tar.gz</code></pre>
+<p> 即可在当前⽬录得到 /opt/maven/apache-maven-3.6.3 ⽬录 </p>
+<p><strong>2.配置MAVEN加速镜像源</strong></p>
+<p>这⾥配置的是阿⾥云的maven镜像源。编辑修改 /opt/maven/apache-maven-3.6.3/conf/settings.xml ⽂件，在标签对⾥添加：</p>
+<pre><code class="xml">&lt;mirror&gt;
+    &lt;id&gt;alimaven&lt;/id&gt;
+    &lt;name&gt;aliyun maven&lt;/name&gt;
+    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+    &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+&lt;/mirror&gt;</code></pre>
+<p><strong>3.配置环境变量</strong></p>
+<p>因为下载的是⼆进制版安装包，所以解压完，配置好环境变量即可使⽤了。 编辑修改 /etc/profile ⽂件，在⽂件尾部添加如下内容，配置 maven 的安装路径 :</p>
+<pre><code class="bash">export MAVEN_HOME=/opt/maven/apache-maven-3.6.3
+export PATH=$MAVEN_HOME/bin:$PATH</code></pre>
+<p> 刷新环境变量，让 maven 环境的路径配置⽣效</p>
+<pre><code class="bash"> source /etc/profile</code></pre>
+<p>检验安装结果 ,能打印出 maven 版本信息说明安装、配置成功 </p>
+<pre><code class="bash">mvn –v</code></pre>
+<h1 id="应⽤服务器Tomcat"><a href="#应⽤服务器Tomcat" class="headerlink" title="应⽤服务器Tomcat"></a>应⽤服务器Tomcat</h1><p><strong>1.准备安装包</strong></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-80.cgi">https://tomcat.apache.org/download-80.cgi</a></p>
+<p>这⾥使⽤的是 8.5.57 版： apache-tomcat-8.5.57.tar.gz ，直接将其放在了 /root ⽬录下 </p>
+<p>在 /usr/local/ 下创建 tomcat ⽂件夹并进⼊ </p>
+<pre><code class="bash">cd /usr/local/
+mkdir tomcat
+cd tomcat</code></pre>
+<p>将 Tomcat 安装包解压到 /usr/local/tomcat </p>
+<pre><code class="bash">[root@localhost tomcat]# tar -zxvf /root/apache-tomcat-8.5.57.tar.gz -C ./</code></pre>
+<p>解压完之后， /usr/local/tomcat ⽬录中会出现⼀个 apache-tomcat-8.5.57 的⽬录 </p>
+<p><strong>2.启动TOMCAT</strong></p>
+<p>直接进 apache-tomcat-8.5.57 ⽬录，执⾏其中 bin ⽬录下的启动脚本即可 </p>
+<pre><code class="bash">8.5.57[root@localhost apache-tomcat-8.5.57]# cd bin/
+[root@localhost bin]# ./startup.sh</code></pre>
+<p>浏览器访问： 你的主机IP:8080 </p>
+<p><strong>3.配置快捷操作和开机启动</strong></p>
+<p>⾸先进⼊ /etc/rc.d/init.d ⽬录，创建⼀个名为 tomcat 的⽂件，并赋予执⾏权限 </p>
+<pre><code class="bash">[root@localhost ~]# cd /etc/rc.d/init.d/
+[root@localhost init.d]# touch tomcat
+[root@localhost init.d]# chmod +x tomcat</code></pre>
+<p>接下来编辑 tomcat ⽂件，并在其中加⼊如下内容： </p>
+<pre><code class="bash">#!/bin/bash
+#chkconfig:- 20 90
+#description:tomcat
+#processname:tomcat
+TOMCAT_HOME=/usr/local/tomcat/apache-tomcat-8.5.57
+case $1 in
+ start) su root $TOMCAT_HOME/bin/startup.sh;;
+ stop) su root $TOMCAT_HOME/bin/shutdown.sh;;
+ *) echo &quot;require start|stop&quot; ;;
+esac</code></pre>
+<p>这样后续对于Tomcat的开启和关闭只需要执⾏如下命令即可： </p>
+<pre><code class="bash">service tomcat start
+service tomcat stop</code></pre>
+<p>最后加⼊开机启动即可： </p>
+<pre><code class="bash">chkconfig --add tomcat
+chkconfig tomcat on</code></pre>
+<h3 id="·-3"><a href="#·-3" class="headerlink" title="·"></a>·</h3><p>1.报错：</p>
+<pre><code class="bash">Neither the JAVA_HOME nor the JRE_HOME environment variable is defined
+At least one of these environment variable is needed to run this program</code></pre>
+<p>解决：</p>
+<pre><code class="bash">cd /usr/local/tomcat/apache-tomcat-8.5.57/bin
+vim setclasspath.sh 
+# 加入两行
+export JAVA_HOME=/usr/local/java/jdk1.8.0_181
+export JRE_HOME=/usr/local/java/jdk1.8.0_181/jre
+保存退出</code></pre>
+<p>原文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zoiery/article/details/83589489?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">https://blog.csdn.net/zoiery/article/details/83589489?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param</a></p>
+<h1 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h1><p>下载地址：<a target="_blank" rel="noopener" href="https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.1">https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.1</a></p>
+<p><strong>1.准备安装包</strong></p>
+<p> 下载apache-zookeeper-3.6.1-bin.tar.gz 压缩包，并将其放在 了 /root ⽬录下 </p>
+<p><strong>2.解压并安装</strong></p>
+<p> 在 /usr/local/ 下创建 zookeeper ⽂件夹并进⼊ </p>
+<pre><code class="bash">cd /usr/local/
+mkdir zookeeper
+cd zookeeper</code></pre>
+<p>将 ZooKeeper 安装包解压到 /usr/local/zookeeper 中</p>
+<pre><code class="bash">[root@localhost zookeeper]# tar -zxvf /root/apache-zookeeper-3.6.1-
+bin.tar.gz -C ./</code></pre>
+<p>解压完之后， /usr/local/zookeerper ⽬录中会出现⼀个 apache-zookeeper-3.6.1-bin 的⽬录 </p>
+<p><strong>3.创建DATA⽬录</strong> </p>
+<p>直接在 /usr/local/zookeeper/apache-zookeeper-3.6.1-bin ⽬录中创建⼀个 data ⽬录 ,等下该 data ⽬录地址要配到 ZooKeeper 的配置⽂件中</p>
+<pre><code class="bash">/usr/local/zookeeper/apache-zookeeper-3.6.1-bin/data</code></pre>
+<p><strong>4.创建配置⽂件并修改</strong> </p>
+<p>进⼊到 zookeeper 的 conf ⽬录，复制 zoo_sample.cfg 得到 zoo.cfg ： </p>
+<pre><code class="ssh">[root@localhost apache-zookeeper-3.6.1-bin]# cd conf/
+[root@localhost conf]# cp zoo_sample.cfg zoo.cfg</code></pre>
+<p>修改配置⽂件 zoo.cfg ，将其中的 dataDir 修改为上⾯刚创建的 data ⽬录，其他选项可以按需配置 </p>
+<p><strong>5.启动ZOOKEEPER</strong> </p>
+<pre><code class="ssh">[root@localhost apache-zookeeper-3.6.1-bin]# ./bin/zkServer.sh start</code></pre>
+<p>启动后可以通过如下命令来检查启动后的状态： </p>
+<pre><code class="ssh">[root@localhost apache-zookeeper-3.6.1-bin]# ./bin/zkServer.sh status</code></pre>
+<p>从图中也可以看出zookeeper默认会绑定端⼝ 2181 </p>
+<p><strong>6.配置环境变量</strong></p>
+<p> 编辑配置⽂件： </p>
+<pre><code class="ssh">vim /etc/profile</code></pre>
+<p>尾部加⼊ ZooKeeper 的 bin 路径配置：</p>
+<pre><code class="ssh">export ZOOKEEPER_HOME=/usr/local/zookeeper/apache-zookeeper-3.6.1-bin
+export PATH=$PATH:$ZOOKEEPER_HOME/bin</code></pre>
+<p>最后执⾏ source /etc/profile 使环境变量⽣效。</p>
+<p><strong>7.设置开机⾃启</strong> </p>
+<p>⾸先进⼊ /etc/rc.d/init.d ⽬录，创建⼀个名为 zookeeper 的⽂件，并赋予执⾏权限 </p>
+<pre><code class="ssh">[root@localhost ~]# cd /etc/rc.d/init.d/
+[root@localhost init.d]# touch zookeeper
+[root@localhost init.d]# chmod +x zookeeper</code></pre>
+<p>接下来编辑 zookeeper ⽂件，并在其中加⼊如下内容： </p>
+<pre><code class="ssh">#!/bin/bash
+#chkconfig:- 20 90
+#description:zookeeper
+#processname:zookeeper
+ZOOKEEPER_HOME=/usr/local/zookeeper/apache-zookeeper-3.6.1-bin
+export JAVA_HOME=/usr/local/java/jdk1.8.0_161 # 此处根据你的实际情况更换对
+应
+case $1 in
+ start) su root $ZOOKEEPER_HOME/bin/zkServer.sh start;;
+ stop) su root $ZOOKEEPER_HOME/bin/zkServer.sh stop;;
+ status) su root $ZOOKEEPER_HOME/bin/zkServer.sh status;;
+ restart) su root $ZOOKEEPER_HOME/bin/zkServer.sh restart;;
+ *) echo &quot;require start|stop|status|restart&quot; ;;
+esac</code></pre>
+<p>最后加⼊开机启动即可： </p>
+<pre><code class="ssh">chkconfig --add zookeeper
+chkconfig zookeeper on</code></pre>
+<h3 id="·-4"><a href="#·-4" class="headerlink" title="·"></a>·</h3><p>1.启动的时候显示成功了,查看状态的时候却报错了: </p>
+<pre><code class="ssh">[root@localhost ~]# zkServer.sh start
+ZooKeeper JMX enabled by default
+Using config: /usr/local/zookeeper/apache-zookeeper-3.6.1-bin/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+[root@localhost ~]# zkServer.sh status
+ZooKeeper JMX enabled by default
+Using config: /usr/local/zookeeper/apache-zookeeper-3.6.1-bin/bin/../conf/zoo.cfg
+Client port found: 2181. Client address: localhost.
+Error contacting service. It is probably not running.</code></pre>
+<p>rm version-2</p>
+<p>[root@localhost conf]# ps -ef|grep 2181<br>root       2550   1849  0 09:26 pts/0    00:00:00 grep –color=auto 2181</p>
+<p>kill -9 1849</p>
+<h1 id="消息队列Kafka"><a href="#消息队列Kafka" class="headerlink" title="消息队列Kafka"></a>消息队列Kafka</h1><p>因为 Kafka 的运⾏环境依赖于 ZooKeeper ，所以⾸先得安装并运⾏ ZooKeeper 。 </p>
+<p>下载地址：<a target="_blank" rel="noopener" href="http://archive.apache.org/dist/kafka">http://archive.apache.org/dist/kafka</a></p>
+<p><strong>2.准备KAFKA安装包</strong></p>
+<p>这⾥下载的是 2.5.0 版： kafka_2.12-2.5.0.tgz ，将下载后的安装包放在了 /root ⽬录下 </p>
+<p><strong>3.解压并安装</strong> </p>
+<p> /usr/local/ 下创建 kafka ⽂件夹并进⼊ </p>
+<pre><code class="ssh">cd /usr/local/
+mkdir kafka
+cd kafka</code></pre>
+<p>将Kafka安装包解压到 /usr/local/kafka 中</p>
+<pre><code class="ssh">[root@localhost kafka]# tar -zxvf /root/kafka_2.12-2.5.0.tgz -C ./</code></pre>
+<p>解压完之后， /usr/local/kafka ⽬录中会出现⼀个 kafka_2.12-2.5.0 的⽬录 </p>
+<p><strong>4.创建LOGS⽬录</strong></p>
+<p> 这⾥直接在 /usr/local/kafka/kafka_2.12-2.5.0 ⽬录中创建⼀个 logs ⽬录, 等下该 logs ⽬录地址要配到Kafka的配置⽂件中。 </p>
+<pre><code class="ssh">/usr/local/kafka/kafka_2.12-2.5.0/logs</code></pre>
+<p><strong>5.修改配置⽂件</strong> </p>
+<p>进⼊到 Kafka 的 config ⽬录，编辑配置⽂件 server.properties </p>
+<pre><code class="ssh">[root@localhost kafka_2.12-2.5.0]# cd config/
+[root@localhost config]# vim server.properties</code></pre>
+<p>修改配置⽂件，⼀是将其中的 log.dirs 修改为上⾯刚创建的 logs ⽬录，其他选项可以按需配置 </p>
+<p>另外关注⼀下连接 ZooKeeper 的相关配置，根据实际情况进⾏配置： </p>
+<p><strong>6.启动KAFKA</strong> </p>
+<p>执⾏</p>
+<pre><code class="ssh">./bin/kafka-server-start.sh ./config/server.properties</code></pre>
+<p>如果需要后台启动，则加上 -daemon 参数即可 </p>
+<p><strong>7.实验验证</strong></p>
+<p> ⾸先创建⼀个名为 codesheep 的 topic ： </p>
+<pre><code class="ssh">./bin/kafka-topics.sh --create --bootstrap-server 192.168.220.10:9092 --replication-factor 1 --partitions 1 --topic codesheep</code></pre>
+<p>创建完成以后，可以使⽤命令来列出⽬前已有的 topic 列表 </p>
+<pre><code class="ssh">./bin/kafka-topics.sh --list --bootstrap-server 192.168.220.10:9092</code></pre>
+<p>用两个终端模拟生产者和消费者：</p>
+<p>创建⼀个⽣产者，⽤于在 codesheep 这个 topic 上⽣产消息： </p>
+<pre><code class="ssh">&gt;^C[root@localhost kafka_2.12-2.5.0]# ./bin/kafka-console-producer.sh --bootstrap-server 192.168.220.10:9092 --topic codesheep
+&gt;hello world!
+&gt;hello code sheep</code></pre>
+<p>⽽后接着创建⼀个消费者，⽤于在 codesheep 这个 topic 上获取消息： </p>
+<pre><code class="ssh"> [root@localhost kafka_2.12-2.5.0]# ./bin/kafka-console-consumer.sh --bootstrap-server 192.168.220.10:9092 --topic codesheep
+hello world!
+hello code sheep</code></pre>
+<p>此时⽣产者发出的消息，在消费者端可以获取到。</p>
+<h3 id="·-5"><a href="#·-5" class="headerlink" title="·"></a>·</h3><p>1.启动kafka时报错</p>
+<pre><code class="ssh">[2020-09-08 09:01:57,172] INFO Socket error occurred: 192.168.220.10/192.168.220.10:2181: 拒绝连接 (org.apache.zookeeper.ClientCnxn)
+[2020-09-08 09:01:58,300] INFO Opening socket connection to server 192.168.220.10/192.168.220.10:2181. Will not attempt to authenticate using SASL (unknown error) (org.apache.zookeeper.ClientCnxn)</code></pre>
+<p>防火墙已关</p>
+<pre><code class="ssh">[root@localhost zookeeper]# systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)
+     Docs: man:firewalld(1)</code></pre>
+<p>到目录下查看日志</p>
+<pre><code class="ssh">cd /usr/local/zookeeper/apache-zookeeper-3.6.1-bin/logs
+ vim zookeeper-root-server-localhost.localdomain.out </code></pre>
+<pre><code># 报错内容
+Caused by: java.io.IOException: Failed to bind to /0.0.0.0:8080
+        at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:346)
+        at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:307)
+        Caused by: java.net.BindException: 地址已在使用
+        at sun.nio.ch.Net.bind0(Native Method)
+        at sun.nio.ch.Net.bind(Net.java:433)
+        at sun.nio.ch.Net.bind(Net.java:425)
+        at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+        at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+        at org.eclipse.jetty.server.ServerConnector.openAcceptChannel(ServerConnector.java:342)
+        ... 12 more
+ Unable to start AdminServer, exiting abnormally
+2020-09-08 10:21:37,612 [myid:] - INFO  [main:ZKAuditProvider@42] - ZooKeeper audit is disabled.
+2020-09-08 10:21:37,614 [myid:] - ERROR [main:ServiceUtils@42] - Exiting JVM with code 4</code></pre>
+<p>端口被占用</p>
+<p>解决：在zoo.cfg文件中添加一行</p>
+<pre><code class="ssh">admin.serverPort=9090（未使用的端口）</code></pre>
+<p>原文：<a target="_blank" rel="noopener" href="https://www.pianshen.com/article/8473965843/">https://www.pianshen.com/article/8473965843/</a></p>
+<p>2.启动kafka时报错</p>
+<pre><code class="ssh">[2020-09-08 10:31:59,624] WARN [Controller id=0, targetBrokerId=0] Connection to node 0 (/192.168.220.10:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)</code></pre>
+<p>解决：添加 listeners=PLAINTEXT://192.168.220.10:9092</p>
+<pre><code class="ssh">cd /usr/local/kafka/kafka_2.12-2.5.0/config
+vim server.properties </code></pre>
+<p>将localhost改成ip即可，可能localhost没配置，kafka不认。 </p>
+<p>3.创建⼀个名为 codesheep 的 topic 时报错</p>
+<pre><code class="ssh">[2020-09-08 10:52:35,149] WARN [AdminClient clientId=adminclient-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)</code></pre>
+<p>我输入的命令是：</p>
+<pre><code class="ssh">./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic codesheep</code></pre>
+<p>正确的应该是：</p>
+<pre><code class="ssh">./bin/kafka-topics.sh --create --bootstrap-server 192.168.220.10:9092 --replication-factor 1 --partitions 1 --topic codesheep</code></pre>
+<h1 id="python环境"><a href="#python环境" class="headerlink" title="python环境"></a>python环境</h1><p>CentOS 7.4 默认⾃带了⼀个 Python2.7 环境： </p>
+<pre><code class="ssh">python(可以直接查看版本)
+2.7.5</code></pre>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://www.python.org/downloads/release">https://www.python.org/downloads/release</a></p>
+<p><strong>1.准备PYTHON3安装包并解压</strong> </p>
+<p>下载了 Python-3.8.3.tgz 安装包，并将其直接放在了 /root ⽬录下解压，得到⽂件夹： Python-3.8.3 </p>
+<pre><code class="ssh">tar zxvf Python-3.8.3.tgz</code></pre>
+<p><strong>2.安装相关预备环境</strong> </p>
+<pre><code class="ssh">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlitedevel readline-devel tk-devel gcc make</code></pre>
+<p><strong>3.编译并安装</strong> </p>
+<p>指定了安装⽬录为 /usr/local/python3 ，有需要可以⾃定义 </p>
+<pre><code class="ssh">cd Python-3.8.3/
+./configure prefix=/usr/local/python3
+make &amp;&amp; make install（这个要等一会了）</code></pre>
+<p>等安装过程完毕， /usr/local/python3 ⽬录就会⽣成了 </p>
+<p><strong>4.添加软链接</strong> （我还是不知道这个到底是干什么用的）</p>
+<p>将刚刚安装⽣成的⽬录 /usr/local/python3 ⾥的 python3 可执⾏⽂件做⼀份软链接，链 接到 /usr/bin 下，⽅便后续使⽤python3 </p>
+<pre><code class="ssh">ln -s /usr/local/python3/bin/python3 /usr/bin/python3
+ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3</code></pre>
+<p><strong>5.验证安装</strong> </p>
+<p>命令⾏输⼊ python3 ，即可查看 Python3 版本的安装结果 </p>
+<p>⽽输⼊ python ，依然还是 python2.7.5 环境 </p>
+<h1 id="anaconda3"><a href="#anaconda3" class="headerlink" title="anaconda3"></a>anaconda3</h1><h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>（删除的时候 除了删除包还要删除.condarc 文件）</p>
+<pre><code class="ssh">conda info        #找到基本文件所在位置</code></pre>
+<pre><code>rm -rf anaconda3/        # 删除anaconda3文件夹</code></pre>
+<pre><code class="ssh">rm /root/.condarc        # 删除.condarc 文件
+vim  ~/.bashrc            # 删除以下内容
+
+# &gt;&gt;&gt; conda initialize &gt;&gt;&gt;
+# !! Contents within this block are managed by &#39;conda init&#39; !!
+__conda_setup=&quot;$(&#39;/opt/anaconda3/bin/conda&#39; &#39;shell.bash&#39; &#39;hook&#39; 2&gt; /dev/null)&quot;
+if [ $? -eq 0 ]; then
+    eval &quot;$__conda_setup&quot;
+else
+    if [ -f &quot;/opt/anaconda3/etc/profile.d/conda.sh&quot; ]; then
+        . &quot;/opt/anaconda3/etc/profile.d/conda.sh&quot;
+    else
+        export PATH=&quot;/opt/anaconda3/bin:$PATH&quot;
+    fi
+fi
+unset __conda_setup
+# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;
+</code></pre>
+<p>效果</p>
+<pre><code class="ssh">(base) [root@SANDBOX opt]# conda -V
+-bash: /opt/anaconda3/bin/conda: 没有那个文件或目录
+(base) [root@SANDBOX opt]# conda info
+-bash: /opt/anaconda3/bin/conda: 没有那个文件或目录
+</code></pre>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="ssh">bash Anaconda3-5.3.1-Linux-x86_64.sh </code></pre>
+<p>执行上面命令然后一路<code>enter(1)|yes(2)</code> 中间可以在这个时候输入位置不安装默认，因为我一开始安装到默认但是找不到anaconda3这个文件夹</p>
+<pre><code class="ssh">Anaconda3 will now be installed into this location:
+/root/anaconda3
+
+  - Press ENTER to confirm the location
+  - Press CTRL-C to abort the installation
+  - Or specify a different location below
+
+[/root/anaconda3] &gt;&gt;&gt; /opt/anaconda3</code></pre>
+<p>接着再输入：</p>
+<pre><code class="ssh">Do you wish the installer to initialize Anaconda3
+in your /root/.bashrc ? [yes|no]
+[no] &gt;&gt;&gt; yes
+
+.........................................................................
+
+Do you wish to proceed with the installation of Microsoft VSCode? [yes|no]
+&gt;&gt;&gt; no
+</code></pre>
+<p>安装完成后，直接输入<code>conda</code>应该会提示下面消息，再执行：<code>source ~/.bashrc</code>，之后就可以用了。 </p>
+<pre><code class="ssh">-bash: /opt/yes/bin/conda: 没有那个文件或目录</code></pre>
+<p>参考原文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jh0218/article/details/85097061">https://blog.csdn.net/jh0218/article/details/85097061</a></p>
+<h3 id="导入redis模块"><a href="#导入redis模块" class="headerlink" title="导入redis模块"></a>导入redis模块</h3><pre><code class="ssh">conda install redis-py</code></pre>
+<p><strong>更换镜像源</strong></p>
+<p>找不到.condarc 文件，输入<code>conda info</code>可以看到文件位置，然后修改.condarc 文件</p>
+<pre><code>channels:
+  - defaults
+show_channel_urls: true
+channel_alias: https://mirrors.tuna.tsinghua.edu.cn/anaconda
+default_channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</code></pre>
+<p>但是redis并没有被导入</p>
+<p>在这块我大概折腾了一天半，来解决报的这个错然并没有卵用，继续报错，于是我把anaconda卸了重新安装了一个版本依旧</p>
+<p>报错2020-4</p>
+<pre><code>Collecting package metadata (current_repodata.json): failed
+
+CondaHTTPError: HTTP 000 CONNECTION FAILED for url &lt;https://repo.anaconda.com/pkgs/main/linux-64/current                                 _repodata.json&gt;
+Elapsed: -
+
+An HTTP error occurred when trying to retrieve this URL.
+HTTP errors are often intermittent, and a simple retry will get you on your way.
+
+If your current network has https://www.anaconda.com blocked, please file
+a support request with your network engineering team.
+
+&#39;https://repo.anaconda.com/pkgs/main/linux-64&#39;
+</code></pre>
+<p>报错5.3.1</p>
+<pre><code class="ssh">Solving environment: failed
+
+CondaHTTPError: HTTP 000 CONNECTION FAILED for url &lt;https://repo.anaconda.com/pkgs/main/noarch/repodata.json.bz2&gt;
+Elapsed: -
+
+An HTTP error occurred when trying to retrieve this URL.
+HTTP errors are often intermittent, and a simple retry will get you on your way.
+
+If your current network has https://www.anaconda.com blocked, please file
+a support request with your network engineering team.
+
+ConnectionError(MaxRetryError(&quot;HTTPSConnectionPool(host=&#39;repo.anaconda.com&#39;, port=443): Max retries exceeded with url: /pkgs/main/noarch/repodata.json.   bz2 (Caused by NewConnectionError(&#39;&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x7fcf10f42cc0&gt;: Failed to establish a new connection: [Errno    -2] Name or service not known&#39;))&quot;))
+
+ConnectionError(MaxRetryError(&quot;HTTPSConnectionPool(host=&#39;mirrors.tuna.tsinghua.edu.cn&#39;, port=443): Max retries exceeded with url: /anaconda/pkgs/msys2/linux-64/repodata.json (Caused by NewConnectionError(&#39;&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x7fb1f18d43c8&gt;: Failed to establish a new connection: [Errno -2] Name or service not known&#39;))&quot;))
+
+ConnectionError(MaxRetryError(&quot;HTTPConnectionPool(host=&#39;mirrors.tuna.tsinghua.edu.cn&#39;, port=80): Max retries exceeded with url: /anaconda/pkgs/msys2/noarch/repodata.json (Caused by NewConnectionError(&#39;&lt;urllib3.connection.HTTPConnection object at 0x7fa7b0536f98&gt;: Failed to establish a new connection: [Errno -2] Name or service not known&#39;))&quot;))
+
+</code></pre>
+<p>查看配置信息</p>
+<pre><code class="ssh"> conda config --show</code></pre>
+<p>原因可能是防火墙的问题（还是报上面的错）</p>
+<pre><code class="ssh">conda config --set ssl_verify false</code></pre>
+<pre><code class="ssh">(base) [root@SANDBOX opt]# wget https://bootstrap.pypa.io/get-pip.py
+--2020-09-11 14:54:13--  https://bootstrap.pypa.io/get-pip.py
+正在解析主机 bootstrap.pypa.io (bootstrap.pypa.io)... 失败：未知的名称或服务。
+wget: 无法解析主机地址 “bootstrap.pypa.io”
+
+但是这个网址是可以打开的</code></pre>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012848709/article/details/82989276">https://blog.csdn.net/u012848709/article/details/82989276</a></p>
+<pre><code class="ssh">(base) [root@SANDBOX etc]# vim resolv.conf</code></pre>
+<p>添加（最后还是失败）</p>
+<pre><code class="ssh">nameserver 8.8.8.8
+nameserver 8.8.4.4</code></pre>
+<p>………………………………………………………………….（解决方案）</p>
+<h3 id="pip-install-offline"><a href="#pip-install-offline" class="headerlink" title="pip install offline"></a>pip install offline</h3><p>在做了许多努力后我开始怀疑是不是服务器没有网，于是去问了一下我的小伙伴，emm以后要多和小伙伴沟通呀</p>
+<p>然后师傅告诉我两句话，瞬间像溺水后获救了一样</p>
+<pre><code>pip install offline
+你可以在自己的机器上离线下载，然后拷贝进去安装</code></pre>
+<p>到网站  <a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a> 下载whl文件上传到服务器上</p>
+<p>先检查一下有没有redis</p>
+<pre><code class="ssh"> conda list</code></pre>
+<p>然后进到whl文件所在文件夹下执行</p>
+<pre><code class="ssh">pip install redis-3.5.3-py3-none-any.whl</code></pre>
+<p>然后好了……………………………………………………………………………………………………………………………………………….</p>
+<p>知识在于积累呀！</p>
+<h1 id="Centos的iso镜像搭建本地yum仓库"><a href="#Centos的iso镜像搭建本地yum仓库" class="headerlink" title="Centos的iso镜像搭建本地yum仓库"></a>Centos的iso镜像搭建本地yum仓库</h1><p>把准备好的iso文件拷到 /usr/local/src/下</p>
+<pre><code class="ssh">scp  -r root@160.0.3.9:/usr/local/src /usr/local    #会把整个src目录拷到local下</code></pre>
+<p><strong>挂载iso镜像</strong></p>
+<p>①、新建挂载目录：</p>
+<pre><code>mkdir -p /mnt/cdrom1</code></pre>
+<p>②、直接编辑/etc/fstab文件，在后面添加：</p>
+<pre><code># 备份fstab文件
+cp fstab fstab.bak
+# 挂载iso
+/usr/local/src/CentOS-7-x86_64-DVD-1810.iso /mnt/cdrom1 iso9660 loop,defaults 0 0</code></pre>
+<pre><code class="ssh">mount -a         # 自动检测并激活挂载（未报错：mount: /dev/loop0 写保护，将以只读方式挂载）</code></pre>
+<pre><code>df -h             # 看结果</code></pre>
+<pre><code>文件系统                 容量  已用  可用 已用% 挂载点
+devtmpfs                  16G     0   16G    0% /dev
+tmpfs                     16G     0   16G    0% /dev/shm
+tmpfs                     16G  9.6M   16G    1% /run
+tmpfs                     16G     0   16G    0% /sys/fs/cgroup
+/dev/mapper/centos-root 1007G   19G  988G    2% /
+/dev/sda1               1014M  185M  830M   19% /boot
+tmpfs                    3.2G   12K  3.2G    1% /run/user/42
+tmpfs                    3.2G     0  3.2G    0% /run/user/0
+/dev/loop0               4.3G  4.3G     0  100% /mnt/cdrom1
+</code></pre>
+<p><strong>配置并刷新yum仓库</strong></p>
+<p>①、新增yum配置文件：</p>
+<p>Ps：完全离线使用，新增之前建议先删除(移走)所有在线yum源：</p>
+<pre><code class="ssh">mv -f /etc/yum.repos.d/*  /home/
+vim /etc/yum.repos.d/local.repo</code></pre>
+<p>粘贴以下内容，第3行表示iso挂载目录：</p>
+<pre><code>[local-yum]
+name=Local Repository
+baseurl=file:///mnt/cdrom1
+enabled=1
+gpgcheck=0</code></pre>
+<p>②、刷新查看yum是否生效：</p>
+<pre><code>yum clean all &amp;&amp; yum list</code></pre>
+<p>以上要是没要报错，那么本地yum仓库就搭建好了，就可以使用【 yum install 软件名】来安装所需软件，而不需要联网了。</p>
+<p>参考原文：<a target="_blank" rel="noopener" href="https://zhang.ge/4099.html">https://zhang.ge/4099.html</a></p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020 小潘同学
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #8CC7B5;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #BEE7E9;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
