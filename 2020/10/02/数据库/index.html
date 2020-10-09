@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>HTML | 小潘同学的教室</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="HTML | 小潘同学的教室">
+  <title>数据库 | 小潘同学的教室</title>
+  <meta name="keywords" content=" 数据库 ">
+  <meta name="description" content="数据库 | 小潘同学的教室">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="小潘同学的教室">
 <meta property="og:type" content="website">
@@ -565,9 +565,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-HTML" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">HTML</h1>
+        <h1 class="article-title">数据库</h1>
     
     <div class="article-meta">
         
@@ -577,20 +577,27 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="前端">前端</a>
+            <a  data-rel="后端">后端</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">数据库</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-09-23 13:22:46'>2020-09-23 13:15</time>
+            发布时间 : <time class="date" title='最后更新: 2020-10-02 10:19:53'>2020-10-02 08:41</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:0</span>
+        <span>字数:179</span>
         
         
         
@@ -598,7 +605,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DB2"><span class="toc-text">DB2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5"><span class="toc-text">查询语句</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -614,7 +621,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="DB2"><a href="#DB2" class="headerlink" title="DB2"></a>DB2</h1><p>连接</p>
+<pre><code class="sql">string DataDbName = &quot;xxx&quot;;
+string DataDbUser = &quot;xx&quot;;
+string DataDbUsing = &quot;xxxxxx&quot;;</code></pre>
+<h2 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h2><pre><code class="sql">--查找前100条数据
+-- Select * from CORS.FM_USER fetch（取来） first 100 rows only;
+-- 根据end倒序排序取只前两条数据
+select * from ap.AP_SHIFT order by end desc fetch first 2 rows only
+-- DB2 9.7以前的版本只能用CHAR不能用TO_CHAR，9.7以后的版本相反，只能用TO_CHAR不能用CHAR
+-- 正序只取第一条数据start=2020-10-01
+select * from ap.AP_SHIFT a where to_char(start,&#39;yyyy-mm-dd&#39;)=&#39;&amp;#123;2020-10-01&amp;#125;&#39; order by start asc fetch first 1 rows only
+（SELECT TO_CHAR(CURRENT_TIMESTAMP, &#39;YYYYMMDD HH24&#39;) FROM SYSIBM.SYSDUMMY1;）--来自百度
+select * from ap.FUC_STRIP_DATA_ARC where toc between &#39;2020-10-01 07:45:00&#39; and &#39;2020-10-01 19:45:00&#39;
+</code></pre>
+
       
        
     </div>
