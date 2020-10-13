@@ -6,7 +6,7 @@
   <link href="https://xiaopantongxue816.github.io/atom.xml" rel="self"/>
   
   <link href="https://xiaopantongxue816.github.io/"/>
-  <updated>2020-10-12T08:49:27.443Z</updated>
+  <updated>2020-10-13T09:00:28.549Z</updated>
   <id>https://xiaopantongxue816.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>linux 内网时间同步配置</title>
-    <link href="https://xiaopantongxue816.github.io/2020/10/12/linux-%E5%86%85%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/"/>
-    <id>https://xiaopantongxue816.github.io/2020/10/12/linux-%E5%86%85%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</id>
+    <title>linux内网时间同步配置</title>
+    <link href="https://xiaopantongxue816.github.io/2020/10/12/linux%E5%86%85%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/"/>
+    <id>https://xiaopantongxue816.github.io/2020/10/12/linux%E5%86%85%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/</id>
     <published>2020-10-12T08:34:06.000Z</published>
-    <updated>2020-10-12T08:49:27.443Z</updated>
+    <updated>2020-10-13T09:00:28.549Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://www.cnblogs.com/su-root/p/11380198.html">linux 内网时间同步配置</a></p><a id="more"></a> <p>server：192.168.100.5</p><h1 id="两层结构"><a href="#两层结构" class="headerlink" title="两层结构"></a>两层结构</h1><h2 id="一、确认Linux环境（server-client都要确认）"><a href="#一、确认Linux环境（server-client都要确认）" class="headerlink" title="一、确认Linux环境（server+client都要确认）"></a><strong>一、确认Linux环境（server+client都要确认）</strong></h2><pre><code class="bash">1、确认ntp是否安装rpm -qa|grep ntp#若只有ntpdate而未见ntp，执行以下操作yum -y remove ntpdate-4.2.6p5-22.el7.x86_64        #删除原有ntpdateyum -y install ntp2、ntp设置为自启动systemctl enable ntpdsystemctl stop chronydsystemctl disable chronyd                     //chronyd服务和ntpd冲突会导致开机启动不生效3、关闭防火墙和selinux                         //或配置防火墙过滤规则systemctl stop firewalldsystemctl disable firewalldvi /etc/selinux/config将SELINUX=enforcing改为SELINUX=disabled</code></pre><h2 id="二、Linux系统server端配置"><a href="#二、Linux系统server端配置" class="headerlink" title="二、Linux系统server端配置"></a>二、Linux系统server端配置</h2><pre><code class="bash">1.修改配置文件vi /etc/ntp.conf# Hosts on local network are less restricted.restrict 192.168.100.0 mask 255.255.255.0 nomodify notrap              #允许192.168.100.0网段的服务器连接同步时间# Use public servers from the pool.ntp.org project.# Please consider joining the pool (http://www.pool.ntp.org/join.html).#server 0.rhel.pool.ntp.org iburst#server 1.rhel.pool.ntp.org iburst#server 2.rhel.pool.ntp.org iburst#server 3.rhel.pool.ntp.org iburstserver 127.127.1.0fudge  127.127.1.0 stratum 10#broadcast 192.168.1.255 autokey        # broadcast server#broadcastclient                        # broadcast client#broadcast 224.0.1.1 autokey            # multicast server#multicastclient 224.0.1.1              # multicast client#manycastserver 239.255.254.254         # manycast server#manycastclient 239.255.254.254 autokey # manycast client 2.启动ntp服务systemctl start ntpd</code></pre><h2 id="三、Linux系统client端配置"><a href="#三、Linux系统client端配置" class="headerlink" title="三、Linux系统client端配置"></a>三、Linux系统client端配置</h2><pre><code class="bash">1.修改配置文件vi /etc/ntp.conf# For more information about this file, see the man pages# ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5). driftfile /var/lib/ntp/drift# Permit time synchronization with our time source, but do not# permit the source to query or modify the service on this system.restrict 192.168.100.5 nomodify notrap noquery          # 配置允许上游时间服务器主动修改本机的时间# Permit all access over the loopback interface.  This could# be tightened as well, but to do so would effect some of# the administrative functions.restrict 127.0.0.1restrict ::1# Hosts on local network are less restricted.# Use public servers from the pool.ntp.org project.# Please consider joining the pool (http://www.pool.ntp.org/join.html).#server 0.rhel.pool.ntp.org iburst#server 1.rhel.pool.ntp.org iburst#server 2.rhel.pool.ntp.org iburst#server 3.rhel.pool.ntp.org iburstserver 192.168.100.5 prefer    #时间服务器地址#broadcast 192.168.1.255 autokey        # broadcast server2.执行同步命令：//第一配置时执行一下就行，后续不要写到定时任务里！！！ntpdate -u 192.168.100.5systemctl start ntpd   #启ntp服    </code></pre><h2 id="四、每分钟同步一次"><a href="#四、每分钟同步一次" class="headerlink" title="四、每分钟同步一次"></a>四、每分钟同步一次</h2><p><strong>1.client机器上编写一个定时脚本<code>jobs.cron</code>：</strong> </p><pre><code class="bash">####ntpd  Synchronize every 1 minute00-59/60 * * * * /usr/sbin/ntpdate -u 192.168.100.5 &gt;/dev/null 2&gt;&amp;1</code></pre><p><strong>2.开启定时任务</strong></p><pre><code class="bash">cd /usr/local/test #进到定时任务所在目录crontab jobs.croncrontab -l</code></pre>]]></content>
     
@@ -30,7 +30,7 @@
     
     
     
-    <category term="运维" scheme="https://xiaopantongxue816.github.io/categories/%E8%BF%90%E7%BB%B4/"/>
+    <category term="工作方案" scheme="https://xiaopantongxue816.github.io/categories/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%A1%88/"/>
     
     
     <category term="linux" scheme="https://xiaopantongxue816.github.io/tags/linux/"/>
