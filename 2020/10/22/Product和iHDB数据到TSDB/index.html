@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Product和iHDB数据到TSDB | 小潘同学的教室</title>
+  <meta name="keywords" content=" 数据库 ">
+  <meta name="description" content="Product和iHDB数据到TSDB | 小潘同学的教室">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="小潘同学的教室">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="https://xiaopantongxue816.github.io/about/index.html">
+<meta property="og:site_name" content="小潘同学的教室">
+<meta property="og:description" content="小潘同学的教室">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-08T04:26:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T03:12:14.789Z">
+<meta property="article:author" content="小潘同学">
+<meta property="article:tag" content="JAVA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/cat.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="alternate" href="/atom.xml" title="小潘同学的教室" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/cat.png" />
+</a>
+<div class="author">
+    <span>小潘同学</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/xiaopantongxue816" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/5080293468" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1214798755@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1214798755&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="全部文章">全部文章<small>(33)</small></div></li>
+    
+        
+            
+            <li><div data-rel="工作方案">工作方案<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="运维">运维<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具">工具<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="生活">生活<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="其它">其它<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="33">
+<input type="hidden" id="yelog_site_word_count" value="60.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://zhang.ge/">张戈博客</a></li>
+            
+            <li><a target="_blank" href="http://www.ruanyifeng.com/home.html">阮一峰的个人网站</a></li>
+            
+            <li><a target="_blank" href="http://mindhacks.cn/">刘未鹏 | Mind Hacks</a></li>
+            
+            <li><a target="_blank" href="https://www.hanselman.com/">Scott</a></li>
+            
+            <li><a target="_blank" href="https://coolshell.cn/">酷 壳</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>容器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开源项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>教程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>日记</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>模板引擎</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>消息系统</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>点滴</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>资源监控</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通信框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目管理</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/30/%E8%AE%A2%E9%98%85redis%E4%BA%8B%E4%BB%B6/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="订阅redis事件">订阅redis事件</span>
+            <span class="post-date" title="2020-10-30 10:41:24">2020/10/30</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/22/Product%E5%92%8CiHDB%E6%95%B0%E6%8D%AE%E5%88%B0TSDB/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Product和iHDB数据到TSDB">Product和iHDB数据到TSDB</span>
+            <span class="post-date" title="2020-10-22 14:45:30">2020/10/22</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/10/21/%E8%8B%B1%E8%AF%AD%E8%A7%92%E8%90%BD/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="英语角落">英语角落</span>
+            <span class="post-date" title="2020-10-21 08:41:36">2020/10/21</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/10/20/ICE/"
+           data-tag="通信框架"
+           data-author="" >
+            <span class="post-title" title="ICE">ICE</span>
+            <span class="post-date" title="2020-10-20 14:12:06">2020/10/20</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/14/DB2%E8%B5%84%E6%BA%90%E7%9B%91%E6%8E%A7/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="DB2资源监控">DB2资源监控</span>
+            <span class="post-date" title="2020-10-14 13:58:52">2020/10/14</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/12/Linux%E5%86%85%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux内网时间同步配置">Linux内网时间同步配置</span>
+            <span class="post-date" title="2020-10-12 16:34:06">2020/10/12</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/12/Linux%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E5%90%8C%E6%AD%A5DB2/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="Linux工作目录同步DB2">Linux工作目录同步DB2</span>
+            <span class="post-date" title="2020-10-12 07:59:49">2020/10/12</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/10/02/%E6%95%B0%E6%8D%AE%E5%BA%93/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库">数据库</span>
+            <span class="post-date" title="2020-10-02 08:41:12">2020/10/02</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/09/24/%E9%98%85%E8%AF%BB/"
+           data-tag="点滴"
+           data-author="" >
+            <span class="post-title" title="阅读">阅读</span>
+            <span class="post-date" title="2020-09-24 14:40:16">2020/09/24</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/JavaScript/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript">JavaScript</span>
+            <span class="post-date" title="2020-09-23 13:15:57">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/CSS/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS">CSS</span>
+            <span class="post-date" title="2020-09-23 13:15:30">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/HTML/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML">HTML</span>
+            <span class="post-date" title="2020-09-23 13:15:16">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/23/Maven/"
+           data-tag="项目管理"
+           data-author="" >
+            <span class="post-title" title="Maven">Maven</span>
+            <span class="post-date" title="2020-09-23 12:50:22">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/18/protobuf%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE/"
+           data-tag="序列化"
+           data-author="" >
+            <span class="post-title" title="protobuf传输数据">protobuf传输数据</span>
+            <span class="post-date" title="2020-09-18 13:31:36">2020/09/18</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/17/Utils/"
+           data-tag="工具"
+           data-author="" >
+            <span class="post-title" title="Utils">Utils</span>
+            <span class="post-date" title="2020-09-17 09:13:15">2020/09/17</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/16/Shiro/"
+           data-tag="安全框架"
+           data-author="" >
+            <span class="post-title" title="Shiro">Shiro</span>
+            <span class="post-date" title="2020-09-16 18:20:00">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/16/Thymeleaf/"
+           data-tag="模板引擎"
+           data-author="" >
+            <span class="post-title" title="Thymeleaf">Thymeleaf</span>
+            <span class="post-date" title="2020-09-16 17:39:46">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/16/docker/"
+           data-tag="容器"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2020-09-16 15:06:30">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/09/15/%E6%88%91%E7%9A%84%E7%94%B5%E5%BD%B1%E8%AE%B0%E5%BD%95/"
+           data-tag="点滴"
+           data-author="" >
+            <span class="post-title" title="我的电影记录">我的电影记录</span>
+            <span class="post-date" title="2020-09-15 15:37:16">2020/09/15</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/09/Linux%E8%B5%84%E6%BA%90%E7%9B%91%E6%8E%A7/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="Linux资源监控">Linux资源监控</span>
+            <span class="post-date" title="2020-09-09 10:30:41">2020/09/09</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/04/%E9%83%A8%E7%BD%B2/"
+           data-tag="部署"
+           data-author="" >
+            <span class="post-title" title="部署">部署</span>
+            <span class="post-date" title="2020-09-04 16:29:28">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/04/%E8%8B%A5%E4%BE%9D%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"
+           data-tag="开源项目"
+           data-author="" >
+            <span class="post-title" title="若依管理系统">若依管理系统</span>
+            <span class="post-date" title="2020-09-04 16:01:40">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/03/kafka/"
+           data-tag="消息系统"
+           data-author="" >
+            <span class="post-title" title="kafka">kafka</span>
+            <span class="post-date" title="2020-09-03 17:57:44">2020/09/03</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/02/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"
+           data-tag="教程"
+           data-author="" >
+            <span class="post-title" title="开发工具使用教程">开发工具使用教程</span>
+            <span class="post-date" title="2020-09-02 16:14:39">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/02/Protobuf/"
+           data-tag="序列化"
+           data-author="" >
+            <span class="post-title" title="Protobuf">Protobuf</span>
+            <span class="post-date" title="2020-09-02 10:14:03">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/01/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux软件安装">Linux软件安装</span>
+            <span class="post-date" title="2020-09-01 10:46:17">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/01/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="远程连接工具">远程连接工具</span>
+            <span class="post-date" title="2020-09-01 09:49:52">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/08/28/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98/"
+           data-tag="日记"
+           data-author="" >
+            <span class="post-title" title="关于博客主题">关于博客主题</span>
+            <span class="post-date" title="2020-08-28 19:18:31">2020/08/28</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/27/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux环境搭建">Linux环境搭建</span>
+            <span class="post-date" title="2020-08-27 18:37:16">2020/08/27</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/21/%E5%BC%80%E6%BA%90%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="开源网站相关">开源网站相关</span>
+            <span class="post-date" title="2020-08-21 14:34:04">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/21/Linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux命令记录">Linux命令记录</span>
+            <span class="post-date" title="2020-08-21 09:34:19">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/16/%E5%8D%9A%E5%AE%A2%E7%94%9F%E6%88%90%E8%AE%B0%E5%BD%95/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="博客生成记录">博客生成记录</span>
+            <span class="post-date" title="2020-08-16 10:12:34">2020/08/16</span>
+        </a>
+        
+        <a  class="全部文章 其它 "
+           href="/2020/08/16/hello-world/"
+           data-tag="xxx"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-16 09:50:43">2020/08/16</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Product和iHDB数据到TSDB" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Product和iHDB数据到TSDB</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工作方案">工作方案</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">数据库</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2020-11-06 12:25:15'>2020-10-22 14:45</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:4.2k</span>
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-text">业务逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%EF%BC%8820201106%EF%BC%89"><span class="toc-text">更新（20201106）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5"><span class="toc-text">实际数据插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5"><span class="toc-text">测试数据插入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%8F%92%E5%85%A5%EF%BC%8820201102%EF%BC%89"><span class="toc-text">更新插入（20201102）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Springboot%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">Springboot配置连接多个数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A51-0%EF%BC%8820201029%EF%BC%89"><span class="toc-text">插入1.0（20201029）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96Excel%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE"><span class="toc-text">读取Excel文件数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E5%8F%96%E6%95%B0%E7%BB%84%E5%AD%90%E9%9B%86%EF%BC%88%E6%97%B6%E9%97%B4%E5%8C%BA%E9%97%B4%E5%86%85%EF%BC%89"><span class="toc-text">反向取数组子集（时间区间内）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E5%8F%96%E6%97%B6%E9%97%B4%E6%88%B3%E5%92%8Cvalue"><span class="toc-text">截取时间戳和value</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis%E8%AE%A2%E9%98%85%E4%BA%8B%E4%BB%B6"><span class="toc-text">Redis订阅事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E7%9B%91%E5%90%AC%EF%BC%88%E6%B6%88%E8%B4%B9%E8%80%85%EF%BC%89"><span class="toc-text">消息监听（消费者）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="toc-text">配置类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-properties"><span class="toc-text">application.properties</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DB2%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5%EF%BC%88%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="toc-text">DB2获取连接（通过配置）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Product%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5%EF%BC%88proprx%E4%BB%A3%E7%90%86%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-text">Product获取连接（proprx代理方式）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IHDB%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5"><span class="toc-text">IHDB获取连接</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从product和IHDB及DB2查询数据并包装调用研发部接口存放到TSDB</p>
+<a id="more"></a> 
+
+<h1 id="业务逻辑"><a href="#业务逻辑" class="headerlink" title="业务逻辑"></a>业务逻辑</h1><h2 id="更新（20201106）"><a href="#更新（20201106）" class="headerlink" title="更新（20201106）"></a>更新（20201106）</h2><h3 id="实际数据插入"><a href="#实际数据插入" class="headerlink" title="实际数据插入"></a>实际数据插入</h3><pre><code class="java">//插入 (fnON-FnOFF)
+    @Override
+    public String insertFn(String param, Current current) &amp;#123;
+        //获取coilmeta的JSONObject，根据key获取coilmeta的数据*/
+        String resultself = &quot;向iplat-xm项目环境中的tsDB插入数据失败！&quot;;
+        Date start = new Date();
+        Date end = null;
+        long time = 0;
+        try &amp;#123;
+            if (!tagNameMap.isEmpty() &amp;&amp; !posMeaSeriesNameMap.isEmpty()) &amp;#123;
+                Date fnON = null;
+                Date fnOFF = null;
+                //String TagName=&quot;F1_SPEED_ACT&quot;;
+                Set&lt;Map.Entry&lt;String, List&lt;String&gt;&gt;&gt; entrySet = tagNameMap.entrySet();
+                //List&lt;String&gt; coilIdList = oraceService.queryOraceForStripnoList();
+                List&lt;String&gt; coilIdList = new ArrayList&lt;&gt;();
+                coilIdList.add(param);
+
+                //钢信息
+                //key:coilId+unit+rollingpass+round
+                String coilId = param;//带钢号
+                String colitype = &quot;hotmill&quot;;
+                String entId = param;
+                Integer rollingpass = 1;//F开头的都是1
+                Long exittime = db2Service.queryDB2ForexittimeByStrupID(param).getTime();
+                Integer lengend = 0;
+                Integer lengstart = 0;
+                //Integer rowCount = 0;
+                Integer colCount = 0;
+                String unit = &quot;test&quot;;
+                Integer round = 0;//test 1
+                String compressData = &quot;false&quot;;
+                for (Map.Entry&lt;String, List&lt;String&gt;&gt; Fn : entrySet) &amp;#123;
+                    unit = Fn.getKey();
+                    List&lt;String&gt; tagNameList = Fn.getValue();
+
+                    Map&lt;String, List&lt;Double&gt;&gt; totalmap = new LinkedHashMap&lt;&gt;();
+                    //创建存储数据的列名
+
+                    List&lt;String&gt; colNameList = new ArrayList();
+
+                    for (String tagName : tagNameList) &amp;#123;
+
+                        List&lt;Double&gt; everyTagList = new ArrayList();
+                        if (null != ihdbconn) &amp;#123;
+                            //获取values
+
+                            Map&lt;String, Long&gt; fnMap = queryProductForTimeRangeByStrupID(coilId, unit);
+                            //List&lt;TimeRange&gt; timeRangeList = queryDB2ForTimeRangeByStrupID(coilId, unit);
+                            if (!fnMap.isEmpty()) &amp;#123;
+                                fnON = DateUtil.parseTimesTampDate(fnMap.get(&quot;fnOn&quot;));
+                                fnOFF = DateUtil.parseTimesTampDate(fnMap.get(&quot;fnOff&quot;));
+                                ValueOrderbyTime[] valueOrderbyTimes = queryHDBForValueByTimeRange(tagName, fnON, fnOFF);
+
+                                if (valueOrderbyTimes != null) &amp;#123;
+                                    List&lt;String&gt; posMeaSeriesName = posMeaSeriesNameMap.get(&quot;psmName&quot;);
+                                    for (String psmName : posMeaSeriesName) &amp;#123;
+                                        //len数组
+                                        ValueOrderbyTime[] lenOrderbyTimes = queryProductForLenBySTRIPID(coilId, psmName);
+                                        //根据len数组格式化valueOrderbyTimes
+                                        ValueOrderbyTime[] valueOrderbyTimesFormat = cutHDBForValueByTimeRange(valueOrderbyTimes, lenOrderbyTimes);
+                                        //value数组
+                                        ValueOrderbyLen[] valueOrderbyLens = time2lenprx.Timevalue2LenvalueStep(
+                                                valueOrderbyTimesFormat, lenOrderbyTimes, 1, current); //通过代理调用Timevalue2LenvalueStep把len和value组合成ValueOrderbyLen
+                                        for (ValueOrderbyLen valueOrderbyLen : valueOrderbyLens) &amp;#123;
+                                            everyTagList.add(valueOrderbyLen.value);
+                                        &amp;#125;
+
+
+                                    &amp;#125;
+                                &amp;#125; else &amp;#123;
+                                    resultself = &quot;查询数据失败！&quot;;
+                                    logger.info(&quot;coilId为&quot; + coilId + &quot;的带钢向iplat-xm项目环境中的tsDB插入数据失败！&quot;);
+                                    return resultself;
+                                &amp;#125;
+
+
+                            &amp;#125;
+                            totalmap.put(tagName, everyTagList);//总的数据
+                            colNameList.add(tagName);
+                            if (lengend &lt; everyTagList.size()) &amp;#123;
+                                lengend = everyTagList.size();//每一个tagnamed对应的数据的长度
+                            &amp;#125;
+
+
+                        &amp;#125;
+                    &amp;#125;
+
+                    logger.info(&quot;查询数据库完成&quot;);
+                    //ihdbconn.dispose();
+                    //转换json数据对象
+                    Gson gson = new Gson();
+
+                    //列数
+                    colCount = colNameList.size();
+                    //行数
+                    //lengend = rowCount;
+                    //创建Map&lt;String, Object&gt; eiInfo用来存放POST请求参数
+                    Map&lt;String, Object&gt; eiInfo = new HashMap&lt;&gt;();
+                    //创建Map&lt;String, Object&gt; coilmeta用于len,value等基础信息
+                    Map&lt;String, Object&gt; coilmeta = new HashMap&lt;&gt;();
+                    coilmeta.put(&quot;coilId&quot;, coilId);
+                    coilmeta.put(&quot;unit&quot;, unit);
+                    coilmeta.put(&quot;rollingpass&quot;, rollingpass);
+                    coilmeta.put(&quot;colitype&quot;, colitype);
+                    //coilmeta.put(&quot;exittime&quot;, exittime);
+                    coilmeta.put(&quot;entId&quot;, entId);
+                    coilmeta.put(&quot;lengstart&quot;, lengstart);
+                    coilmeta.put(&quot;lengend&quot;, lengend);
+                    coilmeta.put(&quot;round&quot;, round);
+                    coilmeta.put(&quot;columncount&quot;, colCount);
+                    Integer rowcount = lengend - lengstart;
+                    coilmeta.put(&quot;rowcount&quot;, rowcount);
+                    //创建Map&lt;String, Object&gt; rowList用来存放插入数据，String表示列名，List表示数据的集合
+                    Map&lt;String, List&gt; rowList = new LinkedHashMap&lt;&gt;();
+                    //循环遍历列名
+                    for (String colName : colNameList) &amp;#123;
+                        //创建List&lt;Object&gt; temp 用于存放列名对应的集合
+                        List&lt;Object&gt; temp = new ArrayList&lt;&gt;();
+                        List&lt;Double&gt; valueOrderbyLens = totalmap.get(colName);
+                        for (int i = 0; i &lt; rowcount; i++) &amp;#123;
+                            if (i &lt; valueOrderbyLens.size()) &amp;#123;
+                                temp.add(i, valueOrderbyLens.get(i));
+                            &amp;#125; else &amp;#123;
+                                temp.add(i, null);
+                            &amp;#125;
+                        &amp;#125;
+                        rowList.put(colName, temp);
+                    &amp;#125;
+
+                    //设置POST请求参数
+                    eiInfo.put(&quot;modelId&quot;, coilId);
+                    eiInfo.put(&quot;dbType&quot;, &quot;tsdb&quot;);
+                    eiInfo.put(&quot;compressData&quot;, &quot;false&quot;);
+                    eiInfo.put(&quot;coilmeta&quot;, coilmeta);
+                    eiInfo.put(&quot;colCount&quot;, colCount);
+                    eiInfo.put(&quot;rowCount&quot;, rowcount);
+                    eiInfo.put(&quot;colNameList&quot;, colNameList);
+                    eiInfo.put(&quot;rowList&quot;, rowList);
+
+                    //得到向iplat-xm中S_BI_XS_01的参数JSON串
+                    String paramStr = gson.toJson(eiInfo);
+                    logger.info(&quot;stripNO=============================&quot; + paramStr);
+
+                    //请求http://10.3.148.31:8080/iplat-xm/service/S_BI_XS_01接口，传入paramStr参数，进行数据的额插入操作，返回JSON对象
+                    JSONObject resultJson = postMethod(&quot;http://160.0.3.9:8080/iplat-xm/service/S_BI_XS_01&quot;, paramStr);
+                    logger.info(&quot;resultJson=============================&quot; + resultJson);
+                    //得到返回的信息数据
+                    JSONObject result = resultJson.getJSONObject(&quot;__sys__&quot;);
+                    //判断请求状态值，是否操作成功status为0成功。
+                    if (result.getInteger(&quot;status&quot;) == 0) &amp;#123;
+                        //操作成功
+                        //创建JSONObject对象，存入获取来的信息数据
+                        JSONObject jsonBody = getJsonObjectOfInsert(result);
+                        resultself = &quot;向iplat-xm项目环境中的tsDB插入数据成功！&quot;;
+                        logger.info(&quot;coilId为&quot; + coilId + &quot;的带钢向iplat-xm项目环境中的tsDB插入&quot; + lengend + &quot;条数据成功！&quot;);
+
+
+                    &amp;#125; else &amp;#123;
+                        //操作失败
+                        //创建JSONObject对象，存入获取来的信息数据
+                        JSONObject jsonBody = getJsonObjectOfInsert(result);
+                        logger.info(&quot;向iplat-xm项目环境中的tsDB插入数据失败！&quot; + jsonBody.getString(&quot;msg&quot;));
+                    &amp;#125;
+                &amp;#125;
+                //STRIPNOList.add(stripNO);
+
+
+            &amp;#125;
+
+
+            end = new Date();
+            time = (end.getTime() - start.getTime());
+            logger.info(&quot;插入数据所用毫秒值：&quot; + time);
+            oraceService.updateIfReadStatus(param);
+
+        &amp;#125; catch (Exception e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+        return resultself;
+    &amp;#125;</code></pre>
+<h3 id="测试数据插入"><a href="#测试数据插入" class="headerlink" title="测试数据插入"></a>测试数据插入</h3><pre><code class="java"> //插入 2.0(FnON-FnOFF) 可存假数据
+    @Override
+
+    public String insert(String param, Current current) &amp;#123;
+        //获取coilmeta的JSONObject，根据key获取coilmeta的数据*/
+        String resultself = &quot;向iplat-xm项目环境中的tsDB插入数据失败！&quot;;
+        Date start = new Date();
+        Date end = null;
+        long time = 0;
+
+        //System.out.println(param);
+        //JSONObject parse = JSONObject.parseObject(param);
+        String modelId = param;
+
+        //存放记录过的带钢
+        List&lt;String&gt; STRIPNOList = new ArrayList&lt;&gt;();
+        try &amp;#123;
+            if (!tagNameMap.isEmpty() &amp;&amp; !posMeaSeriesNameMap.isEmpty()) &amp;#123;
+                Set&lt;Map.Entry&lt;String, List&lt;String&gt;&gt;&gt; entrySet = tagNameMap.entrySet();
+                //钢信息
+                //key:coilId+unit+rollingpass+round
+                String coilId = modelId;//带钢号
+                String colitype = &quot;hotmill&quot;;
+                String entId = param;
+                Integer rollingpass = 1;//F开头的都是1
+                //Long exittime = Long.valueOf(0);
+                Integer lengend = 0;
+                Integer lengstart = 0;
+                //Integer rowCount = 0;
+                Integer colCount = 0;
+                String unit = &quot;1880t&quot;;
+                Integer round = 0;//test 1
+                String compressData = &quot;false&quot;;
+                for (Map.Entry&lt;String, List&lt;String&gt;&gt; Fn : entrySet) &amp;#123;
+                    unit = Fn.getKey();
+                    //String fn = Fn.getKey();
+                    //String roundString = fn.substring(1, 2);
+                    //round=Integer.parseInt(roundString);
+                    List&lt;String&gt; tagNameList = Fn.getValue();
+                    Map&lt;String, List&lt;Double&gt;&gt; totalmap = new LinkedHashMap&lt;&gt;();
+                    //创建存储数据的列名
+
+                    List&lt;String&gt; colNameList = new ArrayList();
+
+                    for (String tagName : tagNameList) &amp;#123;
+
+
+                        List&lt;Double&gt; everyTagList = new ArrayList();
+                       // if (null != ihdbconn) &amp;#123;
+                            ValueOrderbyTime v1 = new ValueOrderbyTime(0, 0.0);
+                            ValueOrderbyTime v2 = new ValueOrderbyTime(0, 0.0);
+                            ValueOrderbyTime v3 = new ValueOrderbyTime(0, 0.0);
+                            ValueOrderbyTime v4 = new ValueOrderbyTime(0, 0.0);
+                            ValueOrderbyTime v5 = new ValueOrderbyTime(0, 0.0);
+                            ValueOrderbyTime[] valueOrderbyTimes = &amp;#123;v1, v2, v3, v4, v5&amp;#125;;
+
+
+                            List&lt;String&gt; posMeaSeriesName = posMeaSeriesNameMap.get(&quot;psmName&quot;);
+                            for (String psmName : posMeaSeriesName) &amp;#123;
+                                for (ValueOrderbyTime valueOrderbyTime : valueOrderbyTimes) &amp;#123;
+                                    everyTagList.add(valueOrderbyTime.value);
+                                &amp;#125;
+                            &amp;#125;
+
+
+                            totalmap.put(tagName, everyTagList);//总的数据
+                            colNameList.add(tagName);
+                            if (lengend &lt; everyTagList.size()) &amp;#123;
+                                lengend = everyTagList.size();//每一个tagnamed对应的数据的长度
+                            &amp;#125;
+
+
+                        //&amp;#125;
+                    &amp;#125;
+
+                    logger.info(&quot;查询数据库完成&quot;);
+                    //ihdbconn.dispose();
+                    //转换json数据对象
+                    Gson gson = new Gson();
+                    //列数
+                    colCount = colNameList.size();
+                    //行数
+                    //lengend = rowCount;
+                    //创建Map&lt;String, Object&gt; eiInfo用来存放POST请求参数
+                    Map&lt;String, Object&gt; eiInfo = new HashMap&lt;&gt;();
+                    //创建Map&lt;String, Object&gt; coilmeta用于len,value等基础信息
+                    Map&lt;String, Object&gt; coilmeta = new HashMap&lt;&gt;();
+                    coilmeta.put(&quot;coilId&quot;, coilId);
+                    coilmeta.put(&quot;unit&quot;, unit);
+                    coilmeta.put(&quot;rollingpass&quot;, rollingpass);
+                    coilmeta.put(&quot;colitype&quot;, colitype);
+                    //coilmeta.put(&quot;exittime&quot;, exittime);
+                    coilmeta.put(&quot;entId&quot;, entId);
+                    coilmeta.put(&quot;lengstart&quot;, lengstart);
+                    coilmeta.put(&quot;lengend&quot;, lengend);
+                    coilmeta.put(&quot;round&quot;, round);
+                    coilmeta.put(&quot;columncount&quot;, colCount);
+                    Integer rowcount = lengend - lengstart;
+                    coilmeta.put(&quot;rowcount&quot;, rowcount);
+                    //创建Map&lt;String, Object&gt; rowList用来存放插入数据，String表示列名，List表示数据的集合
+                    Map&lt;String, List&gt; rowList = new LinkedHashMap&lt;&gt;();
+                    //循环遍历列名
+                    for (String colName : colNameList) &amp;#123;
+                        //创建List&lt;Object&gt; temp 用于存放列名对应的集合
+                        List&lt;Object&gt; temp = new ArrayList&lt;&gt;();
+                        List&lt;Double&gt; valueOrderbyLens = totalmap.get(colName);
+                        for (int i = 0; i &lt; rowcount; i++) &amp;#123;
+                            if (i &lt; valueOrderbyLens.size()) &amp;#123;
+                                temp.add(i, valueOrderbyLens.get(i));
+                            &amp;#125; else &amp;#123;
+                                temp.add(i, null);
+                            &amp;#125;
+                        &amp;#125;
+                        rowList.put(colName, temp);
+                    &amp;#125;
+
+                    //设置POST请求参数
+                    eiInfo.put(&quot;modelId&quot;, coilId);
+                    eiInfo.put(&quot;dbType&quot;, &quot;tsdb&quot;);
+                    eiInfo.put(&quot;compressData&quot;, &quot;false&quot;);
+                    eiInfo.put(&quot;coilmeta&quot;, coilmeta);
+                    eiInfo.put(&quot;colCount&quot;, colCount);
+                    eiInfo.put(&quot;rowCount&quot;, rowcount);
+                    eiInfo.put(&quot;colNameList&quot;, colNameList);
+                    eiInfo.put(&quot;rowList&quot;, rowList);
+
+                    //得到向iplat-xm中S_BI_XS_01的参数JSON串
+                    String paramStr = gson.toJson(eiInfo);
+                    logger.info(&quot;stripNO=============================&quot; + paramStr);
+
+                    //请求http://10.3.148.31:8080/iplat-xm/service/S_BI_XS_01接口，传入paramStr参数，进行数据的额插入操作，返回JSON对象
+                    JSONObject resultJson = postMethod(&quot;http://160.0.3.9:8080/iplat-xm/service/S_BI_XS_01&quot;, paramStr);
+                    logger.info(&quot;resultJson=============================&quot; + resultJson);
+                    //得到返回的信息数据
+                    JSONObject result = resultJson.getJSONObject(&quot;__sys__&quot;);
+                    //判断请求状态值，是否操作成功status为0成功。
+                    if (result.getInteger(&quot;status&quot;) == 0) &amp;#123;
+                        //操作成功
+                        //创建JSONObject对象，存入获取来的信息数据
+                        JSONObject jsonBody = getJsonObjectOfInsert(result);
+                        resultself = &quot;向iplat-xm项目环境中的tsDB插入数据成功！&quot;;
+                        logger.info(&quot;coilId为&quot; + coilId + &quot;的带钢向iplat-xm项目环境中的tsDB插入&quot; + lengend + &quot;条数据成功！&quot;);
+
+
+                    &amp;#125; else &amp;#123;
+                        //操作失败
+                        //创建JSONObject对象，存入获取来的信息数据
+                        JSONObject jsonBody = getJsonObjectOfInsert(result);
+                        //logger.info(&quot;向iplat-xm项目环境中的tsDB插入数据失败！&quot; + jsonBody.getString(&quot;msg&quot;));
+                    &amp;#125;
+                &amp;#125;
+                STRIPNOList.add(coilId);
+            &amp;#125;
+            end = new Date();
+            time = (end.getTime() - start.getTime());
+            logger.info(&quot;插入数据所用毫秒值：&quot; + time);
+            //oraceService.updateIfReadStatus(param);
+
+        &amp;#125; catch (Exception e) &amp;#123;
+            e.printStackTrace();
+        &amp;#125;
+        return resultself;
+    &amp;#125;</code></pre>
+<h2 id="更新插入（20201102）"><a href="#更新插入（20201102）" class="headerlink" title="更新插入（20201102）"></a>更新插入（20201102）</h2><h3 id="Springboot配置连接多个数据库"><a href="#Springboot配置连接多个数据库" class="headerlink" title="Springboot配置连接多个数据库"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_18432653/article/details/107715127?utm_medium=distribute.pc_relevant.none-task-blog-title-7&spm=1001.2101.3001.4242">Springboot配置连接多个数据库</a></h3><p><strong>application.properties</strong></p>
+<pre><code class="properties">#DB2
+spring.datasource.hsm031.driver-class-name=com.ibm.db2.jcc.DB2Driver
+spring.datasource.hsm031.jdbc-url=jdbc:db2://160.0.3.50:50000/HSM031:currentSchema=db2inst1;
+spring.datasource.hsm031.username=db2inst1
+spring.datasource.hsm031.password=******
+#DB2
+spring.datasource.hotmill2.driver-class-name=com.ibm.db2.jcc.DB2Driver
+spring.datasource.hotmill2.jdbc-url=jdbc:db2://160.0.3.50:50000/HOTMILL2:currentSchema=db2inst1;
+spring.datasource.hotmill2.username=db2inst1
+spring.datasource.hotmill2.password=******
+#Oracle
+spring.datasource.oracle.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.oracle.jdbc-url=jdbc:oracle:thin:@//160.0.3.36:1521/hotmill3
+spring.datasource.oracle.username=ap
+spring.datasource.oracle.password=******</code></pre>
+<p>新建config包，包含三个数据库的配置文件 </p>
+<p>HSM031DataSourceConfig.java（HOTMILL2DataSourceConfig一致）</p>
+<p> <strong>@Primary注解只给主数据库配置，其它数据库不配置</strong></p>
+<pre><code class="java">package com.baosight.config;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+
+import javax.sql.DataSource;
+
+@Configuration
+@MapperScan(basePackages = &quot;com.baosight.dao.HSM031&quot;,sqlSessionFactoryRef = &quot;HSM031SqlSessionFactory&quot;)
+public class HSM031DataSourceConfig &amp;#123;
+    @Bean(name = &quot;HSM031DataSource&quot;)
+    @ConfigurationProperties(&quot;spring.datasource.hsm031&quot;)
+    @Primary
+    public DataSource slaveDataSource()&amp;#123;
+        return DataSourceBuilder.create().build();
+    &amp;#125;
+
+    @Bean(name = &quot;HSM031SqlSessionFactory&quot;)
+    @Primary
+    public SqlSessionFactory sqlSessionFactory(@Qualifier(&quot;HSM031DataSource&quot;) DataSource dataSource) throws Exception &amp;#123;
+        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource);
+        sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources(&quot;classpath*:mapper/HSM031/*.xml&quot;));
+        return sessionFactoryBean.getObject();
+    &amp;#125;
+    @Bean(name = &quot;HSM031transactionManager&quot;)
+    @Primary
+    public DataSourceTransactionManager transactionManager(@Qualifier(&quot;HSM031DataSource&quot;) DataSource dataSource) &amp;#123;
+        return new DataSourceTransactionManager(dataSource);
+    &amp;#125;
+    @Bean(name = &quot;HSM031SqlSessionTemplate&quot;)
+    @Primary
+    public SqlSessionTemplate HSM031SqlSessionTemplate(@Qualifier(&quot;HSM031SqlSessionFactory&quot;) SqlSessionFactory sqlSessionFactory) throws Exception &amp;#123;
+        return new SqlSessionTemplate(sqlSessionFactory);
+    &amp;#125;
+
+&amp;#125;
+
+</code></pre>
+<p>ORACEDataSourceConfig.java</p>
+<pre><code class="java">package com.baosight.config;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+
+import javax.sql.DataSource;
+
+
+@Configuration
+@MapperScan(basePackages = &quot;com.baosight.dao.HOTMILL3&quot;,sqlSessionFactoryRef = &quot;oracleSqlSessionFactory&quot;)
+public class ORACEDataSourceConfig &amp;#123;
+    @Bean(name = &quot;oracleDataSource&quot;)
+    @ConfigurationProperties(&quot;spring.datasource.oracle&quot;)
+    public DataSource masterDataSource()&amp;#123;
+        return DataSourceBuilder.create().build();
+    &amp;#125;
+
+    @Bean(name = &quot;oracleSqlSessionFactory&quot;)
+    public SqlSessionFactory sqlSessionFactory(@Qualifier(&quot;oracleDataSource&quot;) DataSource dataSource) throws Exception &amp;#123;
+        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource);
+        sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources(&quot;classpath*:mapper/HOTMILL3/*.xml&quot;));
+        return sessionFactoryBean.getObject();
+    &amp;#125;
+&amp;#125;
+</code></pre>
+<p>在resource-mapper文件下新建三个包分别对应存放xml</p>
+<p>注意dao文件对应mapper注解，serviceImpl对应service注解</p>
+<h2 id="插入1-0（20201029）"><a href="#插入1-0（20201029）" class="headerlink" title="插入1.0（20201029）"></a>插入1.0（20201029）</h2><h3 id="读取Excel文件数据"><a href="#读取Excel文件数据" class="headerlink" title="读取Excel文件数据"></a>读取Excel文件数据</h3><h3 id="反向取数组子集（时间区间内）"><a href="#反向取数组子集（时间区间内）" class="headerlink" title="反向取数组子集（时间区间内）"></a>反向取数组子集（时间区间内）</h3><h3 id="截取时间戳和value"><a href="#截取时间戳和value" class="headerlink" title="截取时间戳和value"></a>截取时间戳和value</h3><p>[HDRecord timestamp=2020-10-18 23:59:59:957 value=0.97917753]</p>
+<pre><code class="java">/
+            List&lt;String&gt; tagNameList = ExcelUtil.read(this.getClass().getResourceAsStream(&quot;/excel/tagName.xlsx&quot;));
+            //String TagName=tagNameList.get(0);
+            List&lt;String&gt; posMeaSeriesName = ExcelUtil.read(this.getClass().getResourceAsStream(&quot;/excel/psmName.xlsx&quot;));
+
+
+
+    /**
+     * 根据tag点和TimeRange查询value
+     *
+     * @param tagName
+     * @param f1ON
+     * @param f1OFF
+     * @return
+     * @throws HDSdkException
+     */
+    public ValueOrderbyTime[] queryHDBForValueByTimeRange(String tagName, Date f1ON, Date f1OFF) throws HDSdkException &amp;#123;
+
+
+        Integer tagId = ihdbconn.getTagManager().getTagIDByTagName(tagName); //F1_SPEED_ACT-&gt;1137
+        ArrayList valueList = new ArrayList();
+        valueList = (ArrayList) ihdbconn.getDataProvider().queryTagHisRawRecords(tagId, f1ON, f1OFF);
+        //valueList反向存值
+        ValueOrderbyTime[] valueOrderbyTimes = new ValueOrderbyTime[valueList.size()];
+
+        for (int i = 0; i &lt; valueList.size(); i++) &amp;#123;
+            String s = valueList.get(i).toString();
+            String timestamp = s.substring(20, 43);//截取时间戳[HDRecord timestamp=2020-10-18 23:59:59:957 value=0.97917753]
+            Long time = DateUtil.parseTimesTampDate(timestamp).getTime();
+            double value = Double.parseDouble(
+                    s.split(&quot;=&quot;)[2].substring(0, s.split(&quot;=&quot;)[2].length() - 1));//截取value
+            ValueOrderbyTime valueOrderbyTime = new ValueOrderbyTime(time, value);
+            valueOrderbyTimes[i] = valueOrderbyTime;
+        &amp;#125;
+
+
+        return valueOrderbyTimes;
+    &amp;#125;
+
+
+    /**
+     * 截取合法valueOrderbyTimes
+     */
+    public ValueOrderbyTime[] cutHDBForValueByTimeRange(ValueOrderbyTime[] valueList, ValueOrderbyTime[] lenList) throws HDSdkException &amp;#123;
+        long start = lenList[0].time;
+        long end = lenList[lenList.length - 1].time;
+        Integer startIndex = valueList.length - 1;
+        Integer endIndex = 0;
+
+        for (ValueOrderbyTime valueOrder : valueList) &amp;#123;
+            if (valueOrder.time &lt;= end) &amp;#123;
+                break;
+            &amp;#125; else &amp;#123;
+                endIndex++;
+            &amp;#125;
+
+        &amp;#125;
+        for (int i = 0; i &lt; valueList.length; i++) &amp;#123;
+            if (valueList[valueList.length - 1 - i].time &gt;= start) &amp;#123;
+                break;
+            &amp;#125; else &amp;#123;
+                startIndex--;
+            &amp;#125;
+        &amp;#125;
+        //valueList反向存值
+        Integer size = startIndex - endIndex + 1;
+        ValueOrderbyTime[] valueOrderbyTimes = new ValueOrderbyTime[size];
+        Integer index = size - 1;
+        for (int i = endIndex; size - 1 &gt;= 0; size--, endIndex++) &amp;#123;
+            ValueOrderbyTime valueOrderbyTime = new ValueOrderbyTime(valueList[endIndex].time, valueList[endIndex].value);
+            valueOrderbyTimes[index--] = valueOrderbyTime;
+        &amp;#125;
+
+        return valueOrderbyTimes;
+    &amp;#125;</code></pre>
+<h1 id="Redis订阅事件"><a href="#Redis订阅事件" class="headerlink" title="Redis订阅事件"></a>Redis订阅事件</h1><h2 id="消息监听（消费者）"><a href="#消息监听（消费者）" class="headerlink" title="消息监听（消费者）"></a>消息监听（消费者）</h2><p><strong>RedisReceiver.java</strong></p>
+<pre><code class="java">package com.baosight.listener;
+
+import com.alibaba.fastjson.JSONObject;
+import com.baosight.controller.Time2LenDataShare;
+import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.connection.Message;
+import org.springframework.data.redis.connection.MessageListener;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.baosight.utils.RequestUtil.postMethod;
+
+@Component
+public class RedisReceiver implements MessageListener &amp;#123;
+    Logger logger = LoggerFactory.getLogger(Time2LenDataShare.class);
+    @Override
+    public void onMessage(Message message, byte[] bytes) &amp;#123;
+        String channel = new String(message.getChannel());
+        if (&quot;REDIS_STRIP_EVENT&quot;.equals(channel))&amp;#123;
+            logger.info(&quot;订阅到&quot;+channel+&quot;消息，开始向tsDB存入数据&quot;);
+            String coilID = new String(message.getBody());
+            logger.info(&quot;带钢号为：&quot;+coilID);
+            try &amp;#123;
+                Map&lt;String,Object&gt; paramList=new HashMap&lt;&gt;();
+                List&lt;String&gt; list=new ArrayList&lt;&gt;();
+                list.add(coilID);
+                paramList.put(&quot;paramList&quot;,list);
+                Gson gson=new Gson();
+                String param = gson.toJson(paramList);
+                //JSONObject resultJson=postMethod(&quot;http://localhost:8299/ice/Time2LenDataShare/insertFn&quot;,param);
+                JSONObject resultJson=postMethod(&quot;http://localhost:8299/ice/Time2LenDataShare/insert&quot;,param);
+                //logger.info(&quot;向tsDB存入数据成功！&quot;);
+                System.err.println(&quot;resultJson=============================&quot;+resultJson);
+            &amp;#125; catch (IOException e) &amp;#123;
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                JSONObject result = new JSONObject();
+                result.put(&quot;msg&quot;,e.getMessage());
+                result.put(&quot;detailMsg&quot;,e.getStackTrace());
+                result.put(&quot;status&quot;,-1);
+                logger.error(&quot;向tsDB存入数据失败！&quot;+e.getStackTrace());
+
+            &amp;#125;
+        &amp;#125;else if (&quot;HSM_TRACK_IMAGE&quot;.equals(channel))&amp;#123;
+            logger.info(&quot;订阅到&quot;+channel+&quot;消息，开始向kafka发布数据&quot;);
+
+        &amp;#125;else if (&quot;test&quot;.equals(channel))&amp;#123;
+            logger.info(&quot;订阅到&quot;+channel+&quot;消息，开始向tsDB存入数据&quot;);
+            String coilID = new String(message.getBody());
+            logger.info(&quot;带钢号为：&quot;+coilID);
+
+        &amp;#125;
+
+    &amp;#125;
+
+&amp;#125;
+</code></pre>
+<h2 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h2><p><strong>RedisCacheConfig.java</strong></p>
+<pre><code class="java">package com.baosight.config;
+
+
+import com.baosight.listener.RedisReceiver;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.listener.PatternTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+
+@Configuration
+@EnableCaching
+public class RedisCacheConfig &amp;#123;
+
+    @Bean
+    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
+                                            MessageListenerAdapter listenerAdapter) &amp;#123;
+
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        // 可以添加多个 messageListener，配置不同的交换机
+        container.addMessageListener(listenerAdapter, new PatternTopic(&quot;SUBSCRIBE FM_TIMELEN_REQUEST&quot;));
+        container.addMessageListener(listenerAdapter,new PatternTopic(&quot;HSM_TRACK_IMAGE&quot;));
+        container.addMessageListener(listenerAdapter,new PatternTopic(&quot;REDIS_STRIP_EVENT&quot;));
+        container.addMessageListener(listenerAdapter,new PatternTopic(&quot;channel:test&quot;));
+        return container;
+    &amp;#125;
+
+    @Bean
+    MessageListenerAdapter listenerAdapter(RedisReceiver receiver) &amp;#123;
+        //System.out.println(&quot;消息适配器1&quot;);
+        return new MessageListenerAdapter(receiver, &quot;onMessage&quot;);
+    &amp;#125;
+
+    @Bean
+    StringRedisTemplate template(RedisConnectionFactory connectionFactory) &amp;#123;
+        return new StringRedisTemplate(connectionFactory);
+    &amp;#125;
+
+&amp;#125;</code></pre>
+<h2 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h2><pre><code class="properties"># 配置redis服务器属性
+spring.redis.port=6379
+spring.redis.host=160.0.3.35
+spring.redis.timeout=1000ms
+spring.redis.database=0
+spring.redis.password=12345
+
+# 配置redis连接池属性
+spring.redis.lettuce.pool.max-active=8
+spring.redis.lettuce.pool.max-idle=8
+spring.redis.lettuce.pool.min-idle=0
+spring.redis.lettuce.pool.max-wait=-1ms</code></pre>
+<h1 id="DB2获取连接（通过配置）"><a href="#DB2获取连接（通过配置）" class="headerlink" title="DB2获取连接（通过配置）"></a>DB2获取连接（通过配置）</h1><p>application.properties（多数据库配置方式，具体看更新插入20201102）</p>
+<pre><code class="properties">#DB2
+spring.datasource.hsm031.driver-class-name=com.ibm.db2.jcc.DB2Driver
+spring.datasource.hsm031.jdbc-url=jdbc:db2://160.0.3.50:50000/HSM031:currentSchema=db2inst1;
+spring.datasource.hsm031.username=db2inst1
+spring.datasource.hsm031.password=p@ssw0rd
+#DB2
+spring.datasource.hotmill2.driver-class-name=com.ibm.db2.jcc.DB2Driver
+spring.datasource.hotmill2.jdbc-url=jdbc:db2://160.0.3.50:50000/HOTMILL2:currentSchema=db2inst1;
+spring.datasource.hotmill2.username=db2inst1
+spring.datasource.hotmill2.password=p@ssw0rd
+#Oracle
+spring.datasource.oracle.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.oracle.jdbc-url=jdbc:oracle:thin:@//160.0.3.36:1521/hotmill3
+spring.datasource.oracle.username=ap
+spring.datasource.oracle.password=123456
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+#mybatis
+mybatis.typeAliasesPackage=com.baosight.pojo
+mybatis.mapperLocations=classpath:mapper/*/*.xml
+mybatis.configuration.mapUnderscoreToCamelCase=true
+mybatis.configuration.cacheEnabled=false
+logging.level.com.baosight=debug</code></pre>
+<h1 id="Product获取连接（proprx代理方式）"><a href="#Product获取连接（proprx代理方式）" class="headerlink" title="Product获取连接（proprx代理方式）"></a>Product获取连接（proprx代理方式）</h1><pre><code class="java"> ProductPrx locate = proprxH033.locate(coilId);
+Measurement loadTSRecord = locate.getMeasurement(&quot;LoadTSRecord&quot;);</code></pre>
+<p><strong>ProductUtil.java</strong></p>
+<pre><code class="java">package com.baosight.utils;
+
+import HSM.ProductMasterPrx;
+import com.zeroc.Ice.Communicator;
+import com.zeroc.Ice.ObjectPrx;
+
+public  class ProductUtil &amp;#123;
+
+
+
+    private static Communicator ice= IceClientUtil.getIceCommunicator();
+   // static ObjectPrx hsmproPrx=ice.stringToProxy(&quot;H031BDB/ProductMaster&quot;);
+    static ProductMasterPrx proprx=null;
+    static ObjectPrx hsmproPrxH033=ice.stringToProxy(&quot;H033BDB/ProductMaster&quot;);
+    static ProductMasterPrx proprxH033=null;
+    /*public static ProductMasterPrx connProduct() &amp;#123;
+
+        try &amp;#123;
+            proprx=ProductMasterPrx.checkedCast(hsmproPrx);
+        &amp;#125; catch (Exception e) &amp;#123;
+
+            e.printStackTrace();
+        &amp;#125;finally &amp;#123;
+            return proprx;
+        &amp;#125;
+    &amp;#125;*/
+
+
+    public static ProductMasterPrx connProductH033() &amp;#123;
+
+        try &amp;#123;
+            proprx=ProductMasterPrx.checkedCast(hsmproPrxH033);
+        &amp;#125; catch (Exception e) &amp;#123;
+
+            e.printStackTrace();
+        &amp;#125;finally &amp;#123;
+            return proprx;
+        &amp;#125;
+    &amp;#125;
+
+&amp;#125;
+
+</code></pre>
+<h1 id="IHDB获取连接"><a href="#IHDB获取连接" class="headerlink" title="IHDB获取连接"></a>IHDB获取连接</h1><pre><code class="java">private HDDataConnection ihdbconn = HDBUtil.connIHDB();
+Integer tagId = ihdbconn.getTagManager().getTagIDByTagName(tagName);
+valueList = (ArrayList) ihdbconn.getDataProvider().queryTagHisRawRecords(tagId, f1ON, f1OFF);</code></pre>
+<p><strong>HDBUtil.java</strong></p>
+<pre><code class="java">package com.baosight.utils;
+import com.baosight.hdsdk.HDConnectionFactory;
+import com.baosight.hdsdk.HDServerFactory;
+import com.baosight.hdsdk.domain.data.HDDataConnection;
+import com.baosight.hdsdk.domain.data.HDDataServer;
+
+public class HDBUtil &amp;#123;
+    private static HDDataConnection dataConn = null;
+    public static HDDataConnection connIHDB() &amp;#123;
+
+        // 设置服务器信息
+
+        String serverIP = &quot;160.0.3.71&quot;;
+        String bakIp = &quot;&quot;;     //主备ip分别是实际的真实的ip地址。
+        try &amp;#123;
+            HDDataServer server = HDServerFactory.getHDDataServer(serverIP,5673,bakIp,5673);
+            dataConn = HDConnectionFactory.getHDDataConnection(server);
+            dataConn.loginToServer(&quot;admin&quot;, &quot;admin&quot;);
+        &amp;#125; catch (Exception e) &amp;#123;
+            e.printStackTrace();
+
+        &amp;#125;finally &amp;#123;
+            return dataConn;
+        &amp;#125;
+
+    &amp;#125;
+
+&amp;#125;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020 小潘同学
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #8CC7B5;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #BEE7E9;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

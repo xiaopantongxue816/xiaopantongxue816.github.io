@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>订阅redis事件 | 小潘同学的教室</title>
+  <meta name="keywords" content=" 后端 ">
+  <meta name="description" content="订阅redis事件 | 小潘同学的教室">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="小潘同学的教室">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="https://xiaopantongxue816.github.io/about/index.html">
+<meta property="og:site_name" content="小潘同学的教室">
+<meta property="og:description" content="小潘同学的教室">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-08T04:26:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T03:12:14.789Z">
+<meta property="article:author" content="小潘同学">
+<meta property="article:tag" content="JAVA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/cat.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="alternate" href="/atom.xml" title="小潘同学的教室" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/cat.png" />
+</a>
+<div class="author">
+    <span>小潘同学</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/xiaopantongxue816" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/5080293468" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1214798755@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1214798755&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="全部文章">全部文章<small>(33)</small></div></li>
+    
+        
+            
+            <li><div data-rel="工作方案">工作方案<small>(7)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="运维">运维<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具">工具<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="生活">生活<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="其它">其它<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="33">
+<input type="hidden" id="yelog_site_word_count" value="60.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://zhang.ge/">张戈博客</a></li>
+            
+            <li><a target="_blank" href="http://www.ruanyifeng.com/home.html">阮一峰的个人网站</a></li>
+            
+            <li><a target="_blank" href="http://mindhacks.cn/">刘未鹏 | Mind Hacks</a></li>
+            
+            <li><a target="_blank" href="https://www.hanselman.com/">Scott</a></li>
+            
+            <li><a target="_blank" href="https://coolshell.cn/">酷 壳</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>安全框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>容器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开源项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>教程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>日记</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>模板引擎</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>消息系统</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>点滴</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>资源监控</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通信框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目管理</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/30/%E8%AE%A2%E9%98%85redis%E4%BA%8B%E4%BB%B6/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="订阅redis事件">订阅redis事件</span>
+            <span class="post-date" title="2020-10-30 10:41:24">2020/10/30</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/22/Product%E5%92%8CiHDB%E6%95%B0%E6%8D%AE%E5%88%B0TSDB/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Product和iHDB数据到TSDB">Product和iHDB数据到TSDB</span>
+            <span class="post-date" title="2020-10-22 14:45:30">2020/10/22</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/10/21/%E8%8B%B1%E8%AF%AD%E8%A7%92%E8%90%BD/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="英语角落">英语角落</span>
+            <span class="post-date" title="2020-10-21 08:41:36">2020/10/21</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/10/20/ICE/"
+           data-tag="通信框架"
+           data-author="" >
+            <span class="post-title" title="ICE">ICE</span>
+            <span class="post-date" title="2020-10-20 14:12:06">2020/10/20</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/14/DB2%E8%B5%84%E6%BA%90%E7%9B%91%E6%8E%A7/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="DB2资源监控">DB2资源监控</span>
+            <span class="post-date" title="2020-10-14 13:58:52">2020/10/14</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/12/Linux%E5%86%85%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux内网时间同步配置">Linux内网时间同步配置</span>
+            <span class="post-date" title="2020-10-12 16:34:06">2020/10/12</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/12/Linux%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E5%90%8C%E6%AD%A5DB2/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="Linux工作目录同步DB2">Linux工作目录同步DB2</span>
+            <span class="post-date" title="2020-10-12 07:59:49">2020/10/12</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/10/02/%E6%95%B0%E6%8D%AE%E5%BA%93/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库">数据库</span>
+            <span class="post-date" title="2020-10-02 08:41:12">2020/10/02</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/09/24/%E9%98%85%E8%AF%BB/"
+           data-tag="点滴"
+           data-author="" >
+            <span class="post-title" title="阅读">阅读</span>
+            <span class="post-date" title="2020-09-24 14:40:16">2020/09/24</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/JavaScript/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript">JavaScript</span>
+            <span class="post-date" title="2020-09-23 13:15:57">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/CSS/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS">CSS</span>
+            <span class="post-date" title="2020-09-23 13:15:30">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/HTML/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="HTML">HTML</span>
+            <span class="post-date" title="2020-09-23 13:15:16">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/23/Maven/"
+           data-tag="项目管理"
+           data-author="" >
+            <span class="post-title" title="Maven">Maven</span>
+            <span class="post-date" title="2020-09-23 12:50:22">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/18/protobuf%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE/"
+           data-tag="序列化"
+           data-author="" >
+            <span class="post-title" title="protobuf传输数据">protobuf传输数据</span>
+            <span class="post-date" title="2020-09-18 13:31:36">2020/09/18</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/17/Utils/"
+           data-tag="工具"
+           data-author="" >
+            <span class="post-title" title="Utils">Utils</span>
+            <span class="post-date" title="2020-09-17 09:13:15">2020/09/17</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/16/Shiro/"
+           data-tag="安全框架"
+           data-author="" >
+            <span class="post-title" title="Shiro">Shiro</span>
+            <span class="post-date" title="2020-09-16 18:20:00">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/16/Thymeleaf/"
+           data-tag="模板引擎"
+           data-author="" >
+            <span class="post-title" title="Thymeleaf">Thymeleaf</span>
+            <span class="post-date" title="2020-09-16 17:39:46">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/16/docker/"
+           data-tag="容器"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2020-09-16 15:06:30">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/09/15/%E6%88%91%E7%9A%84%E7%94%B5%E5%BD%B1%E8%AE%B0%E5%BD%95/"
+           data-tag="点滴"
+           data-author="" >
+            <span class="post-title" title="我的电影记录">我的电影记录</span>
+            <span class="post-date" title="2020-09-15 15:37:16">2020/09/15</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/09/Linux%E8%B5%84%E6%BA%90%E7%9B%91%E6%8E%A7/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="Linux资源监控">Linux资源监控</span>
+            <span class="post-date" title="2020-09-09 10:30:41">2020/09/09</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/04/%E9%83%A8%E7%BD%B2/"
+           data-tag="部署"
+           data-author="" >
+            <span class="post-title" title="部署">部署</span>
+            <span class="post-date" title="2020-09-04 16:29:28">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/04/%E8%8B%A5%E4%BE%9D%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"
+           data-tag="开源项目"
+           data-author="" >
+            <span class="post-title" title="若依管理系统">若依管理系统</span>
+            <span class="post-date" title="2020-09-04 16:01:40">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/03/kafka/"
+           data-tag="消息系统"
+           data-author="" >
+            <span class="post-title" title="kafka">kafka</span>
+            <span class="post-date" title="2020-09-03 17:57:44">2020/09/03</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/02/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"
+           data-tag="教程"
+           data-author="" >
+            <span class="post-title" title="开发工具使用教程">开发工具使用教程</span>
+            <span class="post-date" title="2020-09-02 16:14:39">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/02/Protobuf/"
+           data-tag="序列化"
+           data-author="" >
+            <span class="post-title" title="Protobuf">Protobuf</span>
+            <span class="post-date" title="2020-09-02 10:14:03">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/01/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux软件安装">Linux软件安装</span>
+            <span class="post-date" title="2020-09-01 10:46:17">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/01/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="远程连接工具">远程连接工具</span>
+            <span class="post-date" title="2020-09-01 09:49:52">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/08/28/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98/"
+           data-tag="日记"
+           data-author="" >
+            <span class="post-title" title="关于博客主题">关于博客主题</span>
+            <span class="post-date" title="2020-08-28 19:18:31">2020/08/28</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/27/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux环境搭建">Linux环境搭建</span>
+            <span class="post-date" title="2020-08-27 18:37:16">2020/08/27</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/21/%E5%BC%80%E6%BA%90%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="开源网站相关">开源网站相关</span>
+            <span class="post-date" title="2020-08-21 14:34:04">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/21/Linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux命令记录">Linux命令记录</span>
+            <span class="post-date" title="2020-08-21 09:34:19">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/16/%E5%8D%9A%E5%AE%A2%E7%94%9F%E6%88%90%E8%AE%B0%E5%BD%95/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="博客生成记录">博客生成记录</span>
+            <span class="post-date" title="2020-08-16 10:12:34">2020/08/16</span>
+        </a>
+        
+        <a  class="全部文章 其它 "
+           href="/2020/08/16/hello-world/"
+           data-tag="xxx"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-16 09:50:43">2020/08/16</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-订阅redis事件" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">订阅redis事件</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工作方案">工作方案</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">后端</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2020-11-03 13:19:21'>2020-10-30 10:41</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.8k</span>
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A2%E9%98%85redis%E4%BA%8B%E4%BB%B6%E5%8F%91%E9%80%81%E5%88%B0kafka"><span class="toc-text">订阅redis事件发送到kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#main-cpp%EF%BC%882-0%EF%BC%8C%E5%8F%91%E9%80%81%E7%BB%93%E6%9E%84%E4%BD%93%E4%BF%A1%E6%81%AF%E8%BD%AC%E6%8D%A2%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89"><span class="toc-text">main.cpp（2.0，发送结构体信息转换的字符串）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main-cpp%EF%BC%881-0%EF%BC%8C%E5%8F%91%E9%80%81%E7%AE%80%E5%8D%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%B0kafka%EF%BC%89"><span class="toc-text">main.cpp（1.0，发送简单字符串到kafka）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#160-0-3-3-ap-123456"><span class="toc-text">160.0.3.3&#x2F;ap&#x2F;123456</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#160-0-3-9-panjiayuan-p-ssw0rd"><span class="toc-text">160.0.3.9&#x2F;panjiayuan&#x2F;p@ssw0rd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#makefile"><span class="toc-text">makefile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#testpjy-cpp"><span class="toc-text">testpjy.cpp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E9%94%99"><span class="toc-text">报错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%93%E6%B2%A1%E6%89%BE%E5%88%B0"><span class="toc-text">库没找到</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="订阅redis事件发送到kafka"><a href="#订阅redis事件发送到kafka" class="headerlink" title="订阅redis事件发送到kafka"></a>订阅redis事件发送到kafka</h1><h2 id="main-cpp（2-0，发送结构体信息转换的字符串）"><a href="#main-cpp（2-0，发送结构体信息转换的字符串）" class="headerlink" title="main.cpp（2.0，发送结构体信息转换的字符串）"></a>main.cpp（2.0，发送结构体信息转换的字符串）</h2><ul>
+<li>结构体取数据</li>
+<li>C++字符串拼接</li>
+</ul>
+<pre><code class="C++">#include &lt;iostream&gt;
+#include &lt;pace/pace.h&gt;
+#include &lt;log4cplus/LOG.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstdio&gt;
+#include &lt;csignal&gt;
+#include &lt;cstring&gt;
+#include &lt;array&gt;
+#include &lt;getopt.h&gt;
+#include &lt;sstream&gt;
+#include &lt;librdkafka/rdkafkacpp.h&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;H032ADH/RedisMQ.cpp&gt;
+#include &quot;tele_def.h&quot;
+using namespace std;
+
+static bool run = true;
+
+static void sigterm (int sig)
+&amp;#123;
+    run = false;
+&amp;#125;
+
+class ExampleDeliveryReportCb : public RdKafka::DeliveryReportCb
+&amp;#123;
+public:
+    void dr_cb (RdKafka::Message &amp;message)
+    &amp;#123;
+        std::cout &lt;&lt; &quot;Message delivery for (&quot; &lt;&lt; message.len() &lt;&lt; &quot; bytes): &quot; &lt;&lt;
+                  message.errstr() &lt;&lt; std::endl;
+        if (message.key())
+            std::cout &lt;&lt; &quot;Key: &quot; &lt;&lt; *(message.key()) &lt;&lt; &quot;;&quot; &lt;&lt; std::endl;
+    &amp;#125;
+&amp;#125;;
+
+class ExampleEventCb : public RdKafka::EventCb
+&amp;#123;
+public:
+    void event_cb (RdKafka::Event &amp;event)
+    &amp;#123;
+        switch (event.type()) &amp;#123;
+        case RdKafka::Event::EVENT_ERROR:
+            std::cerr &lt;&lt; &quot;ERROR (&quot; &lt;&lt; RdKafka::err2str(event.err()) &lt;&lt; &quot;): &quot; &lt;&lt;
+                      event.str() &lt;&lt; std::endl;
+            if (event.err() == RdKafka::ERR__ALL_BROKERS_DOWN)
+                run = false;
+            break;
+
+        case RdKafka::Event::EVENT_STATS:
+            std::cerr &lt;&lt; &quot;\&quot;STATS\&quot;: &quot; &lt;&lt; event.str() &lt;&lt; std::endl;
+            break;
+
+        case RdKafka::Event::EVENT_LOG:
+            fprintf(stderr, &quot;LOG-%i-%s: %s\n&quot;,
+                    event.severity(), event.fac().c_str(), event.str().c_str());
+            break;
+
+        default:
+            std::cerr &lt;&lt; &quot;EVENT &quot; &lt;&lt; event.type() &lt;&lt;
+                      &quot; (&quot; &lt;&lt; RdKafka::err2str(event.err()) &lt;&lt; &quot;): &quot; &lt;&lt;
+                      event.str() &lt;&lt; std::endl;
+            break;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;;
+
+
+
+class RedisToKafka :public Component
+&amp;#123;
+public:
+        virtual int start()
+        &amp;#123;
+        RedisSubscriber redisSubscriber(&quot;160.0.3.5&quot;);
+        redisSubscriber.subscribe(&quot;H031_TRACK_IMAGE&quot;);
+                redisSubscriber.consume(onMessage);
+                return EXIT_FAILURE;
+        &amp;#125;
+        static void onMessage(const char * topic, const Ice::ByteSeq v_tele)
+        &amp;#123;
+                LOG log(&quot;onMessage&quot;);
+                try
+                &amp;#123;
+
+
+
+            //log.Debug() &lt;&lt; &quot;h031_track_image.MillTrack &quot; &lt;&lt; string(h031_track_image.MillTrack[0].pieceNo[0] , 12)&lt;&lt;endl;
+            std::string brokers = &quot;160.0.3.220&quot;;
+            std::string errstr;
+            std::string topic_str=&quot;H031_TRACK_IMAGE&quot;;
+            int32_t partition = RdKafka::Topic::PARTITION_UA;
+
+            RdKafka::Conf *conf = RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL);
+            RdKafka::Conf *tconf = RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC);
+
+            conf-&gt;set(&quot;bootstrap.servers&quot;, brokers, errstr);
+
+            ExampleEventCb ex_event_cb;
+            conf-&gt;set(&quot;event_cb&quot;, &amp;ex_event_cb, errstr);
+
+            signal(SIGINT, sigterm);
+            signal(SIGTERM, sigterm);
+
+            ExampleDeliveryReportCb ex_dr_cb;
+            conf-&gt;set(&quot;dr_cb&quot;, &amp;ex_dr_cb, errstr);
+
+            RdKafka::Producer *producer = RdKafka::Producer::create(conf, errstr);
+
+            if (!producer) &amp;#123;
+                log.Debug() &lt;&lt; &quot;Failed to create producer:&quot;&lt;&lt; endl;
+                std::cerr &lt;&lt; &quot;Failed to create producer: &quot; &lt;&lt; errstr &lt;&lt; std::endl;
+                exit(1);
+            &amp;#125;
+            std::cout &lt;&lt; &quot;% Created producer &quot; &lt;&lt; producer-&gt;name() &lt;&lt; std::endl;
+
+            RdKafka::Topic *topic = RdKafka::Topic::create(producer, topic_str,
+                                    tconf, errstr);
+            if (!topic) &amp;#123;
+                log.Debug() &lt;&lt; &quot;Failed to create topic:&quot;&lt;&lt; endl;
+                std::cerr &lt;&lt; &quot;Failed to create topic: &quot; &lt;&lt; errstr &lt;&lt; std::endl;
+                exit(1);
+            &amp;#125;
+            //log.Debug() &lt;&lt; &quot;topicoooooooo [&quot; &lt;&lt; topic &lt;&lt; &quot;] length [&quot;&lt;&lt; v_tele.size() &lt;&lt; &quot;]&quot;&lt;&lt; endl;
+
+            H031_TRACK_IMAGE h031_track_image;
+            memcpy((char *)&amp;h031_track_image,&amp;v_tele.front(),v_tele.size());
+
+            std::stringstream structline;
+            string p;
+            int h;
+            int t;
+            int y;
+            int x;
+            int w;
+            int l;
+            int i;
+            for (int i=0;i&lt;=260;i++) &amp;#123;
+                if(i&lt;10)&amp;#123;
+                    p=h031_track_image.MillTrack[i].pieceNo;
+                    h=h031_track_image.MillTrack[i].headPosition;
+                    t=h031_track_image.MillTrack[i].tailPosition;
+                    structline &lt;&lt; p&lt;&lt; h&lt;&lt; t;
+                &amp;#125;else if(i&gt;=10&amp;&amp;i&lt;20)&amp;#123;
+                    p=h031_track_image.FrontList[i].pieceNo;
+                    h=h031_track_image.FrontList[i].headPosition;
+                    t=h031_track_image.FrontList[i].tailPosition;
+                    structline &lt;&lt; p&lt;&lt; h&lt;&lt; t;
+                &amp;#125;else if(i&gt;=20&amp;&amp;i&lt;30)&amp;#123;
+                    p=h031_track_image.BackList[i].pieceNo;
+                    h=h031_track_image.BackList[i].headPosition;
+                    t=h031_track_image.BackList[i].tailPosition;
+                    structline &lt;&lt; p&lt;&lt; h&lt;&lt; t;
+                &amp;#125;else if(i&gt;=30&amp;&amp;i&lt;80)&amp;#123;
+                    p=h031_track_image.FurnaceTrack1[i].pieceNo;
+                    y=h031_track_image.FurnaceTrack1[i].yPos;
+                    x=h031_track_image.FurnaceTrack1[i].xPos;
+                    w=h031_track_image.FurnaceTrack1[i].width;
+                    l=h031_track_image.FurnaceTrack1[i].length;
+                    structline &lt;&lt; p&lt;&lt; y&lt;&lt; x&lt;&lt;w&lt;&lt;l;
+                &amp;#125;else if(i&gt;=80&amp;&amp;i&lt;130)&amp;#123;
+                    p=h031_track_image.FurnaceTrack2[i].pieceNo;
+                    y=h031_track_image.FurnaceTrack2[i].yPos;
+                    x=h031_track_image.FurnaceTrack2[i].xPos;
+                    w=h031_track_image.FurnaceTrack2[i].width;
+                    l=h031_track_image.FurnaceTrack2[i].length;
+                    structline &lt;&lt; p&lt;&lt; y&lt;&lt; x&lt;&lt;w&lt;&lt;l;
+                &amp;#125;else if(i&gt;=130&amp;&amp;i&lt;180)&amp;#123;
+                    p=h031_track_image.FurnaceTrack3[i].pieceNo;
+                    y=h031_track_image.FurnaceTrack3[i].yPos;
+                    x=h031_track_image.FurnaceTrack3[i].xPos;
+                    w=h031_track_image.FurnaceTrack3[i].width;
+                    l=h031_track_image.FurnaceTrack3[i].length;
+                    structline &lt;&lt; p&lt;&lt; y&lt;&lt; x&lt;&lt;w&lt;&lt;l;
+                &amp;#125;else if(i&gt;=180&amp;&amp;i&lt;230)&amp;#123;
+                    p=h031_track_image.FurnaceTrack4[i].pieceNo;
+                    y=h031_track_image.FurnaceTrack4[i].yPos;
+                    x=h031_track_image.FurnaceTrack4[i].xPos;
+                    w=h031_track_image.FurnaceTrack4[i].width;
+                    l=h031_track_image.FurnaceTrack4[i].length;
+                    structline &lt;&lt; p&lt;&lt; y&lt;&lt; x&lt;&lt;w&lt;&lt;l;
+                &amp;#125;else if(i&gt;=230&amp;&amp;i&lt;260)&amp;#123;
+                    p=h031_track_image.ConveyoTrack[i].pieceNo;
+                    i=h031_track_image.ConveyoTrack[i].inspectionFlag;
+                    structline &lt;&lt; p&lt;&lt; i;
+                &amp;#125;else&amp;#123;
+                    log.Debug() &lt;&lt; &quot;i=260*******************************&quot;&lt;&lt;endl;
+                &amp;#125;
+
+
+            &amp;#125;
+            std::string line = structline.str();
+            if (line.empty()) &amp;#123;
+                producer-&gt;poll(0);
+                //continue;
+            &amp;#125;    
+            log.Debug() &lt;&lt; &quot;line: &quot; &lt;&lt;line&lt;&lt;endl;//113462500100
+            RdKafka::ErrorCode resp =
+            producer-&gt;produce(topic, partition,
+                              RdKafka::Producer::RK_MSG_COPY /* Copy payload */,
+                              const_cast&lt;char *&gt;(line.c_str()), line.size(),
+                              NULL, NULL);
+            if (resp != RdKafka::ERR_NO_ERROR)
+                std::cerr &lt;&lt; &quot;% Produce failed: &quot; &lt;&lt;
+                          RdKafka::err2str(resp) &lt;&lt; std::endl;
+            else
+                std::cerr &lt;&lt; &quot;% Produced message (&quot; &lt;&lt; line.size() &lt;&lt; &quot; bytes)&quot; &lt;&lt;
+                          std::endl;
+
+            producer-&gt;poll(0);
+
+
+            run = true;
+            // 退出前处理完输出队列中的消息
+            while (run &amp;&amp; producer-&gt;outq_len() &gt; 0) &amp;#123;
+                std::cerr &lt;&lt; &quot;Waiting for &quot; &lt;&lt; producer-&gt;outq_len() &lt;&lt; std::endl;
+                producer-&gt;poll(1000);
+            &amp;#125;
+
+            delete conf;
+            delete tconf;
+            delete topic;
+            delete producer;
+
+            RdKafka::wait_destroyed(5000);
+            &amp;#125;
+        catch(const std::exception &amp; e)
+                &amp;#123;
+                        log.Error() &lt;&lt; &quot;e.what()&quot; &lt;&lt; endl;
+                &amp;#125;
+        &amp;#125;
+&amp;#125;;
+
+PACE_SERVER_INSTALL(RedisToKafka);
+</code></pre>
+<h2 id="main-cpp（1-0，发送简单字符串到kafka）"><a href="#main-cpp（1-0，发送简单字符串到kafka）" class="headerlink" title="main.cpp（1.0，发送简单字符串到kafka）"></a>main.cpp（1.0，发送简单字符串到kafka）</h2><pre><code class="c++">#include &lt;iostream&gt;
+#include &lt;pace/pace.h&gt;
+#include &lt;log4cplus/LOG.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstdio&gt;
+#include &lt;csignal&gt;
+#include &lt;cstring&gt;
+
+#include &lt;getopt.h&gt;
+
+#include &lt;librdkafka/rdkafkacpp.h&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;H032ADH/RedisMQ.cpp&gt;
+#include &quot;tele_def.h&quot;
+using namespace std;
+
+static bool run = true;
+
+static void sigterm (int sig)
+&amp;#123;
+    run = false;
+&amp;#125;
+
+class ExampleDeliveryReportCb : public RdKafka::DeliveryReportCb
+&amp;#123;
+public:
+    void dr_cb (RdKafka::Message &amp;message)
+    &amp;#123;
+        std::cout &lt;&lt; &quot;Message delivery for (&quot; &lt;&lt; message.len() &lt;&lt; &quot; bytes): &quot; &lt;&lt;
+                  message.errstr() &lt;&lt; std::endl;
+        if (message.key())
+            std::cout &lt;&lt; &quot;Key: &quot; &lt;&lt; *(message.key()) &lt;&lt; &quot;;&quot; &lt;&lt; std::endl;
+    &amp;#125;
+&amp;#125;;
+
+class ExampleEventCb : public RdKafka::EventCb
+&amp;#123;
+public:
+    void event_cb (RdKafka::Event &amp;event)
+    &amp;#123;
+        switch (event.type()) &amp;#123;
+        case RdKafka::Event::EVENT_ERROR:
+            std::cerr &lt;&lt; &quot;ERROR (&quot; &lt;&lt; RdKafka::err2str(event.err()) &lt;&lt; &quot;): &quot; &lt;&lt;
+                      event.str() &lt;&lt; std::endl;
+            if (event.err() == RdKafka::ERR__ALL_BROKERS_DOWN)
+                run = false;
+            break;
+
+        case RdKafka::Event::EVENT_STATS:
+            std::cerr &lt;&lt; &quot;\&quot;STATS\&quot;: &quot; &lt;&lt; event.str() &lt;&lt; std::endl;
+            break;
+
+        case RdKafka::Event::EVENT_LOG:
+            fprintf(stderr, &quot;LOG-%i-%s: %s\n&quot;,
+                    event.severity(), event.fac().c_str(), event.str().c_str());
+            break;
+
+        default:
+            std::cerr &lt;&lt; &quot;EVENT &quot; &lt;&lt; event.type() &lt;&lt;
+                      &quot; (&quot; &lt;&lt; RdKafka::err2str(event.err()) &lt;&lt; &quot;): &quot; &lt;&lt;
+                      event.str() &lt;&lt; std::endl;
+            break;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;;
+
+
+
+class RedisToKafka :public Component
+&amp;#123;
+public:
+        virtual int start()
+        &amp;#123;
+        RedisSubscriber redisSubscriber(&quot;160.0.3.5&quot;);
+        redisSubscriber.subscribe(&quot;H031_TRACK_IMAGE&quot;);
+                redisSubscriber.consume(onMessage);
+                return EXIT_FAILURE;
+        &amp;#125;
+        static void onMessage(const char * topic, const Ice::ByteSeq v_tele)
+        &amp;#123;
+                LOG log(&quot;onMessage&quot;);
+                try
+                &amp;#123;
+
+            log.Debug() &lt;&lt; &quot;topicoooooooo [&quot; &lt;&lt; topic &lt;&lt; &quot;] length [&quot;&lt;&lt; v_tele.size() &lt;&lt; &quot;]&quot;&lt;&lt; endl;
+
+            H031_TRACK_IMAGE h031_track_image;
+            memcpy((char *)&amp;h031_track_image,&amp;v_tele.front(),v_tele.size());
+            //log.Debug() &lt;&lt; &quot;h031_track_image.MillTrack &quot; &lt;&lt; string(h031_track_image.MillTrack[0].pieceNo[0] , 12)&lt;&lt;endl;
+            std::string brokers = &quot;160.0.3.220&quot;;
+            std::string errstr;
+            std::string topic_str=&quot;H031_TRACK_IMAGE&quot;;
+            int32_t partition = RdKafka::Topic::PARTITION_UA;
+
+            RdKafka::Conf *conf = RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL);
+            RdKafka::Conf *tconf = RdKafka::Conf::create(RdKafka::Conf::CONF_TOPIC);
+
+            conf-&gt;set(&quot;bootstrap.servers&quot;, brokers, errstr);
+
+            ExampleEventCb ex_event_cb;
+            conf-&gt;set(&quot;event_cb&quot;, &amp;ex_event_cb, errstr);
+
+            signal(SIGINT, sigterm);
+            signal(SIGTERM, sigterm);
+
+            ExampleDeliveryReportCb ex_dr_cb;
+            conf-&gt;set(&quot;dr_cb&quot;, &amp;ex_dr_cb, errstr);
+
+            RdKafka::Producer *producer = RdKafka::Producer::create(conf, errstr);
+             std::string line=string(h031_track_image.MillTrack[0].pieceNo[0] , 12);
+
+
+            if (!producer) &amp;#123;
+                log.Debug() &lt;&lt; &quot;Failed to create producer:&quot;&lt;&lt; endl;
+                std::cerr &lt;&lt; &quot;Failed to create producer: &quot; &lt;&lt; errstr &lt;&lt; std::endl;
+                exit(1);
+            &amp;#125;
+            std::cout &lt;&lt; &quot;% Created producer &quot; &lt;&lt; producer-&gt;name() &lt;&lt; std::endl;
+
+            RdKafka::Topic *topic = RdKafka::Topic::create(producer, topic_str,
+                                    tconf, errstr);
+            if (!topic) &amp;#123;
+                log.Debug() &lt;&lt; &quot;Failed to create topic:&quot;&lt;&lt; endl;
+                std::cerr &lt;&lt; &quot;Failed to create topic: &quot; &lt;&lt; errstr &lt;&lt; std::endl;
+                exit(1);
+            &amp;#125;
+
+            for(int i=0;i&lt;h031_track_image.size();i)
+            //std::string line=string(h031_track_image.MillTrack[0].pieceNo[0] , 12);
+                //log.Debug() &lt;&lt; &quot;line:&quot;&lt;&lt;line&lt;&lt; endl;
+            //for (std::string line; run &amp;&amp; std::getline(std::cin, line);) &amp;#123;
+            if (!line.empty()) &amp;#123;
+                //producer-&gt;poll(0);
+                //continue;
+                RdKafka::ErrorCode resp =
+                producer-&gt;produce(topic, partition,
+                                  RdKafka::Producer::RK_MSG_COPY /* Copy payload */,
+                                  const_cast&lt;char *&gt;(line.c_str()), line.size(),
+                                  NULL, NULL);
+                if (resp != RdKafka::ERR_NO_ERROR)
+                    std::cerr &lt;&lt; &quot;% Produce failed: &quot; &lt;&lt;
+                              RdKafka::err2str(resp) &lt;&lt; std::endl;
+                else
+                    std::cerr &lt;&lt; &quot;% Produced message (&quot; &lt;&lt; line.size() &lt;&lt; &quot; bytes)&quot; &lt;&lt;
+                              std::endl;
+
+                producer-&gt;poll(0);
+            &amp;#125;
+
+            run = true;
+            // 退出前处理完输出队列中的消息
+            while (run &amp;&amp; producer-&gt;outq_len() &gt; 0) &amp;#123;
+                std::cerr &lt;&lt; &quot;Waiting for &quot; &lt;&lt; producer-&gt;outq_len() &lt;&lt; std::endl;
+                producer-&gt;poll(1000);
+            &amp;#125;
+
+            delete conf;
+            delete tconf;
+            delete topic;
+            delete producer;
+
+            RdKafka::wait_destroyed(5000);
+            &amp;#125;
+        catch(const std::exception &amp; e)
+                &amp;#123;
+                        log.Error() &lt;&lt; &quot;e.what()&quot; &lt;&lt; endl;
+                &amp;#125;
+        &amp;#125;
+&amp;#125;;
+
+PACE_SERVER_INSTALL(RedisToKafka);
+</code></pre>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><h3 id="160-0-3-3-ap-123456"><a href="#160-0-3-3-ap-123456" class="headerlink" title="160.0.3.3/ap/123456"></a><strong>160.0.3.3/ap/123456</strong></h3><p>增加进程修改配置文件增加节点：<code>/iPlature/conf/H031ADH1/H031ADH1.xml</code></p>
+<p>修改好后更新配置文件<code>iPlatureAdmin updatenode H031ADH1</code>，此时iceGrid应该就有节点了</p>
+<p>输入命令log可以跳转到日志文件下去查看日志<code>/iPlature/log/H031ADH1</code>，刷新日志<code>:e</code></p>
+<pre><code class="xml">
+&lt;server-instance template = &quot;SimpleServer&quot;
+                 name = &quot;test&quot;  #name要和发送的编译好的文件名字一致
+                 exe  = &quot;/ap/bin/H031ADH1/test&quot;
+                 activation = &quot;always&quot;/&gt;
+                                 &lt;server-instance template = &quot;SimpleServer&quot;
+                                                name = &quot;RedisToKafka&quot;
+                                                exe  = &quot;/ap/bin/H031ADH1/RedisToKafKa&quot;
+                                                activation = &quot;always&quot;/&gt;
+                                  &lt;server-instance template = &quot;SimpleServer&quot;
+                                                name = &quot;RedisToKafka&quot;
+                                                exe  = &quot;/ap/bin/H031ADH1/RedisToKafka&quot;
+                                                activation = &quot;always&quot;/&gt;
+注意大小写</code></pre>
+<p>发送</p>
+<h3 id="160-0-3-9-panjiayuan-p-ssw0rd"><a href="#160-0-3-9-panjiayuan-p-ssw0rd" class="headerlink" title="160.0.3.9/panjiayuan/p@ssw0rd"></a><strong>160.0.3.9/panjiayuan/p@ssw0rd</strong></h3><p>测试位置：<code>/home/panjiayuan/hotmill/source/AP/test</code></p>
+<p>版本库问题*<strong><strong><strong>**</strong></strong></strong></p>
+<pre><code class="bash">svn: E200009: 提交失败(细节如下):
+svn: E200009: “/home/liwei/hotmill/source/HFD/PDAHandler_20242” 尚未纳入版本控制
+[liwei@VM_DEV HFD]$ svn add PDAHandler_20242（添加版本库）</code></pre>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a><strong>install</strong></h3><p>编译生成文件后发送文件</p>
+<pre><code class="bash">echo &quot;copy --&gt; AP:/ap/bin/H031ADH1&quot;
+scp ./test ap@160.0.3.3:/ap/bin/H031ADH1  #test发送到160.0.3.3:/ap/bin/H031ADH1
+echo &quot;ok!&quot;
+
+svn ci -m &quot;&quot;
+~</code></pre>
+<h3 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a><strong>makefile</strong></h3><p>写好后进行编译<code>mm</code></p>
+<pre><code class="bash">
+#**********************************************************************
+#
+# Copyright (c) 1978-2005 Baosteel, Inc. All rights reserved.
+#
+#**********************************************************************
+
+top_srcdir        = ../../..
+XCOM_PROGRAM=yes
+OPTIMIZE=yes
+
+    #linkwith是要连接的库
+LINKWITH          +=  -lHSMUtility
+LINKWITH          +=  -lhiredis -levent
+LINKWITH          +=  -lHSMIceGenerated -lAPIceGenerated
+LINKWITH          +=  -ldl
+
+
+programs          =  test    #生成编译文件名
+test_SRCS  = testpjy.cpp     #生成编译文件名_SRCS和要编译文件
+
+
+include $(top_srcdir)/build/program
+</code></pre>
+<h3 id="testpjy-cpp"><a href="#testpjy-cpp" class="headerlink" title="testpjy.cpp"></a><strong>testpjy.cpp</strong></h3><p>编译文件，把tele_def.h放到包下</p>
+<pre><code class="bash">#include &lt;iostream&gt;
+#include &lt;pace/pace.h&gt;
+#include &lt;log4cplus/LOG.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;H032ADH/RedisMQ.cpp&gt;  #别人写的代码，如果没有就到include目录下svn up一下
+#include &quot;tele_def.h&quot;           #存放有结构体
+
+using namespace std;
+class RedisToKafka :public Component  #RedisToKafka 类名
+&amp;#123;
+public:
+        virtual int start()
+        &amp;#123;
+                RedisSubscriber redisSubscriber(&quot;160.0.3.5&quot;);
+                redisSubscriber.subscribe(&quot;H031_TRACK_IMAGE&quot;); #redis订阅事件
+                redisSubscriber.consume(onMessage);
+                return EXIT_FAILURE;
+        &amp;#125;
+        static void onMessage(const char * topic, const Ice::ByteSeq v_tele)
+        &amp;#123;
+                LOG log(&quot;onMessage&quot;);
+                try
+                &amp;#123;
+
+                        log.Debug() &lt;&lt; &quot;topic [&quot; &lt;&lt; topic &lt;&lt; &quot;] length [&quot;&lt;&lt; v_tele.size() &lt;&lt; &quot;]&quot;&lt;&lt; endl;
+
+                        H031_TRACK_IMAGE h031_track_image;
+                        memcpy((char *)&amp;h031_track_image,&amp;v_tele.front(),v_tele.size());
+                        log.Debug() &lt;&lt; &quot;h031_track_image.MillTrack &quot; &lt;&lt; string(h031_track_image.MillTrack[0].pieceNo[0] , 12)&lt;&lt;endl;   #抓包
+                &amp;#125;
+                catch(const std::exception &amp; e)
+                &amp;#123;
+                        log.Error() &lt;&lt; &quot;e.what()&quot; &lt;&lt; endl;
+                &amp;#125;
+  &amp;#125;
+        private:
+&amp;#125;;
+
+PACE_SERVER_INSTALL(RedisToKafka);   #需要和类名一直
+</code></pre>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><h3 id="库没找到"><a href="#库没找到" class="headerlink" title="库没找到"></a>库没找到</h3><p>icegrid上的程序跑不起来的话，可能是这个原因或者xml里的exename不对应</p>
+<p>在所在文件夹下<code>ldd test（程序）</code>可以看到有哪些库not found，scp到相应的服务器即可</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020 小潘同学
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #8CC7B5;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #BEE7E9;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
