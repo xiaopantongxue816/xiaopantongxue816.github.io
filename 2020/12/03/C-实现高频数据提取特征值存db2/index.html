@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>C++实现高频数据提取特征值存db2 | 小潘同学的教室</title>
+  <meta name="keywords" content=" C++ ">
+  <meta name="description" content="C++实现高频数据提取特征值存db2 | 小潘同学的教室">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="小潘同学的教室">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="https://xiaopantongxue816.github.io/about/index.html">
+<meta property="og:site_name" content="小潘同学的教室">
+<meta property="og:description" content="小潘同学的教室">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-08T04:26:04.000Z">
+<meta property="article:modified_time" content="2020-09-14T03:12:14.789Z">
+<meta property="article:author" content="小潘同学">
+<meta property="article:tag" content="JAVA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/cat.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.1.0"><link rel="alternate" href="/atom.xml" title="小潘同学的教室" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="false" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/cat.png" />
+</a>
+<div class="author">
+    <span>小潘同学</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/xiaopantongxue816" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/5080293468" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:1214798755@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=1214798755&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="全部文章">全部文章<small>(35)</small></div></li>
+    
+        
+            
+            <li><div data-rel="工作方案">工作方案<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="后端">后端<small>(8)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="运维">运维<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="前端">前端<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="工具">工具<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="生活">生活<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="其它">其它<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="35">
+<input type="hidden" id="yelog_site_word_count" value="90.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+            <li><a target="_blank" href="https://zhang.ge/">张戈博客</a></li>
+            
+            <li><a target="_blank" href="http://www.ruanyifeng.com/home.html">阮一峰的个人网站</a></li>
+            
+            <li><a target="_blank" href="http://mindhacks.cn/">刘未鹏 | Mind Hacks</a></li>
+            
+            <li><a target="_blank" href="https://www.hanselman.com/">Scott</a></li>
+            
+            <li><a target="_blank" href="https://coolshell.cn/">酷 壳</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>C++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>其它</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>容器</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>序列化</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开源项目</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>教程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>日记</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>消息系统</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>点滴</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>资源监控</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通信框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>部署</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>项目管理</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/12/03/C-%E5%AE%9E%E7%8E%B0%E9%AB%98%E9%A2%91%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96%E7%89%B9%E5%BE%81%E5%80%BC%E5%AD%98db2/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++实现高频数据提取特征值存db2">C++实现高频数据提取特征值存db2</span>
+            <span class="post-date" title="2020-12-03 16:09:14">2020/12/03</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/30/redis%E8%AE%A2%E9%98%85%E4%BA%8B%E4%BB%B6/"
+           data-tag="后端"
+           data-author="" >
+            <span class="post-title" title="redis订阅事件">redis订阅事件</span>
+            <span class="post-date" title="2020-10-30 10:41:24">2020/10/30</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/22/Product%E5%92%8CiHDB%E6%95%B0%E6%8D%AE%E5%88%B0TSDB/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="Product和iHDB数据到TSDB">Product和iHDB数据到TSDB</span>
+            <span class="post-date" title="2020-10-22 14:45:30">2020/10/22</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/10/21/%E8%8B%B1%E8%AF%AD%E8%A7%92%E8%90%BD/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="英语角落">英语角落</span>
+            <span class="post-date" title="2020-10-21 08:41:36">2020/10/21</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/10/20/ICE/"
+           data-tag="通信框架"
+           data-author="" >
+            <span class="post-title" title="ICE">ICE</span>
+            <span class="post-date" title="2020-10-20 14:12:06">2020/10/20</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/14/DB2%E8%B5%84%E6%BA%90%E7%9B%91%E6%8E%A7/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="DB2资源监控">DB2资源监控</span>
+            <span class="post-date" title="2020-10-14 13:58:52">2020/10/14</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/12/Linux%E5%86%85%E7%BD%91%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%85%8D%E7%BD%AE/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux内网时间同步配置">Linux内网时间同步配置</span>
+            <span class="post-date" title="2020-10-12 16:34:06">2020/10/12</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/10/12/Linux%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E5%90%8C%E6%AD%A5DB2/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="Linux工作目录同步DB2">Linux工作目录同步DB2</span>
+            <span class="post-date" title="2020-10-12 07:59:49">2020/10/12</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/10/02/%E6%95%B0%E6%8D%AE%E5%BA%93/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="数据库">数据库</span>
+            <span class="post-date" title="2020-10-02 08:41:12">2020/10/02</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/09/24/%E9%98%85%E8%AF%BB/"
+           data-tag="点滴"
+           data-author="" >
+            <span class="post-title" title="阅读">阅读</span>
+            <span class="post-date" title="2020-09-24 14:40:16">2020/09/24</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/JavaScript/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JavaScript">JavaScript</span>
+            <span class="post-date" title="2020-09-23 13:15:57">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 前端 "
+           href="/2020/09/23/CSS/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CSS">CSS</span>
+            <span class="post-date" title="2020-09-23 13:15:30">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/23/%E5%B7%A5%E4%BD%9C%E6%96%B9%E6%A1%88%E4%BF%A1%E6%81%AF/"
+           data-tag="其它"
+           data-author="" >
+            <span class="post-title" title="工作方案信息">工作方案信息</span>
+            <span class="post-date" title="2020-09-23 13:15:16">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/23/Maven/"
+           data-tag="项目管理"
+           data-author="" >
+            <span class="post-title" title="Maven">Maven</span>
+            <span class="post-date" title="2020-09-23 12:50:22">2020/09/23</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/18/protobuf%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE/"
+           data-tag="序列化"
+           data-author="" >
+            <span class="post-title" title="protobuf传输数据">protobuf传输数据</span>
+            <span class="post-date" title="2020-09-18 13:31:36">2020/09/18</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/17/Utils/"
+           data-tag="工具"
+           data-author="" >
+            <span class="post-title" title="Utils">Utils</span>
+            <span class="post-date" title="2020-09-17 09:13:15">2020/09/17</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/16/Python%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="Python工作内容">Python工作内容</span>
+            <span class="post-date" title="2020-09-16 18:20:00">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/16/DB2%E6%95%B0%E6%8D%AE%E5%88%B0Product/"
+           data-tag="数据库"
+           data-author="" >
+            <span class="post-title" title="DB2数据到Product">DB2数据到Product</span>
+            <span class="post-date" title="2020-09-16 17:39:46">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/16/docker/"
+           data-tag="容器"
+           data-author="" >
+            <span class="post-title" title="docker">docker</span>
+            <span class="post-date" title="2020-09-16 15:06:30">2020/09/16</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/09/15/%E6%88%91%E7%9A%84%E7%94%B5%E5%BD%B1%E8%AE%B0%E5%BD%95/"
+           data-tag="点滴"
+           data-author="" >
+            <span class="post-title" title="我的电影记录">我的电影记录</span>
+            <span class="post-date" title="2020-09-15 15:37:16">2020/09/15</span>
+        </a>
+        
+        <a  class="全部文章 工作方案 "
+           href="/2020/09/09/Linux%E8%B5%84%E6%BA%90%E7%9B%91%E6%8E%A7/"
+           data-tag="资源监控"
+           data-author="" >
+            <span class="post-title" title="Linux资源监控">Linux资源监控</span>
+            <span class="post-date" title="2020-09-09 10:30:41">2020/09/09</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/04/%E9%83%A8%E7%BD%B2/"
+           data-tag="部署"
+           data-author="" >
+            <span class="post-title" title="部署">部署</span>
+            <span class="post-date" title="2020-09-04 16:29:28">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/04/%E8%8B%A5%E4%BE%9D%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"
+           data-tag="开源项目"
+           data-author="" >
+            <span class="post-title" title="若依管理系统">若依管理系统</span>
+            <span class="post-date" title="2020-09-04 16:01:40">2020/09/04</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/03/kafka/"
+           data-tag="消息系统"
+           data-author="" >
+            <span class="post-title" title="kafka">kafka</span>
+            <span class="post-date" title="2020-09-03 17:57:44">2020/09/03</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/02/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"
+           data-tag="教程"
+           data-author="" >
+            <span class="post-title" title="工具使用教程">工具使用教程</span>
+            <span class="post-date" title="2020-09-02 16:14:39">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/02/Protobuf/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="Python学习">Python学习</span>
+            <span class="post-date" title="2020-09-02 10:14:03">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 后端 "
+           href="/2020/09/02/Python%E5%AD%A6%E4%B9%A0/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="Python学习">Python学习</span>
+            <span class="post-date" title="2020-09-02 10:14:03">2020/09/02</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/09/01/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux软件安装">Linux软件安装</span>
+            <span class="post-date" title="2020-09-01 10:46:17">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/09/01/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%B7%A5%E5%85%B7/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="远程连接工具">远程连接工具</span>
+            <span class="post-date" title="2020-09-01 09:49:52">2020/09/01</span>
+        </a>
+        
+        <a  class="全部文章 生活 "
+           href="/2020/08/28/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98/"
+           data-tag="日记"
+           data-author="" >
+            <span class="post-title" title="关于博客主题">关于博客主题</span>
+            <span class="post-date" title="2020-08-28 19:18:31">2020/08/28</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/27/Linux%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux环境搭建">Linux环境搭建</span>
+            <span class="post-date" title="2020-08-27 18:37:16">2020/08/27</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/21/%E5%BC%80%E6%BA%90%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"
+           data-tag="学习"
+           data-author="" >
+            <span class="post-title" title="开源网站相关">开源网站相关</span>
+            <span class="post-date" title="2020-08-21 14:34:04">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 运维 "
+           href="/2020/08/21/Linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux命令记录">Linux命令记录</span>
+            <span class="post-date" title="2020-08-21 09:34:19">2020/08/21</span>
+        </a>
+        
+        <a  class="全部文章 工具 "
+           href="/2020/08/16/%E5%8D%9A%E5%AE%A2%E7%94%9F%E6%88%90%E8%AE%B0%E5%BD%95/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="博客生成记录">博客生成记录</span>
+            <span class="post-date" title="2020-08-16 10:12:34">2020/08/16</span>
+        </a>
+        
+        <a  class="全部文章 其它 "
+           href="/2020/08/16/hello-world/"
+           data-tag="xxx"
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2020-08-16 09:50:43">2020/08/16</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-C-实现高频数据提取特征值存db2" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">C++实现高频数据提取特征值存db2</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工作方案">工作方案</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">C++</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2020-12-30 12:21:23'>2020-12-03 16:09</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:12.3k</span>
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81"><span class="toc-text">部署代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#20201230%EF%BC%884-0%EF%BC%89"><span class="toc-text">20201230（4.0）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20201222%E6%9B%B4%E6%96%B0"><span class="toc-text">20201222更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20201207%E6%9B%B4%E6%96%B0"><span class="toc-text">20201207更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E7%89%88%E6%9C%AC"><span class="toc-text">初始版本</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>相当于一周时间学习了C++</p>
+<p>高频数据提取特征值存db2（包括数据转换time，value+time，len–&gt;len,value）</p>
+<a id="more"></a> 
+
+<h1 id="部署代码"><a href="#部署代码" class="headerlink" title="部署代码"></a>部署代码</h1><h2 id="20201230（4-0）"><a href="#20201230（4-0）" class="headerlink" title="20201230（4.0）"></a>20201230（4.0）</h2><p>补齐其它区域</p>
+<pre><code class="c++">#include &lt;pace/pace.h&gt;
+#include &lt;iostream&gt;
+#include &lt;log4cplus/LOG.h&gt;
+#include &lt;iDA/iDA.h&gt;
+#include &lt;iDA/Command.h&gt;
+#include &lt;math.h&gt;
+#include &lt;HSM/PieceTime2Len.h&gt;
+#include &lt;HSM/ProductManager.h&gt;
+#include &lt;MODULE/HSMUtility/Utility.h&gt;
+#include &lt;MODULE/iHyperDB/HDBReader.h&gt;
+#include &lt;MODULE/HSMUtility/Queue.h&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt; 
+#include &lt;math.h&gt; 
+#include &lt;vector&gt;
+#include &lt;MODULE/HSMUtility/RedisMQ.h&gt;
+#include &lt;algorithm&gt;
+
+using namespace iPlature;
+using namespace std;
+using namespace HSM;
+using namespace log4cplus;
+
+#define STIRP_EVNET  &quot;FM_H033TIMELEN_REQUEST&quot;
+#define iHDB_IP &quot;160.0.3.71&quot;
+
+static HSMUtility::RedisSubscriber redisSubscriber(&quot;160.0.3.35&quot;);
+
+map&lt;string,vector&lt;string&gt;&gt; tagNameMap;
+map&lt;string,vector&lt;string&gt;&gt; posMeaSeriesNamesMap;
+
+HSM::ProductMasterPrx _masterPrx;
+HSM::Time2LenManagerPrx prxT2L;
+
+iDA::Connection conH033DSP1;   //连接数据库的类
+iDA::Command cmdH033DSP1;      //使用SQL语句的类
+
+
+long getLongMAX_VAL(vector&lt;long&gt; &amp;valuelist)
+&amp;#123;
+    long tempMAX=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&gt;tempMAX)&amp;#123;
+            tempMAX=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMAX;
+&amp;#125;
+
+long getLongMIN_VAL(vector&lt;long&gt; &amp;valuelist)
+&amp;#123;
+    long tempMIN=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&lt;tempMIN)&amp;#123;
+            tempMIN=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMIN;
+&amp;#125;
+
+double getMAX_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double tempMAX=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&gt;tempMAX)&amp;#123;
+            tempMAX=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMAX;
+&amp;#125;
+double getMIN_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double tempMIN=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&lt;tempMIN)&amp;#123;
+            tempMIN=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMIN;
+&amp;#125;
+double getAVE_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    //double tempAVE=0.0;
+    double sum=0.0;
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        sum=sum+(*iter);
+    &amp;#125;
+    return sum/valuelist.size();
+&amp;#125;
+double getVARIANCE_VAL(vector&lt;double&gt; &amp;valuelist,double &amp;ave)
+&amp;#123;
+    double tempVARIANCE=0.0;
+    double sum=0.0;
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        sum=sum+(*iter-ave)*(*iter-ave);
+    &amp;#125;
+    return sum/valuelist.size();
+&amp;#125;
+double getSTD_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double ave=getAVE_VAL(valuelist);
+    return sqrt(getVARIANCE_VAL(valuelist,ave));
+&amp;#125;
+
+void getSAMPLERANGE(vector&lt;double&gt; &amp;fnOnValuelist,vector&lt;double&gt; &amp;fnOffValuelist,map&lt;string, long&gt; &amp;fnMap,map&lt;long,double&gt; &amp;TimeValMap)
+&amp;#123;
+    LOG log(&quot;getSAMPLERANGE&quot;);
+    try
+    &amp;#123;
+        for (auto itF7 = fnMap.begin(); itF7 != fnMap.end(); ++itF7)
+            &amp;#123;
+                int O=(itF7-&gt;first).find(&quot;O&quot;);
+                string OnOrOf=(itF7-&gt;first).substr(O,2);
+                if(OnOrOf==&quot;On&quot;)&amp;#123;
+                    fnOnValuelist.push_back(TimeValMap[itF7-&gt;second]);
+                &amp;#125;
+                if(OnOrOf==&quot;Of&quot;)&amp;#123;
+                    fnOffValuelist.push_back(TimeValMap[itF7-&gt;second]);
+                &amp;#125;                    
+            &amp;#125;
+    &amp;#125;
+    catch(std::exception&amp; e)
+    &amp;#123;
+        log.Error()&lt;&lt;e.what()&lt;&lt;endl;
+    &amp;#125;
+&amp;#125;
+
+
+string doubleToString(double doubleData)
+&amp;#123;
+    char s[34];
+    sprintf(s,&quot;%f&quot;,doubleData);
+    string str=s;
+    return str;
+&amp;#125;
+
+void cutHDBForValueByTimeRange(ValueOrderbyTimeSeq &amp;valueOrderbyTimes,ValueOrderbyTimeSeq &amp;lenOrderbyTimes,ValueOrderbyTimeSeq &amp;valueOrderbyTimesFormat)
+&amp;#123;
+    LOG log(&quot;cutHDBForValueByTimeRange&quot;);
+    try
+    &amp;#123;
+        long start=lenOrderbyTimes[0].time;
+        //log.Error()&lt;&lt;&quot;start&quot;&lt;&lt;&quot;:&quot;&lt;&lt;start&lt;&lt;&quot;  &quot;&lt;&lt;&quot;end&quot;&lt;&lt;&quot;:&quot;&lt;&lt;end&lt;&lt;endl;
+        long end=lenOrderbyTimes[lenOrderbyTimes.size()-1].time;
+        int startIndex=valueOrderbyTimes.size()-1;
+        int endIndex=0;
+        //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;    
+        for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+            if(valueOrderbyTimes[i].time&lt;=end)&amp;#123;
+                break;
+            &amp;#125;else&amp;#123;
+                endIndex++;
+            &amp;#125;
+        &amp;#125;
+
+        for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+            if(valueOrderbyTimes[valueOrderbyTimes.size()-1-i].time&gt;=start)&amp;#123;
+                break;
+            &amp;#125;else&amp;#123;
+                startIndex--;
+
+            &amp;#125;
+        &amp;#125;
+        //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;    
+        //valueOrderbyTimes反向存值
+        int size=startIndex - endIndex + 1;
+        int index=size-1;
+        ValueOrderbyTimeSeq temps;
+        for(int i = endIndex; size - 1 &gt;= 0; size--, endIndex++)&amp;#123;
+            ValueOrderbyTime temp;
+            temp.time=valueOrderbyTimes[endIndex].time;
+            temp.value=valueOrderbyTimes[endIndex].value;
+            temps.push_back(temp);
+            //valueOrderbyTimesFormat.push_back(temp);
+            //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;
+        &amp;#125;
+        //log.Error()&lt;&lt;&quot;temps.size:&quot;&lt;&lt;&quot;:&quot;&lt;&lt;temps.size()&lt;&lt;endl;    
+        for(int i = temps.size()-1; i&gt;=0; i--)&amp;#123;
+            valueOrderbyTimesFormat.push_back(temps[i]);
+        &amp;#125;
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+void queryLenByStrupIDString (const string&amp; STRIPNO,const string&amp; psmName,ValueOrderbyTimeSeq &amp;lenOrderbyTimes)
+&amp;#123;
+    LOG log(&quot;queryLenByStrupIDString&quot;);
+    try
+    &amp;#123;
+        ProductPrx prxMeaSer = _masterPrx-&gt;locate(STRIPNO);
+        HSM::PosMeasurementSeriesPtr posMeaSer=prxMeaSer-&gt;getPosMeasurementSeries(psmName);
+        //log.Info()&lt;&lt;&quot;xxxxxxxxxxxxxxxxxxxxxxx&quot;&lt;&lt;endl;
+        int lenOrderbyTimesCount=posMeaSer-&gt;dur.value().size();
+        posMeaSer-&gt;pos.size();
+        ValueOrderbyTime lenTemp;
+        for(int i=0;i&lt;lenOrderbyTimesCount;i++)&amp;#123;
+            lenTemp.value=posMeaSer-&gt;pos[i];
+            lenTemp.time=posMeaSer-&gt;dur.value()[i];
+            lenOrderbyTimes.push_back(lenTemp);
+        &amp;#125;
+        //log.Info()&lt;&lt;&quot;dur.value().size()&quot;&lt;&lt;&quot;:&quot;&lt;&lt;x&lt;&lt;endl;
+        //log.Info()&lt;&lt;&quot;pos.value().size()&quot;&lt;&lt;&quot;:&quot;&lt;&lt;y&lt;&lt;endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;  
+
+void queryTimeRange4ProductByStrupID(const string&amp; STRIPNO,map&lt;string, map&lt;string, map&lt;string, long&gt;&gt;&gt; &amp;OnAndOffMap)//查询该带钢OnAndOffMap
+&amp;#123;
+
+    LOG log(&quot;queryTimeRange4ProductByStrupID&quot;);
+    try
+    &amp;#123;
+        ProductPrx prx = _masterPrx-&gt;locate(STRIPNO);
+        HSM::MeasurementPtr loadTSRecord=prx-&gt;getMeasurement(&quot;LoadTSRecord&quot;);
+        for(auto iterposMap=posMeaSeriesNamesMap.begin();iterposMap!=posMeaSeriesNamesMap.end();++iterposMap)
+        &amp;#123;
+            string unit=iterposMap-&gt;first;
+            vector&lt;string&gt; posList=iterposMap-&gt;second;
+            map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapmap;//存储每个区域的On和Off时间
+            for(auto iterposList=posList.begin();iterposList!=posList.end();iterposList++)
+            &amp;#123;
+                //log.Info()&lt;&lt;&quot;tag:&quot;&lt;&lt;(*iterposList)&lt;&lt;endl;
+                string poskey=(*iterposList);
+                int T_letter=poskey.find(&quot;T&quot;);
+                string onKey=poskey.substr(0,T_letter);
+                string offKey=poskey.substr(0,T_letter);
+                map&lt;string, long&gt; OnAndOffMapmapmap;//
+                transform(onKey.begin(), onKey.end(), onKey.begin(), ::tolower);
+                transform(offKey.begin(), offKey.end(), offKey.begin(), ::tolower);
+                string OnOFFKey=onKey;//每个区域每一对on和off的key
+                /////////////////SP
+                if(onKey==&quot;sp&quot;)
+                &amp;#123;
+                    onKey=&quot;s&quot;+onKey;
+                &amp;#125;
+                if(offKey==&quot;sp&quot;)
+                &amp;#123;
+                    offKey=&quot;s&quot;+offKey;
+                &amp;#125;
+                if(OnOFFKey==&quot;sp&quot;)
+                &amp;#123;
+                    OnOFFKey=&quot;s&quot;+OnOFFKey;
+                &amp;#125;
+
+                /////////////////SP
+                onKey.append(&quot;On&quot;);
+                offKey.append(&quot;Off&quot;);
+                int indexOn=-1;
+                int On=0;
+                int indexOff=-1;
+                int Off=0;
+                int txtVecCount=loadTSRecord-&gt;txtVec.value().size();
+                for(int i=0;i&lt;txtVecCount;i++)&amp;#123;
+                    if(onKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                        indexOn=On;
+                    &amp;#125;
+                    if(offKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                        indexOff=Off;
+                    &amp;#125;
+                    On++;
+                    Off++;
+                &amp;#125;
+                if(indexOn!=-1&amp;&amp;indexOff!=-1)
+                &amp;#123;
+
+                    long fxOn=loadTSRecord-&gt;intVec.value()[indexOn];
+                    long fxOff=loadTSRecord-&gt;intVec.value()[indexOff];
+
+                    OnAndOffMapmapmap.insert(pair&lt;string, long&gt;(onKey,fxOn));
+                    OnAndOffMapmapmap.insert(pair&lt;string, long&gt;(offKey,fxOff));
+                &amp;#125;
+                OnAndOffMapmap.insert(pair&lt;string, map&lt;string, long&gt;&gt;(OnOFFKey,OnAndOffMapmapmap));
+            &amp;#125;
+            OnAndOffMap.insert(pair&lt;string, map&lt;string, map&lt;string, long&gt;&gt;&gt;(unit,OnAndOffMapmap));
+        &amp;#125;        
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;  
+
+void initConfiguration()
+&amp;#123;
+    LOG log(&quot;initConfiguration&quot;);
+    try
+    &amp;#123;
+        //log.Info() &lt;&lt; &quot;start read Configuration.&quot; &lt;&lt; endl;
+        table_t tableTAG;
+        string filePathTAG=&quot;/iPlature/conf/H033ADH1/FeatureVal2BD2TAG.csv&quot;;
+        ifstream fileTAG(filePathTAG.c_str());
+        fileTAG&gt;&gt;tableTAG;
+        //log.Info() &lt;&lt; &quot;table.size():&quot;&lt;&lt;table.size()&lt;&lt; endl;
+        //二维数组行，列
+        int j=0;//列
+        while(true)
+        &amp;#123;
+            // string flag=table[0][j];
+            // log.Info() &lt;&lt;&quot;flag:&quot;&lt;&lt;flag&lt;&lt; endl;
+            if(j==12)&amp;#123;//9个区域************************************************************************************************需要修改
+                break;
+            &amp;#125;
+            vector&lt;string&gt; tagList;
+            for(int i=1;i&lt;tableTAG.size();++i)
+            &amp;#123;
+                if(tableTAG[i][j]==&quot;&quot;)&amp;#123;
+                    break;
+                &amp;#125;
+                tagList.push_back(tableTAG[i][j]);
+                //log.Info() &lt;&lt; &quot;key:&quot;&lt;&lt;table[0][j]&lt;&lt;&quot;  &quot;&lt;&lt;&quot;value:&quot;&lt;&lt; table[i][j]&lt;&lt; endl;
+
+            &amp;#125;
+            tagNameMap.insert(pair&lt;string, vector&lt;string&gt;&gt;(tableTAG[0][j],tagList));
+            ++j;
+        &amp;#125;
+        //tagNameMap测试
+        // for(auto itertagNameMap=tagNameMap.begin();itertagNameMap!=tagNameMap.end();++itertagNameMap)
+        // &amp;#123;
+            // log.Info()&lt;&lt;&quot;key:&quot;&lt;&lt;itertagNameMap-&gt;first&lt;&lt;endl;
+            // vector&lt;string&gt; tagList=itertagNameMap-&gt;second;
+            // for(auto itertagList=tagList.begin();itertagList!=tagList.end();itertagList++)
+            // &amp;#123;
+                // log.Info()&lt;&lt;&quot;tag:&quot;&lt;&lt;(*itertagList)&lt;&lt;endl;
+            // &amp;#125;
+        // &amp;#125;
+        table_t tablePOS;
+        string filePathPOS=&quot;/iPlature/conf/H033ADH1/FeatureVal2DB2POS.csv&quot;;
+        ifstream filePOS(filePathPOS.c_str());
+        filePOS&gt;&gt;tablePOS;
+        //log.Info() &lt;&lt; &quot;table.size():&quot;&lt;&lt;table.size()&lt;&lt; endl;
+        //二维数组行，列
+        j=0;//列
+        while(true)
+        &amp;#123;
+            // string flag=table[0][j];
+            // log.Info() &lt;&lt;&quot;flag:&quot;&lt;&lt;flag&lt;&lt; endl;
+            if(j==12)&amp;#123;//9个区域************************************************************************************************需要修改
+                break;
+            &amp;#125;
+            vector&lt;string&gt; posList;
+            for(int i=1;i&lt;tablePOS.size();++i)
+            &amp;#123;
+                if(tablePOS[i][j]==&quot;&quot;)&amp;#123;
+                    break;
+                &amp;#125;
+                posList.push_back(tablePOS[i][j]);
+                //log.Info() &lt;&lt; &quot;key:&quot;&lt;&lt;tablePOS[0][j]&lt;&lt;&quot;  &quot;&lt;&lt;&quot;value:&quot;&lt;&lt; tablePOS[i][j]&lt;&lt; endl;
+            &amp;#125;
+            posMeaSeriesNamesMap.insert(pair&lt;string, vector&lt;string&gt;&gt;(tablePOS[0][j],posList));
+            ++j;
+        &amp;#125;
+        //posMeaSeriesNamesMap测试
+        // for(auto iterposMap=posMeaSeriesNamesMap.begin();iterposMap!=posMeaSeriesNamesMap.end();++iterposMap)
+        // &amp;#123;
+            // log.Info()&lt;&lt;&quot;key:&quot;&lt;&lt;iterposMap-&gt;first&lt;&lt;endl;
+            // vector&lt;string&gt; posList=iterposMap-&gt;second;
+            // for(auto iterposList=posList.begin();iterposList!=posList.end();iterposList++)
+            // &amp;#123;
+                // log.Info()&lt;&lt;&quot;tag:&quot;&lt;&lt;(*iterposList)&lt;&lt;endl;
+            // &amp;#125;
+        // &amp;#125;
+        //log.Info() &lt;&lt; &quot;finish read Configuration.&quot; &lt;&lt; endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+void statisData(const string&amp; STRIPNO)            //注意ihdb取到的数据是时间从大到小排列的，上述方法里的时间是从小到大排序的。
+&amp;#123;
+    LOG log(&quot;statisData&quot;);
+    prxT2L = iPlature::ProxyWrapper&lt;HSM::Time2LenManagerPrx&gt;(&quot;HSM/GetPieceDataManager&quot;);
+    HDBReader* m_phdbReader = HDBReader::getInstance();
+    m_phdbReader-&gt;connect(iHDB_IP, 5673, &quot;admin&quot;, &quot;admin&quot;);
+    try
+    &amp;#123;
+        string SQL;//插入语句
+        map&lt;string, map&lt;string, map&lt;string, long&gt;&gt;&gt; OnAndOffMap;//存储所有区域的On和Off时间
+        queryTimeRange4ProductByStrupID(STRIPNO,OnAndOffMap);
+        map&lt;string, vector&lt;long&gt;&gt; OnAndOffMapOn;//存储所有区域的On时间
+        map&lt;string, vector&lt;long&gt;&gt; OnAndOffMapOff;//存储所有区域的Off时间
+        map&lt;string, vector&lt;long&gt;&gt; OnAndOffMapAll;//存储所有区域的OnAndOff时间
+        for(auto iterOnAndOffMap=OnAndOffMap.begin();iterOnAndOffMap!=OnAndOffMap.end();++iterOnAndOffMap)
+        &amp;#123;
+            map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapmap=iterOnAndOffMap-&gt;second;
+            vector&lt;long&gt; iterOnAndOffOnlist;
+            vector&lt;long&gt; iterOnAndOffOfflist;
+            vector&lt;long&gt; iterOnAndOffAlllist;
+            for(auto iterOnAndOffMapmap=OnAndOffMapmap.begin();iterOnAndOffMapmap!=OnAndOffMapmap.end();++iterOnAndOffMapmap)
+            &amp;#123;
+                map&lt;string, long&gt; OnAndOffMapmapmap=iterOnAndOffMapmap-&gt;second;
+                for(auto iterOnAndOffMapmapmap=OnAndOffMapmapmap.begin();iterOnAndOffMapmapmap!=OnAndOffMapmapmap.end();++iterOnAndOffMapmapmap)
+                &amp;#123;
+                    string::size_type idxOn;
+                    string::size_type idxOff;
+                    string a=iterOnAndOffMapmapmap-&gt;first;
+                    string OnString=&quot;On&quot;;
+                    string OffString=&quot;Off&quot;;
+                    idxOn=a.find(OnString);
+                    idxOff=a.find(OffString);
+                    iterOnAndOffAlllist.push_back(iterOnAndOffMapmapmap-&gt;second);
+                    if(idxOn== string::npos)
+                    &amp;#123;
+                        //不存在
+                    &amp;#125;else
+                    &amp;#123;
+                        iterOnAndOffOnlist.push_back(iterOnAndOffMapmapmap-&gt;second);
+                    &amp;#125;
+                    if(idxOff== string::npos)
+                    &amp;#123;
+                        //不存在
+                    &amp;#125;else
+                    &amp;#123;
+                        iterOnAndOffOfflist.push_back(iterOnAndOffMapmapmap-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+            &amp;#125;
+            OnAndOffMapOn.insert(pair&lt;string, vector&lt;long&gt;&gt;(iterOnAndOffMap-&gt;first,iterOnAndOffOnlist));
+            OnAndOffMapOff.insert(pair&lt;string, vector&lt;long&gt;&gt;(iterOnAndOffMap-&gt;first,iterOnAndOffOfflist));
+            OnAndOffMapAll.insert(pair&lt;string, vector&lt;long&gt;&gt;(iterOnAndOffMap-&gt;first,iterOnAndOffAlllist));
+
+        &amp;#125;
+
+
+        //测试OnAndOffMap
+        // for(auto iterOnAndOffMap=OnAndOffMap.begin();iterOnAndOffMap!=OnAndOffMap.end();++iterOnAndOffMap)
+        // &amp;#123;
+            // log.Info()&lt;&lt;&quot;unit:&quot;&lt;&lt;iterOnAndOffMap-&gt;first&lt;&lt;endl;
+            // map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapmap=iterOnAndOffMap-&gt;second;
+            // for(auto iterOnAndOffMapmap=OnAndOffMapmap.begin();iterOnAndOffMapmap!=OnAndOffMapmap.end();++iterOnAndOffMapmap)
+            // &amp;#123;
+                // log.Info()&lt;&lt;&quot;unit_:&quot;&lt;&lt;iterOnAndOffMapmap-&gt;first&lt;&lt;endl;
+                // map&lt;string, long&gt; OnAndOffMapmapmap=iterOnAndOffMapmap-&gt;second;
+                // for(auto iterOnAndOffMapmapmap=OnAndOffMapmapmap.begin();iterOnAndOffMapmapmap!=OnAndOffMapmapmap.end();++iterOnAndOffMapmapmap)
+                // &amp;#123;
+                    // log.Info()&lt;&lt;&quot;key:&quot;&lt;&lt;iterOnAndOffMapmapmap-&gt;first&lt;&lt;&quot;    &quot;&lt;&lt;&quot;value:&quot;&lt;&lt;iterOnAndOffMapmapmap-&gt;second&lt;&lt;endl;
+                // &amp;#125;
+            // &amp;#125;
+        // &amp;#125;
+
+        for(auto itertagNameMap=tagNameMap.begin();itertagNameMap!=tagNameMap.end();++itertagNameMap)
+        &amp;#123;
+            string unit=itertagNameMap-&gt;first;
+            vector&lt;string&gt; tagNameListByUnit=itertagNameMap-&gt;second;//每个区域的信号点
+            map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapByUnit=OnAndOffMap[unit];//对应区域所有On和Off的时间点
+
+            for(auto itertagNameListByUnit=tagNameListByUnit.begin();itertagNameListByUnit!=tagNameListByUnit.end();++itertagNameListByUnit)
+            &amp;#123;
+                string tagName=(*itertagNameListByUnit);
+                vector&lt;long&gt; timeList;
+                vector&lt;double&gt; valueList;
+                map&lt;long, double&gt; TimeValMap;//key为区域
+                //vector&lt;string&gt; posMeaSeriesNames=posMeaSeriesNamesMap[unit];
+                // for(auto iterposMeaSeriesNames=posMeaSeriesNames.begin();iterposMeaSeriesNames!=posMeaSeriesNames.end();++iterposMeaSeriesNames)
+                // &amp;#123;
+                    for(auto iterOnAndOffMapByUnit=OnAndOffMapByUnit.begin();iterOnAndOffMapByUnit!=OnAndOffMapByUnit.end();++iterOnAndOffMapByUnit)
+                    &amp;#123;
+                        string posOnkey=iterOnAndOffMapByUnit-&gt;first;//r21/r22/r23/r24/r25/ssp
+                        string posOffkey=iterOnAndOffMapByUnit-&gt;first;//r21/r22/r23/r24/r25
+                        map&lt;string, long&gt; OnAndOffMapmapByUnit=iterOnAndOffMapByUnit-&gt;second;//r21/r22/r23/r24/r25
+                        long fxOn=0;
+                        long fxOff=0;
+                        string onKey=posOnkey.append(&quot;On&quot;);//r21On
+                        string offKey=posOffkey.append(&quot;Off&quot;);//r21Off
+                        //log.Info()&lt;&lt;&quot;onKey:&quot;&lt;&lt;onKey&lt;&lt;&quot;    &quot;&lt;&lt;&quot;offKey:&quot;&lt;&lt;offKey&lt;&lt;endl;
+                        for(auto iterOnAndOffMapmapByUnit=OnAndOffMapmapByUnit.begin();iterOnAndOffMapmapByUnit!=OnAndOffMapmapByUnit.end();++iterOnAndOffMapmapByUnit)
+                        &amp;#123;
+                             //log.Info()&lt;&lt;&quot;iterOnAndOffMapmapByUnit-&gt;first:&quot;&lt;&lt;iterOnAndOffMapmapByUnit-&gt;first&lt;&lt;&quot;....&quot;&lt;&lt;&quot;iterOnAndOffMapmapByUnit-&gt;second:&quot;&lt;&lt;iterOnAndOffMapmapByUnit-&gt;second&lt;&lt;endl;
+                            if(onKey==iterOnAndOffMapmapByUnit-&gt;first)
+                            &amp;#123;
+                                //log.Info()&lt;&lt;&quot;onKey==iterOnAndOffMapmapByUnit-&gt;first&quot;&lt;&lt;endl;
+                                fxOn=iterOnAndOffMapmapByUnit-&gt;second;
+                            &amp;#125;
+                            if(offKey==iterOnAndOffMapmapByUnit-&gt;first)
+                            &amp;#123;
+                                //log.Info()&lt;&lt;&quot;onKey==iterOnAndOffMapmapByUnit-&gt;first&quot;&lt;&lt;endl;
+                                fxOff=iterOnAndOffMapmapByUnit-&gt;second;
+                            &amp;#125;
+
+                        &amp;#125;
+                        //测试fxOn和fxOff
+                        if(fxOn==0||fxOff==0)
+                        &amp;#123;
+                            // log.Info()&lt;&lt;&quot;fxOn==0||fxOff==0&quot;&lt;&lt;endl;
+                            continue;
+
+                        &amp;#125;
+                        //log.Info()&lt;&lt;&quot;fxOn:&quot;&lt;&lt;fxOn&lt;&lt;&quot;    &quot;&lt;&lt;&quot;fxOff:&quot;&lt;&lt;fxOff&lt;&lt;endl;
+                        ValueOrderbyTimeSeq valueOrderbyTimes,lenOrderbyTimes,valueOrderbyTimesFormat;
+                        ValueOrderbyLenSeq valueOrderbyLens;
+
+                        //根据tag点和TimeRange向IHDB查询value
+                        //log.Info()&lt;&lt;&quot;tagName:&quot;&lt;&lt;tagName&lt;&lt;endl;
+                        vector&lt;HdbRecordValue&gt; hdbRecordValues = m_phdbReader-&gt;queryTagIDRecords_Msec(tagName, fxOn, fxOff);
+                        ValueOrderbyTime valueTemp;
+                        for(auto iterhdbRecordValues=hdbRecordValues.begin();iterhdbRecordValues!=hdbRecordValues.end();iterhdbRecordValues++)
+                        &amp;#123;
+                            valueTemp.value=iterhdbRecordValues-&gt;value;
+
+                            valueTemp.time=(long)iterhdbRecordValues-&gt;nSec * 1000 + iterhdbRecordValues-&gt;nMsec;
+                            valueOrderbyTimes.push_back(valueTemp);
+                        &amp;#125;
+                        if(valueOrderbyTimes.size()==0)
+                        &amp;#123;
+                            log.Info()&lt;&lt;&quot;valueOrderbyTimes.size()==0||lenOrderbyTimes.size()==0&quot;&lt;&lt;endl;
+                            continue;
+                        &amp;#125;
+                        for(int i=0;i&lt;valueOrderbyTimes.size();i++)
+                        &amp;#123;
+                            valueList.push_back(valueOrderbyTimes[i].value);
+                            timeList.push_back(valueOrderbyTimes[i].time);
+                            TimeValMap.insert(pair&lt;long, double&gt;(valueOrderbyTimes[i].time,valueOrderbyTimes[i].value));
+                        &amp;#125;
+                    &amp;#125;
+
+                // &amp;#125;
+                sort(valueList.begin(), valueList.end());
+                sort(timeList.begin(), timeList.end());
+                //最大值********************************************************************************
+                //double END_MAX=getMAX_VAL(valueList);
+                // if(tagName==&quot;L_DC1M_MD_SFBK&quot;||tagName==&quot;L_DC2M_MD_SFBK&quot;)
+                // &amp;#123;
+                    // if(valuelistF7OFF.size()==0)&amp;#123;
+                        // END_MAX=0.00;
+                    // &amp;#125;else&amp;#123;
+                        // END_MAX=getMAX_VAL(valuelistF7OFF);
+                    // &amp;#125;
+
+                // &amp;#125;
+                //最大值********************************************************************************
+                //测试最大值
+                string HEAD_VAL,MIDDLE_VAL,FOOT_VAL;
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL***********************************************************头部
+                vector&lt;long&gt; OnAndOffHeadList =OnAndOffMapOn[unit];
+                long headOnTime=getLongMIN_VAL(OnAndOffHeadList);
+                long headOffTime=headOnTime+100+3000;
+                vector&lt;double&gt; valueHeadValList; 
+                for(auto iterTimeValMapByUnit=TimeValMap.begin();iterTimeValMapByUnit!=TimeValMap.end();iterTimeValMapByUnit++)
+                &amp;#123;
+                    if((iterTimeValMapByUnit-&gt;first)&gt;headOnTime&amp;&amp;(iterTimeValMapByUnit-&gt;first)&lt;headOffTime)
+                    &amp;#123;
+                        valueHeadValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+                HEAD_VAL=doubleToString(getAVE_VAL(valueHeadValList));
+                // log.Info()&lt;&lt;&quot;headVal:&quot;&lt;&lt;HEAD_VAL&lt;&lt;endl;
+
+
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL***********************************************************尾部
+                vector&lt;long&gt; OnAndOffEndList =OnAndOffMapOff[unit];
+                long endOffTime=getLongMAX_VAL(OnAndOffEndList);
+                long endOnTime=endOffTime-3000;
+                vector&lt;double&gt; valueEndValList; 
+                for(auto iterTimeValMapByUnit=TimeValMap.begin();iterTimeValMapByUnit!=TimeValMap.end();iterTimeValMapByUnit++)
+                &amp;#123;
+                    if((iterTimeValMapByUnit-&gt;first)&gt;endOnTime&amp;&amp;(iterTimeValMapByUnit-&gt;first)&lt;endOffTime)
+                    &amp;#123;
+                        valueEndValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+                FOOT_VAL=doubleToString(getAVE_VAL(valueEndValList));
+                // log.Info()&lt;&lt;&quot;FOOT_VAL:&quot;&lt;&lt;FOOT_VAL&lt;&lt;endl;
+
+
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL***********************************************************中部
+                //测试数据
+                vector&lt;long&gt; OnAndOffMiddleList =OnAndOffMapAll[unit];
+                sort(OnAndOffMiddleList.begin(), OnAndOffMiddleList.end());
+                // log.Info()&lt;&lt;&quot;headOnTime:&quot;&lt;&lt;headOnTime&lt;&lt;&quot;   &quot;&lt;&lt;&quot;endOffTime:&quot;&lt;&lt;endOffTime&lt;&lt;endl;
+                sort(OnAndOffMiddleList.begin(), OnAndOffMiddleList.end());
+                long middleOnTime=OnAndOffMiddleList[OnAndOffMiddleList.size()/2];
+                long middleOffTime=headOnTime+3000;
+                vector&lt;double&gt; valueMiddleValList; 
+                for(auto iterTimeValMapByUnit=TimeValMap.begin();iterTimeValMapByUnit!=TimeValMap.end();iterTimeValMapByUnit++)
+                &amp;#123;
+                    valueMiddleValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    if((iterTimeValMapByUnit-&gt;first)&gt;middleOnTime&amp;&amp;(iterTimeValMapByUnit-&gt;first)&lt;middleOffTime)
+                    &amp;#123;
+
+                        valueMiddleValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+                //log.Info()&lt;&lt;&quot;valueMiddleValList.size():&quot;&lt;&lt;valueMiddleValList.size()&lt;&lt;endl;
+                MIDDLE_VAL=doubleToString(getAVE_VAL(valueMiddleValList));
+                //log.Info()&lt;&lt;&quot;MIDDLE_VAL:&quot;&lt;&lt;MIDDLE_VAL&lt;&lt;endl;
+
+                //**********************************************************************************极差
+                double SAMPLERANGE=getMAX_VAL(valueList)-getMIN_VAL(valueList);
+                //（咬钢-F3抛钢）
+                if(tagName==&quot;L_FAUX_ODG_R08&quot;||tagName==&quot;L_FAUX_ODG_R09&quot;||tagName==&quot;L_FAUX_ODG_R16&quot;||tagName==&quot;L_FAUX_ODG_R17&quot;||tagName==&quot;L_FAUX_ODG_R18&quot;||tagName==&quot;L_FAUX_ODG_R19&quot;)
+                &amp;#123;
+                    SAMPLERANGE=TimeValMap[headOnTime]-OnAndOffMap[&quot;F3&quot;][&quot;f3&quot;][&quot;f3Off&quot;];
+                &amp;#125;            
+                //（F7咬钢-抛钢））
+                if(tagName==&quot;L_FAUX_ODG_R10&quot;||tagName==&quot;L_FAUX_ODG_R11&quot;||tagName==&quot;L_FAUX_ODG_R12&quot;||tagName==&quot;L_FAUX_ODG_R13&quot;||tagName==&quot;L_FAUX_ODG_R14&quot;||tagName==&quot;L_FAUX_ODG_R15&quot;)
+                &amp;#123;
+                    SAMPLERANGE=OnAndOffMap[&quot;F7&quot;][&quot;f7&quot;][&quot;f3On&quot;]-TimeValMap[endOffTime];
+                &amp;#125;
+                // log.Info()&lt;&lt;&quot;SAMPLERANGE:&quot;&lt;&lt;SAMPLERANGE&lt;&lt;endl;
+
+                string strSQL=&quot;INSERT INTO AP.STATIS_L1_TAG (STRIPNO,TAGNAME,MAX_VAL,MIN_VAL,AVE_VAL,STD_VAL,HEAD_VAL,MIDDLE_VAL,FOOT_VAL,SCAN_CYCLE1,SCAN_CYCLE2,SCAN_CYCLE3,SCAN_CYCLE4,SCAN_CYCLE5,SCAN_CYCLE8,SCAN_CYCLE12,SCAN_CYCLE16,HEAD_BITE_STEEL_1S,HEAD_BITE_STEEL_2S,HEAD_BITE_STEEL_3S,DOWNSTREAM_RACK_BIT_STEEL_0_2S,DOWNSTREAM_RACK_BIT_STEEL_0_25S,DOWNSTREAM_RACK_BIT_STEEL_0_5S,DOWNSTREAM_RACK_BIT_STEEL_1S,DOWNSTREAM_RACK_BIT_STEEL_1_5S,DOWNSTREAM_RACK_BIT_STEEL_2S,DOWNSTREAM_RACK_BIT_STEEL_2_5S,DOWNSTREAM_RACK_BIT_STEEL_3S,SAMPLERANGE,FOOT_1,FOOT_2,FOOT_3,HEAD_3,HEAD_2,HEAD_1,HEAD_0_1,HEAD_0_3,HEAD_0_5,HEAD_0_7,SCAN_CYCLE1_HEAD,SCAN_CYCLE3_HEAD,SCAN_CYCLE5_HEAD,SCAN_CYCLE8_HEAD)values (&quot;;
+                strSQL=strSQL.append(&quot;&#39;&quot;+STRIPNO+&quot;&#39;,&quot;);
+                strSQL=strSQL.append(&quot;&#39;&quot;+tagName+&quot;&#39;,&quot;);
+                strSQL=strSQL.append(doubleToString(getMAX_VAL(valueList))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getMIN_VAL(valueList))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getAVE_VAL(valueList))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getSTD_VAL(valueList))+&quot;,&quot;);
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL
+                strSQL=strSQL.append(HEAD_VAL+&quot;,&quot;);
+                strSQL=strSQL.append(MIDDLE_VAL+&quot;,&quot;);
+                strSQL=strSQL.append(FOOT_VAL+&quot;,&quot;);
+                //周期第1-16个扫描周期
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*4])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*5])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*8])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*12])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*16])+&quot;,&quot;);
+                // 头部咬钢1,2,3s
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+1000.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+1000.0*3])+&quot;,&quot;);
+                //下游机架咬钢
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+20.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*4])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*6])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*8])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*10])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*12])+&quot;,&quot;);
+                //极差（F7咬钢-抛钢）
+                strSQL=strSQL.append(doubleToString(SAMPLERANGE)+&quot;,&quot;);
+                //头部尾部123s
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[timeList.size()-1]-1000.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[timeList.size()-1]-1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[timeList.size()-1]-1000.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+1000.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+1000.0*1])+&quot;,&quot;);
+                //头部0.1,0.3,0.5，0.7s
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+100])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+300])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+500])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+700])+&quot;,&quot;);
+                //头部周期
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*5])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*8])+&quot;);&quot;);
+                cmdH033DSP1.SetCommandText(strSQL);
+                cmdH033DSP1.Execute();
+            &amp;#125;
+
+        &amp;#125;
+
+
+        log.Debug() &lt;&lt; &quot;带钢:&quot;&lt;&lt;STRIPNO&lt;&lt;&quot;特征值存储完毕！&quot;&lt;&lt; endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+void NotifyMessage(const char* topic, Ice::ByteSeq message)
+&amp;#123;
+    LOG log(&quot;NotifyMessage&quot;);
+    if (message.size() &gt;= 12)
+    &amp;#123;
+        string STRIPNO((char*)(&amp;message.front()), 12);
+        statisData(STRIPNO);
+        //log.Debug() &lt;&lt; &quot;带钢:&quot;&lt;&lt;STRIPNO&lt;&lt;&quot;特征值存储完毕！&quot;&lt;&lt; endl;
+    &amp;#125;
+    else
+    &amp;#123;
+        log.Error() &lt;&lt; &quot;ERROR STRIPNO LENGGTH &quot; &lt;&lt; message.size() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+class FeatureVal2BD2Server :public Component
+&amp;#123;
+public:
+    virtual int start()
+    &amp;#123;
+        LOG log(&quot;FeatureVal2BD2Server&quot;);
+        try &amp;#123;
+            log.Info() &lt;&lt; &quot; start test server ... &quot; &lt;&lt; endl;
+            conH033DSP1.Connect(&quot;H033DSP1&quot;, &quot;ap&quot;, &quot;123456&quot;, iDA::iDA_DB2_Client);
+            cmdH033DSP1.SetConnection(&amp;conH033DSP1);
+            log.Info() &lt;&lt; &quot;Connect to DB2 ...H033DSP1 &quot; &lt;&lt; endl;
+            initConfiguration();
+            log.Info() &lt;&lt; &quot;initConfiguration finish!&quot; &lt;&lt; endl;
+            _masterPrx = iPlature::ProxyWrapper&lt;HSM::ProductMasterPrx&gt;(&quot;H033BDB/ProductMaster&quot;);        
+            redisSubscriber.subscribe(STIRP_EVNET);
+            redisSubscriber.consume(NotifyMessage);
+        &amp;#125;
+        catch (std::exception e)
+        &amp;#123;
+            log.Error() &lt;&lt; &quot;std::exception:&quot; &lt;&lt; e.what() &lt;&lt; endl;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;;
+PACE_SERVER_INSTALL(FeatureVal2BD2Server);</code></pre>
+<h2 id="20201222更新"><a href="#20201222更新" class="headerlink" title="20201222更新"></a>20201222更新</h2><ul>
+<li>最大，最小，平均，方差，标差</li>
+</ul>
+<pre><code class="c++">#include &lt;pace/pace.h&gt;
+#include &lt;iostream&gt;
+#include &lt;log4cplus/LOG.h&gt;
+#include &lt;iDA/iDA.h&gt;
+#include &lt;iDA/Command.h&gt;
+#include &lt;math.h&gt;
+#include &lt;HSM/PieceTime2Len.h&gt;
+#include &lt;HSM/ProductManager.h&gt;
+#include &lt;MODULE/HSMUtility/Utility.h&gt;
+#include &lt;MODULE/iHyperDB/HDBReader.h&gt;
+#include &lt;MODULE/HSMUtility/Queue.h&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt; 
+#include &lt;math.h&gt; 
+#include &lt;vector&gt;
+#include &lt;MODULE/HSMUtility/RedisMQ.h&gt;
+#include &lt;algorithm&gt;
+
+using namespace iPlature;
+using namespace std;
+using namespace HSM;
+using namespace log4cplus;
+
+//#define STIRP_EVNET  &quot;FM_H033TIMELEN_REQUEST&quot;
+#define STIRP_EVNET  &quot;FM_H033TIMELEN_REQUEST&quot;
+#define iHDB_IP &quot;160.0.3.71&quot;
+
+static HSMUtility::RedisSubscriber redisSubscriber(&quot;160.0.3.35&quot;);
+
+map&lt;string,vector&lt;string&gt;&gt; tagNameMap;
+map&lt;string,vector&lt;string&gt;&gt; posMeaSeriesNamesMap;
+
+HSM::ProductMasterPrx _masterPrx;
+HSM::Time2LenManagerPrx prxT2L;
+
+iDA::Connection conH033DSP1;   //连接数据库的类
+iDA::Command cmdH033DSP1;      //使用SQL语句的类
+
+
+long getLongMAX_VAL(vector&lt;long&gt; &amp;valuelist)
+&amp;#123;
+    long tempMAX=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&gt;tempMAX)&amp;#123;
+            tempMAX=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMAX;
+&amp;#125;
+
+long getLongMIN_VAL(vector&lt;long&gt; &amp;valuelist)
+&amp;#123;
+    long tempMIN=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&lt;tempMIN)&amp;#123;
+            tempMIN=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMIN;
+&amp;#125;
+
+double getMAX_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double tempMAX=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&gt;tempMAX)&amp;#123;
+            tempMAX=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMAX;
+&amp;#125;
+double getMIN_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double tempMIN=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&lt;tempMIN)&amp;#123;
+            tempMIN=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMIN;
+&amp;#125;
+double getAVE_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    //double tempAVE=0.0;
+    double sum=0.0;
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        sum=sum+(*iter);
+    &amp;#125;
+    return sum/valuelist.size();
+&amp;#125;
+double getVARIANCE_VAL(vector&lt;double&gt; &amp;valuelist,double &amp;ave)
+&amp;#123;
+    double tempVARIANCE=0.0;
+    double sum=0.0;
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        sum=sum+(*iter-ave)*(*iter-ave);
+    &amp;#125;
+    return sum/valuelist.size();
+&amp;#125;
+double getSTD_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double ave=getAVE_VAL(valuelist);
+    return sqrt(getVARIANCE_VAL(valuelist,ave));
+&amp;#125;
+
+void getSAMPLERANGE(vector&lt;double&gt; &amp;fnOnValuelist,vector&lt;double&gt; &amp;fnOffValuelist,map&lt;string, long&gt; &amp;fnMap,map&lt;long,double&gt; &amp;TimeValMap)
+&amp;#123;
+    LOG log(&quot;getSAMPLERANGE&quot;);
+    try
+    &amp;#123;
+        for (auto itF7 = fnMap.begin(); itF7 != fnMap.end(); ++itF7)
+            &amp;#123;
+                int O=(itF7-&gt;first).find(&quot;O&quot;);
+                string OnOrOf=(itF7-&gt;first).substr(O,2);
+                if(OnOrOf==&quot;On&quot;)&amp;#123;
+                    fnOnValuelist.push_back(TimeValMap[itF7-&gt;second]);
+                &amp;#125;
+                if(OnOrOf==&quot;Of&quot;)&amp;#123;
+                    fnOffValuelist.push_back(TimeValMap[itF7-&gt;second]);
+                &amp;#125;                    
+            &amp;#125;
+    &amp;#125;
+    catch(std::exception&amp; e)
+    &amp;#123;
+        log.Error()&lt;&lt;e.what()&lt;&lt;endl;
+    &amp;#125;
+&amp;#125;
+
+
+string doubleToString(double doubleData)
+&amp;#123;
+    char s[34];
+    sprintf(s,&quot;%f&quot;,doubleData);
+    string str=s;
+    return str;
+&amp;#125;
+
+void cutHDBForValueByTimeRange(ValueOrderbyTimeSeq &amp;valueOrderbyTimes,ValueOrderbyTimeSeq &amp;lenOrderbyTimes,ValueOrderbyTimeSeq &amp;valueOrderbyTimesFormat)
+&amp;#123;
+    LOG log(&quot;cutHDBForValueByTimeRange&quot;);
+    try
+    &amp;#123;
+        long start=lenOrderbyTimes[0].time;
+        //log.Error()&lt;&lt;&quot;start&quot;&lt;&lt;&quot;:&quot;&lt;&lt;start&lt;&lt;&quot;  &quot;&lt;&lt;&quot;end&quot;&lt;&lt;&quot;:&quot;&lt;&lt;end&lt;&lt;endl;
+        long end=lenOrderbyTimes[lenOrderbyTimes.size()-1].time;
+        int startIndex=valueOrderbyTimes.size()-1;
+        int endIndex=0;
+        //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;    
+        for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+            if(valueOrderbyTimes[i].time&lt;=end)&amp;#123;
+                break;
+            &amp;#125;else&amp;#123;
+                endIndex++;
+            &amp;#125;
+        &amp;#125;
+
+        for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+            if(valueOrderbyTimes[valueOrderbyTimes.size()-1-i].time&gt;=start)&amp;#123;
+                break;
+            &amp;#125;else&amp;#123;
+                startIndex--;
+
+            &amp;#125;
+        &amp;#125;
+        //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;    
+        //valueOrderbyTimes反向存值
+        int size=startIndex - endIndex + 1;
+        int index=size-1;
+        ValueOrderbyTimeSeq temps;
+        for(int i = endIndex; size - 1 &gt;= 0; size--, endIndex++)&amp;#123;
+            ValueOrderbyTime temp;
+            temp.time=valueOrderbyTimes[endIndex].time;
+            temp.value=valueOrderbyTimes[endIndex].value;
+            temps.push_back(temp);
+            //valueOrderbyTimesFormat.push_back(temp);
+            //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;
+        &amp;#125;
+        //log.Error()&lt;&lt;&quot;temps.size:&quot;&lt;&lt;&quot;:&quot;&lt;&lt;temps.size()&lt;&lt;endl;    
+        for(int i = temps.size()-1; i&gt;=0; i--)&amp;#123;
+            valueOrderbyTimesFormat.push_back(temps[i]);
+        &amp;#125;
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+void queryLenByStrupIDString (const string&amp; STRIPNO,const string&amp; psmName,ValueOrderbyTimeSeq &amp;lenOrderbyTimes)
+&amp;#123;
+    LOG log(&quot;queryLenByStrupIDString&quot;);
+    try
+    &amp;#123;
+        ProductPrx prxMeaSer = _masterPrx-&gt;locate(STRIPNO);
+        HSM::PosMeasurementSeriesPtr posMeaSer=prxMeaSer-&gt;getPosMeasurementSeries(psmName);
+        //log.Info()&lt;&lt;&quot;xxxxxxxxxxxxxxxxxxxxxxx&quot;&lt;&lt;endl;
+        int lenOrderbyTimesCount=posMeaSer-&gt;dur.value().size();
+        posMeaSer-&gt;pos.size();
+        ValueOrderbyTime lenTemp;
+        for(int i=0;i&lt;lenOrderbyTimesCount;i++)&amp;#123;
+            lenTemp.value=posMeaSer-&gt;pos[i];
+            lenTemp.time=posMeaSer-&gt;dur.value()[i];
+            lenOrderbyTimes.push_back(lenTemp);
+        &amp;#125;
+        //log.Info()&lt;&lt;&quot;dur.value().size()&quot;&lt;&lt;&quot;:&quot;&lt;&lt;x&lt;&lt;endl;
+        //log.Info()&lt;&lt;&quot;pos.value().size()&quot;&lt;&lt;&quot;:&quot;&lt;&lt;y&lt;&lt;endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;  
+
+void queryTimeRange4ProductByStrupID(const string&amp; STRIPNO,map&lt;string, map&lt;string, map&lt;string, long&gt;&gt;&gt; &amp;OnAndOffMap)//查询该带钢OnAndOffMap
+&amp;#123;
+
+    LOG log(&quot;queryTimeRange4ProductByStrupID&quot;);
+    try
+    &amp;#123;
+        ProductPrx prx = _masterPrx-&gt;locate(STRIPNO);
+        HSM::MeasurementPtr loadTSRecord=prx-&gt;getMeasurement(&quot;LoadTSRecord&quot;);
+        for(auto iterposMap=posMeaSeriesNamesMap.begin();iterposMap!=posMeaSeriesNamesMap.end();++iterposMap)
+        &amp;#123;
+            string unit=iterposMap-&gt;first;
+            vector&lt;string&gt; posList=iterposMap-&gt;second;
+            map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapmap;//存储每个区域的On和Off时间
+            for(auto iterposList=posList.begin();iterposList!=posList.end();iterposList++)
+            &amp;#123;
+                //log.Info()&lt;&lt;&quot;tag:&quot;&lt;&lt;(*iterposList)&lt;&lt;endl;
+                string poskey=(*iterposList);
+                int T_letter=poskey.find(&quot;T&quot;);
+                string onKey=poskey.substr(0,T_letter);
+                string offKey=poskey.substr(0,T_letter);
+                map&lt;string, long&gt; OnAndOffMapmapmap;//
+                transform(onKey.begin(), onKey.end(), onKey.begin(), ::tolower);
+                transform(offKey.begin(), offKey.end(), offKey.begin(), ::tolower);
+                string OnOFFKey=onKey;//每个区域每一对on和off的key
+                onKey.append(&quot;On&quot;);
+                offKey.append(&quot;Off&quot;);
+                int indexOn=-1;
+                int On=0;
+                int indexOff=-1;
+                int Off=0;
+                int txtVecCount=loadTSRecord-&gt;txtVec.value().size();
+                for(int i=0;i&lt;txtVecCount;i++)&amp;#123;
+                    if(onKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                        indexOn=On;
+                    &amp;#125;
+                    if(offKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                        indexOff=Off;
+                    &amp;#125;
+                    On++;
+                    Off++;
+                &amp;#125;
+                if(indexOn!=-1&amp;&amp;indexOff!=-1)
+                &amp;#123;
+
+                    long fxOn=loadTSRecord-&gt;intVec.value()[indexOn];
+                    long fxOff=loadTSRecord-&gt;intVec.value()[indexOff];
+
+                    OnAndOffMapmapmap.insert(pair&lt;string, long&gt;(onKey,fxOn));
+                    OnAndOffMapmapmap.insert(pair&lt;string, long&gt;(offKey,fxOff));
+                &amp;#125;
+                OnAndOffMapmap.insert(pair&lt;string, map&lt;string, long&gt;&gt;(OnOFFKey,OnAndOffMapmapmap));
+            &amp;#125;
+            OnAndOffMap.insert(pair&lt;string, map&lt;string, map&lt;string, long&gt;&gt;&gt;(unit,OnAndOffMapmap));
+        &amp;#125;        
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;  
+
+void initConfiguration()
+&amp;#123;
+    LOG log(&quot;initConfiguration&quot;);
+    try
+    &amp;#123;
+        //log.Info() &lt;&lt; &quot;start read Configuration.&quot; &lt;&lt; endl;
+        table_t tableTAG;
+        string filePathTAG=&quot;/iPlature/conf/H033ADH1/FeatureVal2BD2TAG.csv&quot;;
+        ifstream fileTAG(filePathTAG.c_str());
+        fileTAG&gt;&gt;tableTAG;
+        //log.Info() &lt;&lt; &quot;table.size():&quot;&lt;&lt;table.size()&lt;&lt; endl;
+        //二维数组行，列
+        int j=0;//列
+        while(true)
+        &amp;#123;
+            // string flag=table[0][j];
+            // log.Info() &lt;&lt;&quot;flag:&quot;&lt;&lt;flag&lt;&lt; endl;
+            if(j==10)&amp;#123;//9个区域************************************************************************************************需要修改
+                break;
+            &amp;#125;
+            vector&lt;string&gt; tagList;
+            for(int i=1;i&lt;tableTAG.size();++i)
+            &amp;#123;
+                if(tableTAG[i][j]==&quot;&quot;)&amp;#123;
+                    break;
+                &amp;#125;
+                tagList.push_back(tableTAG[i][j]);
+                //log.Info() &lt;&lt; &quot;key:&quot;&lt;&lt;table[0][j]&lt;&lt;&quot;  &quot;&lt;&lt;&quot;value:&quot;&lt;&lt; table[i][j]&lt;&lt; endl;
+
+            &amp;#125;
+            tagNameMap.insert(pair&lt;string, vector&lt;string&gt;&gt;(tableTAG[0][j],tagList));
+            ++j;
+        &amp;#125;
+        //tagNameMap测试
+        // for(auto itertagNameMap=tagNameMap.begin();itertagNameMap!=tagNameMap.end();++itertagNameMap)
+        // &amp;#123;
+            // log.Info()&lt;&lt;&quot;key:&quot;&lt;&lt;itertagNameMap-&gt;first&lt;&lt;endl;
+            // vector&lt;string&gt; tagList=itertagNameMap-&gt;second;
+            // for(auto itertagList=tagList.begin();itertagList!=tagList.end();itertagList++)
+            // &amp;#123;
+                // log.Info()&lt;&lt;&quot;tag:&quot;&lt;&lt;(*itertagList)&lt;&lt;endl;
+            // &amp;#125;
+        // &amp;#125;
+        table_t tablePOS;
+        string filePathPOS=&quot;/iPlature/conf/H033ADH1/FeatureVal2DB2POS.csv&quot;;
+        ifstream filePOS(filePathPOS.c_str());
+        filePOS&gt;&gt;tablePOS;
+        //log.Info() &lt;&lt; &quot;table.size():&quot;&lt;&lt;table.size()&lt;&lt; endl;
+        //二维数组行，列
+        j=0;//列
+        while(true)
+        &amp;#123;
+            // string flag=table[0][j];
+            // log.Info() &lt;&lt;&quot;flag:&quot;&lt;&lt;flag&lt;&lt; endl;
+            if(j==10)&amp;#123;//9个区域************************************************************************************************需要修改
+                break;
+            &amp;#125;
+            vector&lt;string&gt; posList;
+            for(int i=1;i&lt;tablePOS.size();++i)
+            &amp;#123;
+                if(tablePOS[i][j]==&quot;&quot;)&amp;#123;
+                    break;
+                &amp;#125;
+                posList.push_back(tablePOS[i][j]);
+                //log.Info() &lt;&lt; &quot;key:&quot;&lt;&lt;tablePOS[0][j]&lt;&lt;&quot;  &quot;&lt;&lt;&quot;value:&quot;&lt;&lt; tablePOS[i][j]&lt;&lt; endl;
+            &amp;#125;
+            posMeaSeriesNamesMap.insert(pair&lt;string, vector&lt;string&gt;&gt;(tablePOS[0][j],posList));
+            ++j;
+        &amp;#125;
+        //posMeaSeriesNamesMap测试
+        // for(auto iterposMap=posMeaSeriesNamesMap.begin();iterposMap!=posMeaSeriesNamesMap.end();++iterposMap)
+        // &amp;#123;
+            // log.Info()&lt;&lt;&quot;key:&quot;&lt;&lt;iterposMap-&gt;first&lt;&lt;endl;
+            // vector&lt;string&gt; posList=iterposMap-&gt;second;
+            // for(auto iterposList=posList.begin();iterposList!=posList.end();iterposList++)
+            // &amp;#123;
+                // log.Info()&lt;&lt;&quot;tag:&quot;&lt;&lt;(*iterposList)&lt;&lt;endl;
+            // &amp;#125;
+        // &amp;#125;
+        //log.Info() &lt;&lt; &quot;finish read Configuration.&quot; &lt;&lt; endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+void statisData(const string&amp; STRIPNO)            //注意ihdb取到的数据是时间从大到小排列的，上述方法里的时间是从小到大排序的。
+&amp;#123;
+    LOG log(&quot;statisData&quot;);
+    prxT2L = iPlature::ProxyWrapper&lt;HSM::Time2LenManagerPrx&gt;(&quot;HSM/GetPieceDataManager&quot;);
+    HDBReader* m_phdbReader = HDBReader::getInstance();
+    m_phdbReader-&gt;connect(iHDB_IP, 5673, &quot;admin&quot;, &quot;admin&quot;);
+    try
+    &amp;#123;
+        string SQL;//插入语句
+        map&lt;string, map&lt;string, map&lt;string, long&gt;&gt;&gt; OnAndOffMap;//存储所有区域的On和Off时间
+        queryTimeRange4ProductByStrupID(STRIPNO,OnAndOffMap);
+        map&lt;string, vector&lt;long&gt;&gt; OnAndOffMapOn;//存储所有区域的On时间
+        map&lt;string, vector&lt;long&gt;&gt; OnAndOffMapOff;//存储所有区域的Off时间
+        map&lt;string, vector&lt;long&gt;&gt; OnAndOffMapAll;//存储所有区域的OnAndOff时间
+        for(auto iterOnAndOffMap=OnAndOffMap.begin();iterOnAndOffMap!=OnAndOffMap.end();++iterOnAndOffMap)
+        &amp;#123;
+            map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapmap=iterOnAndOffMap-&gt;second;
+            vector&lt;long&gt; iterOnAndOffOnlist;
+            vector&lt;long&gt; iterOnAndOffOfflist;
+            vector&lt;long&gt; iterOnAndOffAlllist;
+            for(auto iterOnAndOffMapmap=OnAndOffMapmap.begin();iterOnAndOffMapmap!=OnAndOffMapmap.end();++iterOnAndOffMapmap)
+            &amp;#123;
+                map&lt;string, long&gt; OnAndOffMapmapmap=iterOnAndOffMapmap-&gt;second;
+                for(auto iterOnAndOffMapmapmap=OnAndOffMapmapmap.begin();iterOnAndOffMapmapmap!=OnAndOffMapmapmap.end();++iterOnAndOffMapmapmap)
+                &amp;#123;
+                    string::size_type idxOn;
+                    string::size_type idxOff;
+                    string a=iterOnAndOffMapmapmap-&gt;first;
+                    string OnString=&quot;On&quot;;
+                    string OffString=&quot;Off&quot;;
+                    idxOn=a.find(OnString);
+                    idxOff=a.find(OffString);
+                    iterOnAndOffAlllist.push_back(iterOnAndOffMapmapmap-&gt;second);
+                    if(idxOn== string::npos)
+                    &amp;#123;
+                        //不存在
+                    &amp;#125;else
+                    &amp;#123;
+                        iterOnAndOffOnlist.push_back(iterOnAndOffMapmapmap-&gt;second);
+                    &amp;#125;
+                    if(idxOff== string::npos)
+                    &amp;#123;
+                        //不存在
+                    &amp;#125;else
+                    &amp;#123;
+                        iterOnAndOffOfflist.push_back(iterOnAndOffMapmapmap-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+            &amp;#125;
+            OnAndOffMapOn.insert(pair&lt;string, vector&lt;long&gt;&gt;(iterOnAndOffMap-&gt;first,iterOnAndOffOnlist));
+            OnAndOffMapOff.insert(pair&lt;string, vector&lt;long&gt;&gt;(iterOnAndOffMap-&gt;first,iterOnAndOffOfflist));
+            OnAndOffMapAll.insert(pair&lt;string, vector&lt;long&gt;&gt;(iterOnAndOffMap-&gt;first,iterOnAndOffAlllist));
+
+        &amp;#125;
+
+
+        //测试OnAndOffMap
+        // for(auto iterOnAndOffMap=OnAndOffMap.begin();iterOnAndOffMap!=OnAndOffMap.end();++iterOnAndOffMap)
+        // &amp;#123;
+            // log.Info()&lt;&lt;&quot;unit:&quot;&lt;&lt;iterOnAndOffMap-&gt;first&lt;&lt;endl;
+            // map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapmap=iterOnAndOffMap-&gt;second;
+            // for(auto iterOnAndOffMapmap=OnAndOffMapmap.begin();iterOnAndOffMapmap!=OnAndOffMapmap.end();++iterOnAndOffMapmap)
+            // &amp;#123;
+                // log.Info()&lt;&lt;&quot;unit_:&quot;&lt;&lt;iterOnAndOffMapmap-&gt;first&lt;&lt;endl;
+                // map&lt;string, long&gt; OnAndOffMapmapmap=iterOnAndOffMapmap-&gt;second;
+                // for(auto iterOnAndOffMapmapmap=OnAndOffMapmapmap.begin();iterOnAndOffMapmapmap!=OnAndOffMapmapmap.end();++iterOnAndOffMapmapmap)
+                // &amp;#123;
+                    // log.Info()&lt;&lt;&quot;key:&quot;&lt;&lt;iterOnAndOffMapmapmap-&gt;first&lt;&lt;&quot;    &quot;&lt;&lt;&quot;value:&quot;&lt;&lt;iterOnAndOffMapmapmap-&gt;second&lt;&lt;endl;
+                // &amp;#125;
+            // &amp;#125;
+        // &amp;#125;
+
+        for(auto itertagNameMap=tagNameMap.begin();itertagNameMap!=tagNameMap.end();++itertagNameMap)
+        &amp;#123;
+            string unit=itertagNameMap-&gt;first;
+            vector&lt;string&gt; tagNameListByUnit=itertagNameMap-&gt;second;//每个区域的信号点
+            // log.Info()&lt;&lt;&quot;unit:&quot;&lt;&lt;unit&lt;&lt;endl;
+            map&lt;string, map&lt;string, long&gt;&gt; OnAndOffMapByUnit=OnAndOffMap[unit];//对应区域所有On和Off的时间点
+
+            for(auto itertagNameListByUnit=tagNameListByUnit.begin();itertagNameListByUnit!=tagNameListByUnit.end();++itertagNameListByUnit)
+            &amp;#123;
+                string tagName=(*itertagNameListByUnit);
+                vector&lt;long&gt; timeList;
+                vector&lt;double&gt; valueList;
+                map&lt;long, double&gt; TimeValMap;//key为区域
+                // log.Info()&lt;&lt;&quot;tagName:&quot;&lt;&lt;tagName&lt;&lt;endl;
+                vector&lt;string&gt; posMeaSeriesNames=posMeaSeriesNamesMap[unit];
+                for(auto iterposMeaSeriesNames=posMeaSeriesNames.begin();iterposMeaSeriesNames!=posMeaSeriesNames.end();++iterposMeaSeriesNames)
+                &amp;#123;
+                    for(auto iterOnAndOffMapByUnit=OnAndOffMapByUnit.begin();iterOnAndOffMapByUnit!=OnAndOffMapByUnit.end();++iterOnAndOffMapByUnit)
+                    &amp;#123;
+                        string posOnkey=iterOnAndOffMapByUnit-&gt;first;//r21/r22/r23/r24/r25
+                        string posOffkey=iterOnAndOffMapByUnit-&gt;first;//r21/r22/r23/r24/r25
+                        map&lt;string, long&gt; OnAndOffMapmapByUnit=iterOnAndOffMapByUnit-&gt;second;//r21/r22/r23/r24/r25
+                        long fxOn=0;
+                        long fxOff=0;
+                        string onKey=posOnkey.append(&quot;On&quot;);//r21On
+                        string offKey=posOffkey.append(&quot;Off&quot;);//r21Off
+                        //log.Info()&lt;&lt;&quot;onKey:&quot;&lt;&lt;onKey&lt;&lt;&quot;    &quot;&lt;&lt;&quot;offKey:&quot;&lt;&lt;offKey&lt;&lt;endl;
+                        for(auto iterOnAndOffMapmapByUnit=OnAndOffMapmapByUnit.begin();iterOnAndOffMapmapByUnit!=OnAndOffMapmapByUnit.end();++iterOnAndOffMapmapByUnit)
+                        &amp;#123;
+                            // log.Info()&lt;&lt;&quot;iterOnAndOffMapmapByUnit-&gt;first:&quot;&lt;&lt;iterOnAndOffMapmapByUnit-&gt;first&lt;&lt;&quot;....&quot;
+                            // &lt;&lt;&quot;iterOnAndOffMapmapByUnit-&gt;second:&quot;&lt;&lt;iterOnAndOffMapmapByUnit-&gt;second&lt;&lt;endl;
+                            if(onKey==iterOnAndOffMapmapByUnit-&gt;first)
+                            &amp;#123;
+                                // log.Info()&lt;&lt;&quot;onKey==iterOnAndOffMapmapByUnit-&gt;first&quot;&lt;&lt;endl;
+                                fxOn=iterOnAndOffMapmapByUnit-&gt;second;
+                            &amp;#125;
+                            if(offKey==iterOnAndOffMapmapByUnit-&gt;first)
+                            &amp;#123;
+                                // log.Info()&lt;&lt;&quot;onKey==iterOnAndOffMapmapByUnit-&gt;first&quot;&lt;&lt;endl;
+                                fxOff=iterOnAndOffMapmapByUnit-&gt;second;
+                            &amp;#125;
+
+                        &amp;#125;
+                        //测试fxOn和fxOff
+                        if(fxOn==0||fxOff==0)
+                        &amp;#123;
+                            // log.Info()&lt;&lt;&quot;fxOn==0||fxOff==0&quot;&lt;&lt;endl;
+                            continue;
+
+                        &amp;#125;
+                        // log.Info()&lt;&lt;&quot;fxOn:&quot;&lt;&lt;fxOn&lt;&lt;&quot;    &quot;&lt;&lt;&quot;fxOff:&quot;&lt;&lt;fxOff&lt;&lt;endl;
+                        ValueOrderbyTimeSeq valueOrderbyTimes,lenOrderbyTimes,valueOrderbyTimesFormat;
+                        ValueOrderbyLenSeq valueOrderbyLens;
+
+                        //根据tag点和TimeRange向IHDB查询value
+                        vector&lt;HdbRecordValue&gt; hdbRecordValues = m_phdbReader-&gt;queryTagIDRecords_Msec(tagName, fxOn, fxOff);
+                        ValueOrderbyTime valueTemp;
+                        for(auto iterhdbRecordValues=hdbRecordValues.begin();iterhdbRecordValues!=hdbRecordValues.end();iterhdbRecordValues++)
+                        &amp;#123;
+                            valueTemp.value=iterhdbRecordValues-&gt;value;
+
+                            valueTemp.time=(long)iterhdbRecordValues-&gt;nSec * 1000 + iterhdbRecordValues-&gt;nMsec;
+                            valueOrderbyTimes.push_back(valueTemp);
+                        &amp;#125;
+                        if(valueOrderbyTimes.size()==0)
+                        &amp;#123;
+                            log.Info()&lt;&lt;&quot;valueOrderbyTimes.size()==0||lenOrderbyTimes.size()==0&quot;&lt;&lt;endl;
+                            continue;
+                        &amp;#125;
+                        for(int i=0;i&lt;valueOrderbyTimes.size();i++)
+                        &amp;#123;
+                            valueList.push_back(valueOrderbyTimes[i].value);
+                            timeList.push_back(valueOrderbyTimes[i].time);
+                            TimeValMap.insert(pair&lt;long, double&gt;(valueOrderbyTimes[i].time,valueOrderbyTimes[i].value));
+                        &amp;#125;
+                    &amp;#125;
+
+                &amp;#125;
+                sort(valueList.begin(), valueList.end());
+                sort(timeList.begin(), timeList.end());
+                //最大值********************************************************************************
+                //double END_MAX=getMAX_VAL(valueList);
+                // if(tagName==&quot;L_DC1M_MD_SFBK&quot;||tagName==&quot;L_DC2M_MD_SFBK&quot;)
+                // &amp;#123;
+                    // if(valuelistF7OFF.size()==0)&amp;#123;
+                        // END_MAX=0.00;
+                    // &amp;#125;else&amp;#123;
+                        // END_MAX=getMAX_VAL(valuelistF7OFF);
+                    // &amp;#125;
+
+                // &amp;#125;
+                //最大值********************************************************************************
+                //测试最大值
+                string HEAD_VAL,MIDDLE_VAL,FOOT_VAL;
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL***********************************************************头部
+                vector&lt;long&gt; OnAndOffHeadList =OnAndOffMapOn[unit];
+                long headOnTime=getLongMIN_VAL(OnAndOffHeadList);
+                long headOffTime=headOnTime+100+3000;
+                vector&lt;double&gt; valueHeadValList; 
+                for(auto iterTimeValMapByUnit=TimeValMap.begin();iterTimeValMapByUnit!=TimeValMap.end();iterTimeValMapByUnit++)
+                &amp;#123;
+                    if((iterTimeValMapByUnit-&gt;first)&gt;headOnTime&amp;&amp;(iterTimeValMapByUnit-&gt;first)&lt;headOffTime)
+                    &amp;#123;
+                        valueHeadValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+                HEAD_VAL=doubleToString(getAVE_VAL(valueHeadValList));
+                // log.Info()&lt;&lt;&quot;headVal:&quot;&lt;&lt;HEAD_VAL&lt;&lt;endl;
+
+
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL***********************************************************尾部
+                vector&lt;long&gt; OnAndOffEndList =OnAndOffMapOff[unit];
+                long endOffTime=getLongMAX_VAL(OnAndOffEndList);
+                long endOnTime=endOffTime-3000;
+                vector&lt;double&gt; valueEndValList; 
+                for(auto iterTimeValMapByUnit=TimeValMap.begin();iterTimeValMapByUnit!=TimeValMap.end();iterTimeValMapByUnit++)
+                &amp;#123;
+                    if((iterTimeValMapByUnit-&gt;first)&gt;endOnTime&amp;&amp;(iterTimeValMapByUnit-&gt;first)&lt;endOffTime)
+                    &amp;#123;
+                        valueEndValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+                FOOT_VAL=doubleToString(getAVE_VAL(valueEndValList));
+                // log.Info()&lt;&lt;&quot;FOOT_VAL:&quot;&lt;&lt;FOOT_VAL&lt;&lt;endl;
+
+
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL***********************************************************中部
+                //测试数据
+                vector&lt;long&gt; OnAndOffMiddleList =OnAndOffMapAll[unit];
+                sort(OnAndOffMiddleList.begin(), OnAndOffMiddleList.end());
+                // log.Info()&lt;&lt;&quot;headOnTime:&quot;&lt;&lt;headOnTime&lt;&lt;&quot;   &quot;&lt;&lt;&quot;endOffTime:&quot;&lt;&lt;endOffTime&lt;&lt;endl;
+                sort(OnAndOffMiddleList.begin(), OnAndOffMiddleList.end());
+                long middleOnTime=OnAndOffMiddleList[OnAndOffMiddleList.size()/2];
+                long middleOffTime=headOnTime+3000;
+                vector&lt;double&gt; valueMiddleValList; 
+                for(auto iterTimeValMapByUnit=TimeValMap.begin();iterTimeValMapByUnit!=TimeValMap.end();iterTimeValMapByUnit++)
+                &amp;#123;
+                    valueMiddleValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    if((iterTimeValMapByUnit-&gt;first)&gt;middleOnTime&amp;&amp;(iterTimeValMapByUnit-&gt;first)&lt;middleOffTime)
+                    &amp;#123;
+
+                        valueMiddleValList.push_back(iterTimeValMapByUnit-&gt;second);
+                    &amp;#125;
+                &amp;#125;
+                //log.Info()&lt;&lt;&quot;valueMiddleValList.size():&quot;&lt;&lt;valueMiddleValList.size()&lt;&lt;endl;
+                MIDDLE_VAL=doubleToString(getAVE_VAL(valueMiddleValList));
+                //log.Info()&lt;&lt;&quot;MIDDLE_VAL:&quot;&lt;&lt;MIDDLE_VAL&lt;&lt;endl;
+
+                //**********************************************************************************极差
+                double SAMPLERANGE=getMAX_VAL(valueList)-getMIN_VAL(valueList);
+                //（咬钢-F3抛钢）
+                if(tagName==&quot;L_FAUX_ODG_R08&quot;||tagName==&quot;L_FAUX_ODG_R09&quot;||tagName==&quot;L_FAUX_ODG_R16&quot;||tagName==&quot;L_FAUX_ODG_R17&quot;||tagName==&quot;L_FAUX_ODG_R18&quot;||tagName==&quot;L_FAUX_ODG_R19&quot;)
+                &amp;#123;
+                    SAMPLERANGE=TimeValMap[headOnTime]-OnAndOffMap[&quot;F3&quot;][&quot;f3&quot;][&quot;f3Off&quot;];
+                &amp;#125;            
+                //（F7咬钢-抛钢））
+                if(tagName==&quot;L_FAUX_ODG_R10&quot;||tagName==&quot;L_FAUX_ODG_R11&quot;||tagName==&quot;L_FAUX_ODG_R12&quot;||tagName==&quot;L_FAUX_ODG_R13&quot;||tagName==&quot;L_FAUX_ODG_R14&quot;||tagName==&quot;L_FAUX_ODG_R15&quot;)
+                &amp;#123;
+                    SAMPLERANGE=OnAndOffMap[&quot;F7&quot;][&quot;f7&quot;][&quot;f3On&quot;]-TimeValMap[endOffTime];
+                &amp;#125;
+                // log.Info()&lt;&lt;&quot;SAMPLERANGE:&quot;&lt;&lt;SAMPLERANGE&lt;&lt;endl;
+
+                string strSQL=&quot;INSERT INTO AP.STATIS_L1_TAG (STRIPNO,TAGNAME,MAX_VAL,MIN_VAL,AVE_VAL,STD_VAL,HEAD_VAL,MIDDLE_VAL,FOOT_VAL,SCAN_CYCLE1,SCAN_CYCLE2,SCAN_CYCLE3,SCAN_CYCLE4,SCAN_CYCLE5,SCAN_CYCLE8,SCAN_CYCLE12,SCAN_CYCLE16,HEAD_BITE_STEEL_1S,HEAD_BITE_STEEL_2S,HEAD_BITE_STEEL_3S,DOWNSTREAM_RACK_BIT_STEEL_0_2S,DOWNSTREAM_RACK_BIT_STEEL_0_25S,DOWNSTREAM_RACK_BIT_STEEL_0_5S,DOWNSTREAM_RACK_BIT_STEEL_1S,DOWNSTREAM_RACK_BIT_STEEL_1_5S,DOWNSTREAM_RACK_BIT_STEEL_2S,DOWNSTREAM_RACK_BIT_STEEL_2_5S,DOWNSTREAM_RACK_BIT_STEEL_3S,SAMPLERANGE,FOOT_1,FOOT_2,FOOT_3,HEAD_3,HEAD_2,HEAD_1,HEAD_0_1,HEAD_0_3,HEAD_0_5,HEAD_0_7,SCAN_CYCLE1_HEAD,SCAN_CYCLE3_HEAD,SCAN_CYCLE5_HEAD,SCAN_CYCLE8_HEAD)values (&quot;;
+                strSQL=strSQL.append(&quot;&#39;&quot;+STRIPNO+&quot;&#39;,&quot;);
+                strSQL=strSQL.append(&quot;&#39;&quot;+tagName+&quot;&#39;,&quot;);
+                strSQL=strSQL.append(doubleToString(getMAX_VAL(valueList))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getMIN_VAL(valueList))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getAVE_VAL(valueList))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getSTD_VAL(valueList))+&quot;,&quot;);
+                //HEAD_VAL,MIDDLE_VAL,FOOT_VAL
+                strSQL=strSQL.append(HEAD_VAL+&quot;,&quot;);
+                strSQL=strSQL.append(MIDDLE_VAL+&quot;,&quot;);
+                strSQL=strSQL.append(FOOT_VAL+&quot;,&quot;);
+                //周期第1-16个扫描周期
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*4])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*5])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*8])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*12])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+50.0*16])+&quot;,&quot;);
+                // 头部咬钢1,2,3s
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+1000.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+1000.0*3])+&quot;,&quot;);
+                //下游机架咬钢
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+20.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*4])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*6])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*8])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*10])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+250.0*12])+&quot;,&quot;);
+                //极差（F7咬钢-抛钢）
+                strSQL=strSQL.append(doubleToString(SAMPLERANGE)+&quot;,&quot;);
+                //头部尾部123s
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[timeList.size()-1]-1000.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[timeList.size()-1]-1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[timeList.size()-1]-1000.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+1000.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timeList[0]+1000.0*1])+&quot;,&quot;);
+                //头部0.1,0.3,0.5，0.7s
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+100])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+300])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+500])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+700])+&quot;,&quot;);
+                //头部周期
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*5])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[headOnTime+50.0*8])+&quot;);&quot;);
+                cmdH033DSP1.SetCommandText(strSQL);
+                cmdH033DSP1.Execute();
+            &amp;#125;
+
+        &amp;#125;
+
+
+        log.Debug() &lt;&lt; &quot;带钢:&quot;&lt;&lt;STRIPNO&lt;&lt;&quot;特征值存储完毕！&quot;&lt;&lt; endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+void NotifyMessage(const char* topic, Ice::ByteSeq message)
+&amp;#123;
+    LOG log(&quot;NotifyMessage&quot;);
+    if (message.size() &gt;= 12)
+    &amp;#123;
+        string STRIPNO((char*)(&amp;message.front()), 12);
+        statisData(STRIPNO);
+        //log.Debug() &lt;&lt; &quot;带钢:&quot;&lt;&lt;STRIPNO&lt;&lt;&quot;特征值存储完毕！&quot;&lt;&lt; endl;
+    &amp;#125;
+    else
+    &amp;#123;
+        log.Error() &lt;&lt; &quot;ERROR STRIPNO LENGGTH &quot; &lt;&lt; message.size() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+class FeatureVal2BD2Server :public Component
+&amp;#123;
+public:
+    virtual int start()
+    &amp;#123;
+        LOG log(&quot;FeatureVal2BD2Server&quot;);
+        try &amp;#123;
+            log.Info() &lt;&lt; &quot; start test server ... &quot; &lt;&lt; endl;
+            conH033DSP1.Connect(&quot;H033DSP1&quot;, &quot;ap&quot;, &quot;123456&quot;, iDA::iDA_DB2_Client);
+            cmdH033DSP1.SetConnection(&amp;conH033DSP1);
+            log.Info() &lt;&lt; &quot;Connect to DB2 ...H033DSP1 &quot; &lt;&lt; endl;
+            initConfiguration();
+            log.Info() &lt;&lt; &quot;initConfiguration finish!&quot; &lt;&lt; endl;
+            _masterPrx = iPlature::ProxyWrapper&lt;HSM::ProductMasterPrx&gt;(&quot;H033BDB/ProductMaster&quot;);        
+            redisSubscriber.subscribe(STIRP_EVNET);
+            redisSubscriber.consume(NotifyMessage);
+        &amp;#125;
+        catch (std::exception e)
+        &amp;#123;
+            log.Error() &lt;&lt; &quot;std::exception:&quot; &lt;&lt; e.what() &lt;&lt; endl;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;;
+PACE_SERVER_INSTALL(FeatureVal2BD2Server);</code></pre>
+<h2 id="20201207更新"><a href="#20201207更新" class="headerlink" title="20201207更新"></a>20201207更新</h2><ul>
+<li>判断product是否可以查询到XXXTimeLen</li>
+</ul>
+<pre><code class="bash">int queryTimeRangeByStrupID(const string&amp; STRIPNO,const string&amp; psmName,map&lt;string, long&gt; &amp;mapRangeTime)
+&amp;#123;
+
+    LOG log(&quot;queryTimeRangeByStrupID&quot;);
+    try
+    &amp;#123;
+        ProductPrx prx = _masterPrx-&gt;locate(STRIPNO);
+        HSM::MeasurementPtr loadTSRecord=prx-&gt;getMeasurement(&quot;LoadTSRecord&quot;);
+        int t=psmName.find(&quot;T&quot;);
+        string onKey=psmName.substr(0,t);
+        string offKey=psmName.substr(0,t);
+        transform(onKey.begin(), onKey.end(), onKey.begin(), ::tolower);
+        transform(offKey.begin(), offKey.end(), offKey.begin(), ::tolower);
+        onKey.append(&quot;On&quot;);
+        offKey.append(&quot;Off&quot;);
+        int indexOn=-1;
+        int On=0;
+        int indexOff=-1;
+        int Off=0;
+        int txtVecCount=loadTSRecord-&gt;txtVec.value().size();
+        for(int i=0;i&lt;txtVecCount;i++)&amp;#123;
+            if(onKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                indexOn=On;
+            &amp;#125;
+            if(offKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                indexOff=Off;
+            &amp;#125;
+            On++;
+            Off++;
+        &amp;#125;
+        if(indexOn==-1||indexOff==-1)&amp;#123;
+            return 0;
+        &amp;#125;
+        long fxOn=loadTSRecord-&gt;intVec.value()[indexOn];
+        long fxOff=loadTSRecord-&gt;intVec.value()[indexOff];
+
+        mapRangeTime.insert(pair&lt;string, long&gt;(&quot;fxOn&quot;,fxOn));
+        mapRangeTime.insert(pair&lt;string, long&gt;(&quot;fxOff&quot;,fxOff));
+
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+    return 1;
+&amp;#125;  
+
+int flagTimeRange=queryTimeRangeByStrupID(STRIPNO,(*posMeaSeriesName),mapRangeTime);
+if(flagTimeRange==0)
+&amp;#123;
+    continue;
+&amp;#125;</code></pre>
+<h2 id="初始版本"><a href="#初始版本" class="headerlink" title="初始版本"></a>初始版本</h2><p>要点</p>
+<ul>
+<li>IHDB查询，Redis订阅消费，DB2插入</li>
+</ul>
+<ul>
+<li>map，vector（插入，读取，遍历）</li>
+</ul>
+<ul>
+<li>读取配置文件（excel.csv）</li>
+</ul>
+<ul>
+<li>数据类型转换（doubleToString）</li>
+</ul>
+<ul>
+<li>计算double类型特征值（最大，最小，平均，标准差，方差）</li>
+</ul>
+<ul>
+<li>参数类型（字符串，map，vector，Seq）</li>
+</ul>
+<ul>
+<li>transform(onKey.begin(), onKey.end(), onKey.begin(), ::tolower);(字符串转小写)</li>
+</ul>
+<ul>
+<li>字符串（sql）拼接</li>
+</ul>
+<pre><code class="c++">#include &lt;pace/pace.h&gt;
+#include &lt;iostream&gt;
+#include &lt;log4cplus/LOG.h&gt;
+#include &lt;iDA/iDA.h&gt;
+#include &lt;iDA/Command.h&gt;
+#include &lt;math.h&gt;
+#include &lt;HSM/PieceTime2Len.h&gt;
+#include &lt;HSM/ProductManager.h&gt;
+#include &lt;MODULE/HSMUtility/Utility.h&gt;
+#include &lt;MODULE/iHyperDB/HDBReader.h&gt;
+#include &lt;MODULE/HSMUtility/Queue.h&gt;
+#include &lt;boost/lexical_cast.hpp&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt; 
+#include &lt;math.h&gt; 
+#include &lt;vector&gt;
+#include &lt;MODULE/HSMUtility/RedisMQ.h&gt;
+#include &lt;algorithm&gt;
+
+using namespace iPlature;
+using namespace std;
+using namespace HSM;
+using namespace log4cplus;
+
+#define STIRP_EVNET  &quot;FM_H033TIMELEN_REQUEST&quot;
+#define iHDB_IP &quot;160.0.3.71&quot;
+
+static HSMUtility::RedisSubscriber redisSubscriber(&quot;160.0.3.35&quot;);
+//static HSMUtility::RedisPublisher redisPublisher(&quot;160.0.3.35&quot;);
+
+map&lt;string,vector&lt;string&gt;&gt; tagNameMap;
+vector&lt;string&gt; posMeaSeriesNames;
+
+HSM::ProductMasterPrx _masterPrx;
+HSM::Time2LenManagerPrx prxT2L;
+
+iDA::Connection conH033DSP1;   //连接数据库的类
+iDA::Command cmdH033DSP1;      //使用SQL语句的类
+
+void initTagName()
+&amp;#123;
+    LOG log(&quot;initTagName&quot;);
+    try
+    &amp;#123;
+        log.Info() &lt;&lt; &quot;start read Tag.&quot; &lt;&lt; endl;
+        table_t table;
+        string filePath=&quot;/iPlature/conf/H033ADH1/FeaturesVal2BD2.csv&quot;;
+        ifstream file(filePath.c_str());
+        file&gt;&gt;table;
+        //log.Info() &lt;&lt; &quot;table.size():&quot;&lt;&lt;table.size()&lt;&lt; endl;
+        //二维数组行，列
+        int j=0;//列
+        while(true)
+        &amp;#123;
+            vector&lt;string&gt; tagList;
+            for(int i=1;i&lt;table.size();++i)//84行
+            &amp;#123;
+                if(table[i][j]==&quot;&quot;)&amp;#123;
+                    break;
+                &amp;#125;
+                //log.Info() &lt;&lt;&quot;第&quot;&lt;&lt; j+1&lt;&lt;&quot;列；第&quot;&lt;&lt;i+1&lt;&lt;&quot;行&quot;&lt;&lt; endl;
+                tagList.push_back(table[i][j]);
+                //log.Info() &lt;&lt; &quot;key:&quot;&lt;&lt;table[0][j]&lt;&lt;&quot;  &quot;&lt;&lt;&quot;value:&quot;&lt;&lt; table[i][j]&lt;&lt; endl;
+
+            &amp;#125;
+            tagNameMap.insert(pair&lt;string, vector&lt;string&gt;&gt;(table[0][j],tagList));
+            ++j;
+            string flag=table[0][j];
+            //log.Info() &lt;&lt;&quot;flag:&quot;&lt;&lt;flag&lt;&lt; endl;
+            // if(flag==&quot;finish&quot;)&amp;#123;
+                // break;
+            // &amp;#125;
+            if(j==1)&amp;#123;//1个区域
+                break;
+            &amp;#125;
+        &amp;#125;
+
+        log.Info() &lt;&lt; &quot;start read posMeaSeriesNames.&quot; &lt;&lt; endl;
+        posMeaSeriesNames.push_back(&quot;F1TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;F2TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;F3TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;F4TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;F5TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;F6TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;F7TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;R11TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;R21TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;R22TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;R23TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;R24TimeLen&quot;);
+        posMeaSeriesNames.push_back(&quot;R25TimeLen&quot;);
+        log.Info() &lt;&lt; &quot;finish read posMeaSeriesNames.&quot; &lt;&lt; endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+string doubleToString(double doubleData)
+&amp;#123;
+    char s[34];
+    sprintf(s,&quot;%f&quot;,doubleData);
+    string str=s;
+    return str;
+&amp;#125;
+
+double getMAX_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double tempMAX=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&gt;tempMAX)&amp;#123;
+            tempMAX=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMAX;
+&amp;#125;
+double getMIN_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double tempMIN=valuelist[0];
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        if(*iter&lt;tempMIN)&amp;#123;
+            tempMIN=*iter;
+        &amp;#125;
+    &amp;#125;
+    return tempMIN;
+&amp;#125;
+double getAVE_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    //double tempAVE=0.0;
+    double sum=0.0;
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        sum=sum+(*iter);
+    &amp;#125;
+    return sum/valuelist.size();
+&amp;#125;
+double getVARIANCE_VAL(vector&lt;double&gt; &amp;valuelist,double &amp;ave)
+&amp;#123;
+    double tempVARIANCE=0.0;
+    double sum=0.0;
+    for(auto iter=valuelist.rbegin();iter!=valuelist.rend();iter++)&amp;#123;
+        sum=sum+(*iter-ave)*(*iter-ave);
+    &amp;#125;
+    return sum/valuelist.size();
+&amp;#125;
+double getSTD_VAL(vector&lt;double&gt; &amp;valuelist)
+&amp;#123;
+    double ave=getAVE_VAL(valuelist);
+    return sqrt(getVARIANCE_VAL(valuelist,ave));
+&amp;#125;
+
+void getSAMPLERANGE(vector&lt;double&gt; &amp;fnOnValuelist,vector&lt;double&gt; &amp;fnOffValuelist,map&lt;string, long&gt; &amp;fnMap,map&lt;long,double&gt; &amp;TimeValMap)
+&amp;#123;
+    LOG log(&quot;getSAMPLERANGE&quot;);
+    try
+    &amp;#123;
+        for (auto itF7 = fnMap.begin(); itF7 != fnMap.end(); ++itF7)
+            &amp;#123;
+                int O=(itF7-&gt;first).find(&quot;O&quot;);
+                string OnOrOf=(itF7-&gt;first).substr(O,2);
+                if(OnOrOf==&quot;On&quot;)&amp;#123;
+                    fnOnValuelist.push_back(TimeValMap[itF7-&gt;second]);
+                &amp;#125;
+                if(OnOrOf==&quot;Of&quot;)&amp;#123;
+                    fnOffValuelist.push_back(TimeValMap[itF7-&gt;second]);
+                &amp;#125;                    
+            &amp;#125;
+    &amp;#125;
+    catch(std::exception&amp; e)
+    &amp;#123;
+        log.Error()&lt;&lt;e.what()&lt;&lt;endl;
+    &amp;#125;
+&amp;#125;
+
+
+void cutHDBForValueByTimeRange(ValueOrderbyTimeSeq &amp;valueOrderbyTimes,ValueOrderbyTimeSeq &amp;lenOrderbyTimes,ValueOrderbyTimeSeq &amp;valueOrderbyTimesFormat)
+&amp;#123;
+    LOG log(&quot;cutHDBForValueByTimeRange&quot;);
+    try
+    &amp;#123;
+        long start=lenOrderbyTimes[0].time;
+        //log.Error()&lt;&lt;&quot;start&quot;&lt;&lt;&quot;:&quot;&lt;&lt;start&lt;&lt;&quot;  &quot;&lt;&lt;&quot;end&quot;&lt;&lt;&quot;:&quot;&lt;&lt;end&lt;&lt;endl;
+        long end=lenOrderbyTimes[lenOrderbyTimes.size()-1].time;
+        int startIndex=valueOrderbyTimes.size()-1;
+        int endIndex=0;
+        //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;    
+        for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+            if(valueOrderbyTimes[i].time&lt;=end)&amp;#123;
+                break;
+            &amp;#125;else&amp;#123;
+                endIndex++;
+            &amp;#125;
+        &amp;#125;
+
+        for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+            if(valueOrderbyTimes[valueOrderbyTimes.size()-1-i].time&gt;=start)&amp;#123;
+                break;
+            &amp;#125;else&amp;#123;
+                startIndex--;
+
+            &amp;#125;
+        &amp;#125;
+        //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;    
+        //valueOrderbyTimes反向存值
+        int size=startIndex - endIndex + 1;
+        //int index=size-1;
+        ValueOrderbyTimeSeq temps;
+        for(int i = endIndex; size - 1 &gt;= 0; size--, endIndex++)&amp;#123;
+            ValueOrderbyTime temp;
+            temp.time=valueOrderbyTimes[endIndex].time;
+            temp.value=valueOrderbyTimes[endIndex].value;
+            temps.push_back(temp);
+            //valueOrderbyTimesFormat.push_back(temp);
+            //log.Error()&lt;&lt;&quot;startIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;startIndex&lt;&lt;&quot;  &quot;&lt;&lt;&quot;endIndex&quot;&lt;&lt;&quot;:&quot;&lt;&lt;endIndex&lt;&lt;endl;
+        &amp;#125;
+        //log.Error()&lt;&lt;&quot;temps.size:&quot;&lt;&lt;&quot;:&quot;&lt;&lt;temps.size()&lt;&lt;endl;    
+        for(int i = temps.size()-1; i&gt;=0; i--)&amp;#123;
+            valueOrderbyTimesFormat.push_back(temps[i]);
+        &amp;#125;
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+void queryLenByStrupIDString (const string&amp; STRIPNO,const string&amp; psmName,ValueOrderbyTimeSeq &amp;lenOrderbyTimes)
+&amp;#123;
+    LOG log(&quot;queryLenByStrupIDString&quot;);
+    try
+    &amp;#123;
+        ProductPrx prxMeaSer = _masterPrx-&gt;locate(STRIPNO);
+        HSM::PosMeasurementSeriesPtr posMeaSer=prxMeaSer-&gt;getPosMeasurementSeries(psmName);
+        //log.Info()&lt;&lt;&quot;xxxxxxxxxxxxxxxxxxxxxxx&quot;&lt;&lt;endl;
+        int lenOrderbyTimesCount=posMeaSer-&gt;dur.value().size();
+        posMeaSer-&gt;pos.size();
+        ValueOrderbyTime lenTemp;
+        for(int i=0;i&lt;lenOrderbyTimesCount;i++)&amp;#123;
+            lenTemp.value=posMeaSer-&gt;pos[i];
+            lenTemp.time=posMeaSer-&gt;dur.value()[i];
+            lenOrderbyTimes.push_back(lenTemp);
+        &amp;#125;
+        //log.Info()&lt;&lt;&quot;dur.value().size()&quot;&lt;&lt;&quot;:&quot;&lt;&lt;x&lt;&lt;endl;
+        //log.Info()&lt;&lt;&quot;pos.value().size()&quot;&lt;&lt;&quot;:&quot;&lt;&lt;y&lt;&lt;endl;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;  
+
+void queryTimeRangeByStrupID(const string&amp; STRIPNO,const string&amp; psmName,map&lt;string, long&gt; &amp;mapRangeTime)
+&amp;#123;
+
+    LOG log(&quot;queryTimeRangeByStrupID&quot;);
+    try
+    &amp;#123;
+        ProductPrx prx = _masterPrx-&gt;locate(STRIPNO);
+        HSM::MeasurementPtr loadTSRecord=prx-&gt;getMeasurement(&quot;LoadTSRecord&quot;);
+        int t=psmName.find(&quot;T&quot;);
+        string onKey=psmName.substr(0,t);
+        string offKey=psmName.substr(0,t);
+        transform(onKey.begin(), onKey.end(), onKey.begin(), ::tolower);
+        transform(offKey.begin(), offKey.end(), offKey.begin(), ::tolower);
+        onKey.append(&quot;On&quot;);
+        offKey.append(&quot;Off&quot;);
+        int indexOn;
+        int On=0;
+        int indexOff;
+        int Off=0;
+        int txtVecCount=loadTSRecord-&gt;txtVec.value().size();
+        for(int i=0;i&lt;txtVecCount;i++)&amp;#123;
+            if(onKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                indexOn=On;
+            &amp;#125;
+            if(offKey==loadTSRecord-&gt;txtVec.value()[i])&amp;#123;
+                indexOff=Off;
+            &amp;#125;
+            On++;
+            Off++;
+        &amp;#125;
+        long fxOn=loadTSRecord-&gt;intVec.value()[indexOn];
+        long fxOff=loadTSRecord-&gt;intVec.value()[indexOff];
+
+        mapRangeTime.insert(pair&lt;string, long&gt;(&quot;fxOn&quot;,fxOn));
+        mapRangeTime.insert(pair&lt;string, long&gt;(&quot;fxOff&quot;,fxOff));
+
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;  
+
+void saveBiteStreelTime(const string&amp; psmName,vector&lt;long&gt; &amp;timelistHeadOn,vector&lt;long&gt; &amp;timelistDownstreamOn,map&lt;string, long&gt; &amp;mapRangeTime,map&lt;string, long&gt; &amp;fnMap)
+&amp;#123;
+    LOG log(&quot;saveBiteStreelTime&quot;);
+    try
+    &amp;#123;
+        int t=psmName.find(&quot;T&quot;);
+        //存储头部咬钢时刻
+        if(psmName.substr(0,t)==&quot;F1&quot;)
+        &amp;#123;
+            for (auto it = mapRangeTime.begin(); it != mapRangeTime.end(); ++it)
+            &amp;#123;
+                if(it-&gt;first==&quot;fxOn&quot;)&amp;#123;
+                    timelistHeadOn.push_back(it-&gt;second);
+                &amp;#125;
+            &amp;#125;                        
+        &amp;#125;
+        //存储下游机架咬钢时刻
+        if(psmName.substr(0,t)==&quot;F2&quot;)
+        &amp;#123;
+            for (auto it = mapRangeTime.begin(); it != mapRangeTime.end(); ++it)
+            &amp;#123;
+                if(it-&gt;first==&quot;fxOn&quot;)&amp;#123;
+                    timelistDownstreamOn.push_back(it-&gt;second);
+                &amp;#125;
+            &amp;#125;                        
+        &amp;#125;
+        //存储咬钢抛钢时刻
+        for (auto it = mapRangeTime.begin(); it != mapRangeTime.end(); ++it)
+        &amp;#123;
+            if(it-&gt;first==&quot;fxOn&quot;)&amp;#123;
+                fnMap.insert(pair&lt;string, long&gt;(psmName.substr(0,t).append(&quot;On&quot;),it-&gt;second));
+            &amp;#125;
+            if(it-&gt;first==&quot;fxOff&quot;)&amp;#123;
+                fnMap.insert(pair&lt;string, long&gt;(psmName.substr(0,t).append(&quot;Off&quot;),it-&gt;second));
+            &amp;#125;
+        &amp;#125;
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;        
+&amp;#125;
+
+
+
+void statisData(const string&amp; STRIPNO)            //注意ihdb取到的数据是时间从大到小排列的，上述方法里的时间是从小到大排序的。
+&amp;#123;
+    LOG log(&quot;statisData&quot;);
+    HDBReader* m_phdbReader = HDBReader::getInstance();
+    m_phdbReader-&gt;connect(iHDB_IP, 5673, &quot;admin&quot;, &quot;admin&quot;);
+    prxT2L=iPlature::ProxyWrapper&lt;HSM::Time2LenManagerPrx&gt;(&quot;HSM/GetPieceDataManager&quot;);
+    //ProductPrx prx = _masterPrx-&gt;locate(STRIPNO);
+    try
+    &amp;#123;    
+
+        string strSQL;
+        //map&lt;string, long&gt; mapTime;
+        for (auto it = tagNameMap.begin(); it != tagNameMap.end(); ++it)//区域
+        &amp;#123;
+            string unit=it-&gt;first;
+            vector&lt;string&gt; tagNameList=it-&gt;second;
+            //log.Debug() &lt;&lt;&quot;area:&quot;&lt;&lt; it-&gt;first &lt;&lt; endl;
+            for(auto iter=tagNameList.begin();iter!=tagNameList.end();iter++)//每个区域有多个tag点
+            &amp;#123;
+                //log.Debug() &lt;&lt;&quot;tag:&quot;&lt;&lt;(*iter) &lt;&lt; endl;
+                string tagName=(*iter);
+                vector&lt;double&gt; valuelist;
+                vector&lt;long&gt; timelist;
+                vector&lt;long&gt; timelistHeadOn;
+                vector&lt;long&gt; timelistDownstreamOn;
+                map&lt;long,double&gt; TimeValMap;
+                map&lt;string,long&gt; fnMap;
+                for (auto posMeaSeriesName = posMeaSeriesNames.begin(); posMeaSeriesName != posMeaSeriesNames.end(); ++posMeaSeriesName)//每个tag点对应多个时间段
+                &amp;#123;
+                    long fxOn;
+                    long fxOff;
+                    map&lt;string, long&gt; mapRangeTime;
+                    queryTimeRangeByStrupID(STRIPNO,(*posMeaSeriesName),mapRangeTime);
+                    for (auto itmapRangeTime = mapRangeTime.begin(); itmapRangeTime != mapRangeTime.end(); ++itmapRangeTime)
+                    &amp;#123;
+                        if(itmapRangeTime-&gt;first==&quot;fxOn&quot;)&amp;#123;
+                            fxOn=itmapRangeTime-&gt;second;
+                        &amp;#125;
+                        if(itmapRangeTime-&gt;first==&quot;fxOff&quot;)&amp;#123;
+                            fxOff=itmapRangeTime-&gt;second;
+                        &amp;#125;
+                        // log.Debug() &lt;&lt; itmapRangeTime-&gt;first &lt;&lt; &quot;;&quot; &lt;&lt; itmapRangeTime-&gt;second &lt;&lt; endl;
+                    &amp;#125;
+                    //log.Info()&lt;&lt;&quot;fxOn&quot;&lt;&lt;&quot;:&quot;&lt;&lt;fxOn&lt;&lt;&quot;  &quot;&lt;&lt;&quot;fxOff&quot;&lt;&lt;&quot;:&quot;&lt;&lt;fxOff&lt;&lt;endl;
+
+                    //存储咬钢抛钢时刻
+                    saveBiteStreelTime((*posMeaSeriesName),timelistHeadOn,timelistDownstreamOn,mapRangeTime,fnMap);
+                    vector&lt;HdbRecordValue&gt; hdbRecordValues = m_phdbReader-&gt;queryTagIDRecords_Msec(tagName, fxOn, fxOff);
+                    ValueOrderbyTimeSeq valueOrderbyTimes, lenOrderbyTimes,valueOrderbyTimesFormat;
+                    ValueOrderbyLenSeq valueOrderbyLens;
+                    ValueOrderbyTime valueTemp;
+                    for(auto it1=hdbRecordValues.begin();it1!=hdbRecordValues.end();it1++)
+                    &amp;#123;
+                        valueTemp.value=it1-&gt;value;
+                        //valueTemp.time=it1-&gt;time;
+                        valueTemp.time=(long)it1-&gt;nSec * 1000 + it1-&gt;nMsec;
+                        valueOrderbyTimes.push_back(valueTemp);
+                    &amp;#125;    
+                    //queryLenByStrupIDString(STRIPNO,(*posMeaSeriesName),lenOrderbyTimes);
+                    //判断valueOrderbyTimes, lenOrderbyTimes;是否为空？？？？？
+                    //截取合法valueOrderbyTimes
+                    //cutHDBForValueByTimeRange(valueOrderbyTimes,lenOrderbyTimes,valueOrderbyTimesFormat);
+                    // log.Info()&lt;&lt;&quot;valueOrderbyTimesFormat.time&quot;&lt;&lt;&quot;:&quot;&lt;&lt;valueOrderbyTimesFormat[0].time&lt;&lt;&quot;  &quot;&lt;&lt;&quot;valueOrderbyTimesFormat.value&quot;&lt;&lt;&quot;:&quot;&lt;&lt;valueOrderbyTimesFormat[0].value&lt;&lt;endl;
+                    // log.Info()&lt;&lt;&quot;valueOrderbyTimesFormat.time&quot;&lt;&lt;&quot;:&quot;&lt;&lt;valueOrderbyTimesFormat[valueOrderbyTimesFormat.size()-1].time&lt;&lt;&quot;  &quot;&lt;&lt;&quot;valueOrderbyTimesFormat.value&quot;&lt;&lt;&quot;:&quot;&lt;&lt;valueOrderbyTimesFormat[valueOrderbyTimesFormat.size()-1].value&lt;&lt;endl;
+                    // log.Info()&lt;&lt;&quot;lenOrderbyTimes.len&quot;&lt;&lt;&quot;:&quot;&lt;&lt;lenOrderbyTimes[0].value&lt;&lt;&quot;  &quot;&lt;&lt;&quot;lenOrderbyTimes.value&quot;&lt;&lt;&quot;:&quot;&lt;&lt;lenOrderbyTimes[0].time&lt;&lt;endl;
+                    // log.Info()&lt;&lt;&quot;lenOrderbyTimes.len&quot;&lt;&lt;&quot;:&quot;&lt;&lt;lenOrderbyTimes[lenOrderbyTimes.size()-1].value&lt;&lt;&quot;  &quot;&lt;&lt;&quot;lenOrderbyTimes.value&quot;&lt;&lt;&quot;:&quot;&lt;&lt;lenOrderbyTimes[lenOrderbyTimes.size()-1].time&lt;&lt;endl;
+                    //valueOrderbyLens=prxT2L-&gt;Timevalue2LenvalueStep(valueOrderbyTimesFormat,lenOrderbyTimes,1);
+                    // log.Info()&lt;&lt;&quot;valueOrderbyLens.size&quot;&lt;&lt;&quot;:&quot;&lt;&lt;valueOrderbyLens.size()&lt;&lt;endl;
+
+                    for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+                        valuelist.push_back(valueOrderbyTimes[i].value);
+                    &amp;#125;
+                    for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+                        timelist.push_back(valueOrderbyTimes[i].time);
+                    &amp;#125;
+                    for(int i=0;i&lt;valueOrderbyTimes.size();i++)&amp;#123;
+                        TimeValMap.insert(pair&lt;double,double&gt;(valueOrderbyTimes[i].time, valueOrderbyTimes[i].value));
+                    &amp;#125;
+                &amp;#125;
+                sort(valuelist.begin(), valuelist.end());
+                sort(timelist.begin(), timelist.end());
+                sort(timelistHeadOn.begin(), timelistHeadOn.end());
+                sort(timelistDownstreamOn.begin(), timelistDownstreamOn.end());
+                // 测试**********************************
+                // log.Info()&lt;&lt;&quot;************************************测试**********************************&quot;&lt;&lt;endl;
+                // for (auto ittest = valuelist.begin(); ittest != valuelist.end(); ++ittest)
+                // &amp;#123;
+                    // log.Info()&lt;&lt;&quot;ittest:&quot;&lt;&lt;(*ittest)&lt;&lt;endl;
+                // &amp;#125;
+                // log.Info()&lt;&lt;&quot;************************************测试**********************************&quot;&lt;&lt;endl;
+                // for (auto ittest = timelist.begin(); ittest != timelist.end(); ++ittest)
+                // &amp;#123;
+                    // log.Info()&lt;&lt;&quot;ittest:&quot;&lt;&lt;(*ittest)&lt;&lt;endl;
+                // &amp;#125;
+                //极差
+                double SAMPLERANGE=0.0;
+
+                //（咬钢-F3抛钢）
+                if(tagName==&quot;L_FAUX_ODG_R08&quot;||tagName==&quot;L_FAUX_ODG_R09&quot;||tagName==&quot;L_FAUX_ODG_R16&quot;||tagName==&quot;L_FAUX_ODG_R17&quot;||tagName==&quot;L_FAUX_ODG_R18&quot;||tagName==&quot;L_FAUX_ODG_R19&quot;)
+                &amp;#123;
+                    vector&lt;double&gt; fnOnValuelist;
+                    vector&lt;double&gt; fnOffValuelist;
+                    getSAMPLERANGE(fnOnValuelist,fnOffValuelist,fnMap,TimeValMap);
+                    SAMPLERANGE=getMAX_VAL(fnOnValuelist)-TimeValMap[fnMap[&quot;F3Off&quot;]];
+                &amp;#125;
+                //（极差（F7咬钢-抛钢））
+                if(tagName==&quot;L_FAUX_ODG_R10&quot;||tagName==&quot;L_FAUX_ODG_R11&quot;||tagName==&quot;L_FAUX_ODG_R12&quot;||tagName==&quot;L_FAUX_ODG_R13&quot;||tagName==&quot;L_FAUX_ODG_R14&quot;||tagName==&quot;L_FAUX_ODG_R15&quot;)
+                &amp;#123;
+                    vector&lt;double&gt; fnOnValuelist;
+                    vector&lt;double&gt; fnOffValuelist;
+                    getSAMPLERANGE(fnOnValuelist,fnOffValuelist,fnMap,TimeValMap);
+                    SAMPLERANGE=TimeValMap[fnMap[&quot;F7On&quot;]-getMIN_VAL(fnOffValuelist)];
+                &amp;#125;
+                strSQL=&quot;INSERT INTO AP.STATIS_L1_TAG (STRIPNO,TAGNAME,MAX_VAL,MIN_VAL,AVE_VAL,STD_VAL,HEAD_VAL,MIDDLE_VAL,FOOT_VAL,SCAN_CYCLE1,SCAN_CYCLE2,SCAN_CYCLE3,SCAN_CYCLE4,SCAN_CYCLE5,SCAN_CYCLE8,SCAN_CYCLE12,SCAN_CYCLE16,HEAD_BITE_STEEL_1S,HEAD_BITE_STEEL_2S,HEAD_BITE_STEEL_3S,DOWNSTREAM_RACK_BIT_STEEL_0_2S,DOWNSTREAM_RACK_BIT_STEEL_0_25S,DOWNSTREAM_RACK_BIT_STEEL_0_5S,DOWNSTREAM_RACK_BIT_STEEL_1S,DOWNSTREAM_RACK_BIT_STEEL_1_5S,DOWNSTREAM_RACK_BIT_STEEL_2S,DOWNSTREAM_RACK_BIT_STEEL_2_5S,DOWNSTREAM_RACK_BIT_STEEL_3S,SAMPLERANGE,FOOT_1,FOOT_2,FOOT_3,HEAD_3,HEAD_2,HEAD_1)values (&quot;;
+                strSQL=strSQL.append(&quot;&#39;&quot;+STRIPNO+&quot;&#39;,&quot;);
+                strSQL=strSQL.append(&quot;&#39;&quot;+tagName+&quot;&#39;,&quot;);
+                //strSQL=strSQL.append(&quot;&#39;&quot;+area+&quot;&#39;,&quot;);
+                strSQL=strSQL.append(doubleToString(getMAX_VAL(valuelist))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getMIN_VAL(valuelist))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getAVE_VAL(valuelist))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(getSTD_VAL(valuelist))+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(valuelist[0])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(valuelist[(int)valuelist.size()/2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(valuelist[valuelist.size()-1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*4])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*5])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*8])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*12])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+50.0*16])+&quot;,&quot;);
+                //**********************以下
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistHeadOn[0]+1000.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistHeadOn[0]+1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistHeadOn[0]+1000.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+20.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+250.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+250.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+250.0*4])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+250.0*6])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+250.0*8])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+250.0*10])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelistDownstreamOn[0]+250.0*12])+&quot;,&quot;);
+                //*********************************************************************************************************
+                strSQL=strSQL.append(doubleToString(SAMPLERANGE)+&quot;,&quot;);//**************极差（F7咬钢-抛钢）
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[timelist.size()-1]-1000.0*1])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[timelist.size()-1]-1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[timelist.size()-1]-1000.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+1000.0*3])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+1000.0*2])+&quot;,&quot;);
+                strSQL=strSQL.append(doubleToString(TimeValMap[timelist[0]+1000.0*1])+&quot;);&quot;);
+                //log.Debug() &lt;&lt; t &lt;&lt; endl;
+                //log.Debug() &lt;&lt; strSQL &lt;&lt; endl;
+                cmdH033DSP1.SetCommandText(strSQL);
+                cmdH033DSP1.Execute();
+            &amp;#125;
+
+
+        &amp;#125;
+    log.Debug() &lt;&lt; &quot;带钢:&quot;&lt;&lt;STRIPNO&lt;&lt;&quot;特征值存储完毕！&quot;&lt;&lt; endl;
+
+    &amp;#125;
+    catch (std::exception&amp; e)
+    &amp;#123;
+        log.Error() &lt;&lt; e.what() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+
+void NotifyMessage(const char* topic, Ice::ByteSeq message)
+&amp;#123;
+    LOG log(&quot;NotifyMessage&quot;);
+    if (message.size() &gt;= 12)
+    &amp;#123;
+        string STRIPNO((char*)(&amp;message.front()), 12);
+        //STRIPNO=&quot;002375676500&quot;;
+        statisData(STRIPNO);
+        //log.Debug() &lt;&lt; &quot;带钢:&quot;&lt;&lt;STRIPNO&lt;&lt;&quot;特征值存储完毕！&quot;&lt;&lt; endl;
+    &amp;#125;
+    else
+    &amp;#123;
+        log.Error() &lt;&lt; &quot;ERROR STRIPNO LENGGTH &quot; &lt;&lt; message.size() &lt;&lt; endl;
+    &amp;#125;
+&amp;#125;
+
+class FeatureVal2BD2Server :public Component
+&amp;#123;
+public:
+    virtual int start()
+    &amp;#123;
+        LOG log(&quot;FeatureVal2BD2Server&quot;);
+        try &amp;#123;
+            log.Info() &lt;&lt; &quot; start test server ... &quot; &lt;&lt; endl;
+            conH033DSP1.Connect(&quot;H033DSP1&quot;, &quot;ap&quot;, &quot;123456&quot;, iDA::iDA_DB2_Client);
+            cmdH033DSP1.SetConnection(&amp;conH033DSP1);
+            log.Info() &lt;&lt; &quot;Connect to DB2 ...H033DSP1 &quot; &lt;&lt; endl;
+            initTagName();
+            log.Info() &lt;&lt; &quot;initTagName finish!&quot; &lt;&lt; endl;
+            _masterPrx = iPlature::ProxyWrapper&lt;HSM::ProductMasterPrx&gt;(&quot;H033BDB/ProductMaster&quot;);        
+            redisSubscriber.subscribe(STIRP_EVNET);
+            redisSubscriber.consume(NotifyMessage);
+        &amp;#125;
+        catch (std::exception e)
+        &amp;#123;
+            log.Error() &lt;&lt; &quot;std::exception:&quot; &lt;&lt; e.what() &lt;&lt; endl;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;;
+PACE_SERVER_INSTALL(FeatureVal2BD2Server);
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020 小潘同学
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #8CC7B5;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #BEE7E9;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    #post .pjax article .article-entry>ol, #post .pjax article .article-entry>ul, #post .pjax article>ol, #post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    #post .pjax article .article-entry li>ol, #post .pjax article .article-entry li>ul,#post .pjax article li>ol, #post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #post .pjax article .article-entry>ol>li, #post .pjax article .article-entry>ul>li,#post .pjax article>ol>li, #post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    #post .pjax article .article-entry li>ol>li, #post .pjax article .article-entry li>ul>li,#post .pjax article li>ol>li, #post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
